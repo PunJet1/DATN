@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!-- <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org"-->
+<!-- 	th:replace="~{/Layount/MainUser :: dynamic(~{::body})}">-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Đăng ký</title>
+<style>
+/* body {
+	background: #dfe7e9;
+	font-family: 'Roboto', sans-serif;
+}
+.form-control {
+	font-size: 16px;
+	transition: all 0.4s;
+	box-shadow: none;
+}
+.form-control:focus {
+	border-color: #5cb85c;
+}
+.form-control, .btn {
+	border-radius: 50px;
+	outline: none !important;
+} */
+.signup-form {
+	width: 480px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+.signup-form form {
+	border-radius: 5px;
+	margin-bottom: 20px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 40px;
+}
+
+.signup-form a {
+	color: #5cb85c;
+}
+
+.signup-form h2 {
+	text-align: center;
+	font-size: 34px;
+	margin: 10px 0 15px;
+}
+
+.signup-form .hint-text {
+	color: #999;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+
+.signup-form .btn {
+	font-size: 18px;
+	line-height: 26px;
+
+	text-align: center;
+}
+
+.signup-btn {
+	text-align: center;
+	border-color: #5cb85c;
+	transition: all 0.4s;
+}
+
+.signup-btn:hover {
+	background: #5cb85c;
+	opacity: 0.8;
+}
+
+.or-seperator {
+	margin: 50px 0 15px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+}
+
+.or-seperator b {
+	padding: 0 10px;
+	width: 40px;
+	height: 40px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	background: #fff;
+	display: inline-block;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+	position: relative;
+	top: -22px;
+	z-index: 1;
+}
+
+.social-btn .btn {
+	color: #fff;
+	margin: 10px 0 0 15px;
+	font-size: 15px;
+	border-radius: 50px;
+	font-weight: normal;
+	border: none;
+	transition: all 0.4s;
+}
+
+.social-btn .btn:first-child {
+	margin-left: 0;
+}
+
+.social-btn .btn:hover {
+	opacity: 0.8;
+}
+
+.social-btn .btn-primary {
+	background: #507cc0;
+}
+
+.social-btn .btn-info {
+	background: #64ccf1;
+}
+
+.social-btn .btn-danger {
+	background: #df4930;
+}
+
+.social-btn .btn i {
+	float: left;
+	margin: 3px 10px;
+	font-size: 20px;
+}
+.invalid-feedback {
+	font-size: 14px;
+	font-weight: 600;
+	text-align: left;
+}
+</style>
+</head>
+
+<body layout:fragment="content">
+<div class="row justify-content-sm-center">
+	<div class="col col-md-12 text-center">
+
+		<div class="signup-form" align="center">
+
+			<form th:action="@{/register}" th:object="${userDTO}" method="post" class="user">
+
+				<h2 class="display-4">Đăng Ký</h2><br>
+
+				<div class="form-row py-1">
+					<input type="text" th:value="*{username}" class="form-control" name="username" th:errorClass="is-invalid"
+						   placeholder="Nhập username..." >
+					<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+				</div><br>
+
+				<div class="form-row py-1">
+					<input type="email" th:value="*{email}" class="form-control" name="email" th:errorClass="is-invalid"
+						   placeholder="Nhập email..." >
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+				</div><br>
+				<div class="form-row py-1">
+					<input type="password" th:value="*{password}" class="form-control" name="password" th:errorClass="is-invalid"
+						   placeholder="Nhập mật khẩu..." >
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+				</div><br>
+				<div class="form-row py-1">
+					<input type="password" th:value="*{rpassword}" class="form-control" name="rpassword" th:errorClass="is-invalid"
+						   placeholder="Nhập lại mật khẩu..." >
+					<div th:if="${#fields.hasErrors('rpassword')}" th:errors="*{rpassword}" class="invalid-feedback"></div>
+				</div><br>
+				<div class="form-row py-1">
+					<input type="text" th:value="*{fullname}" class="form-control" name="fullname" th:errorClass="is-invalid"
+						   placeholder="Nhập họ và tên.." >
+					<div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="invalid-feedback"></div>
+				</div><br>
+				<div class="form-row py-1">
+					<button type="submit"
+							class="btn btn-success btn-lg btn-block signup-btn">Đăng ký</button>
+				</div>
+			</form>
+			<div class="text-center">
+				Bạn đã có tài khoản? <a th:href="@{/login}">Đăng
+				nhập</a><br>
+				Quay về!!! <a th:href="@{/itbalo}">Trang Chủ</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<div class="row justify-content-sm-center">-->
+<!--	<div class="col col-md-5 text-center">-->
+
+<!--		<div class="signup-form">-->
+
+<!--			<form th:action="@{/register}" th:object="${accounts}" method="post">-->
+
+<!--				<h1 class="display-4">Đăng Ký</h1>-->
+
+<!--				<div class="form-group">-->
+<!--					<input type="text" th:field="*{username}" class="form-control input-lg"-->
+<!--						   placeholder="Nhập username..." required="required">-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<input type="email" th:field="*{email}" class="form-control input-lg"-->
+<!--						   placeholder="Nhập email..." required="required">-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<input type="password" th:field="*{password}" class="form-control input-lg"-->
+<!--						   placeholder="Nhập mật khẩu..." required="required">-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<input type="password" class="form-control input-lg"-->
+<!--						   placeholder="Nhập lại mật khẩu..." required="required">-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<button type="submit"-->
+<!--							class="btn btn-success btn-lg btn-block signup-btn">Đăng ký</button>-->
+<!--				</div>-->
+<!--			</form>-->
+<!--			<div class="text-center">-->
+<!--				Bạn đã có tài khoản? <a th:href="@{/security/login/form}">Đăng-->
+<!--				nhập</a><br>-->
+<!--				Quay về!!! <a th:href="@{/itbalo}">Trang Chủ</a>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
+
+</body>
+</html>

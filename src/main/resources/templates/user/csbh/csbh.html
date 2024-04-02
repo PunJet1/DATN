@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+<title>Chính sách Bảo hành</title>
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/user/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/assets/user/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!--//theme-style-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="text/javascript">
+	function savePass() {
+		var pass = $("#password").val();
+		var valid = pass == $("#passConfirm").val();
+		if (!valid) {
+			//alert("Pass");
+			$("#error").css("color","red");
+			$("#error").show();
+			return false; 
+			
+		}else{
+			$("#error").hide();
+			return true;
+		}
+	
+	}
+</script>
+<script type="application/x-javascript">
+	
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    
+</script>
+<!--fonts-->
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'
+	rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!-- start menu -->
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".memenu").memenu();
+	});
+</script>
+<script src="/assets/user/simpleCart.min.js">
+	
+</script>
+<script src="jquery.min.js"></script>
+<style type="text/css">
+.breadcrumb-item a{
+	color: black; 
+}
+</style>
+</head>
+
+<body>
+	<!--content-->
+	<div class="container" layout:fragment="content">
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Chính sách bảo hành</a></li>
+				</ol>
+			</nav>
+		</div>
+		<div th:replace="user/product/navleftSP.html"></div>
+		<div class="account col-md-9" style="padding-left: 0px 10px;">
+			<div class="account-pass">
+				<div class="col-md-12 account-top">
+					<div align="center" style="">
+						<h3 class="display-4">ITBalo: BẢO HÀNH 5 NĂM CẢ LỖI NGƯỜI DÙNG</h3>
+					</div>
+					
+					
+					
+					<div class="avatar-detail">
+						<img src="data:image/png;base64,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" alt="XWATCH: BẢO HÀNH 5 NĂM CẢ LỖI NGƯỜI DÙNG" style="height: 450px;width: 825px;">
+					</div>
+					
+					<div class="summary">ITBalo luôn nỗ lực hết mình để mang đến những giá trị khác biệt, dịch vụ hậu mãi và trải nghiệm tốt nhất khi mua hàng.</div>
+					
+					<div class="description">
+	
+		<p style="text-align:justify">Với triết lí kinh doanh “<strong><em>Khách hàng là giá trị cốt lõi</em></strong>”, ITBalo luôn nỗ lực hết mình để mang đến những giá trị khác biệt, dịch vụ hậu mãi và trải nghiệm tốt nhất khi mua hàng.</p><p></p><p></p><p style="text-align:justify">Thông qua: <strong>GÓI BẢO HIỂM CẢ LỖI NGƯỜI DÙNG TRONG 5 NĂM</strong>. Khách hàng sẽ nhận được sự an tâm tuyệt đối khi mua balo tại ITBalo.</p><p></p><p></p><p style="text-align:justify"><strong>I. KHÁCH HÀNG NHẬN ĐƯỢC LỢI ÍCH GÌ?</strong></p><p></p><p></p><p>Ngoài gói bảo hiểm quốc tế 1-2 năm cho từng sản phẩm, khi mua balo tại ITBalo, bạn còn được tặng thêm gói <strong>BẢO HIỂM CẢ LỖI NGƯỜI DÙNG TRONG 5 NĂM</strong>. Với chế độ bảo hành này, bạn sẽ tiết kiệm các chi phí bảo dưỡng, sửa chữa đối cả lỗi người dùng trong suốt 5 năm sử dụng.</p><p></p><p></p><p style="text-align:justify"><strong>1/&nbsp;Thế nào là LỖI NGƯỜI DÙNG?</strong></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:justify">Đó là <strong>“LỖI CỦA BẠN”</strong> và bạn xác định phải bỏ ra một khoản tiền cho việc sửa chữa. Nhưng tại ITBalo bạn sẽ được:</p><p></p><p></p><ul><p></p><p>	</p><li style="text-align:justify"></li><p></p><p>	</p><li style="text-align:justify"></li><p></p><p></p></ul><p></p><p></p><div class="youtube-embed-wrapper" style="height:0; overflow:hidden; padding-bottom:56.25%; padding-top:30px; position:relative"><iframe allow=";" allowfullscreen="" frameborder="0" height="360" src="https://youtu.be/QjhglG_2CPM?si=n0cjjYxfFG-YtBDc" style="position:absolute;top:0;left:0;width:100%;height:100%" width="640"></iframe></div><p></p><p></p><p style="text-align:center"><strong>LỖI CỦA BẠN - ITBalo chịu</strong></p><p></p><p></p><p style="text-align:justify"><strong>2/ Gói bảo dưỡng balo</strong></p><p></p><p></p><p style="text-align:justify">Bên cạnh áp dụng khi sửa chữa cho lỗi người dùng, chế độ bảo hành tại ITBalo còn cho phép bạn:</p><p></p><p></p><ul><p></p><p>	</p><li></li><p></p><p></p></ul><p></p><p></p><p style="text-align:justify"><strong></strong></p><p></p><p></p><p style="text-align:justify"><strong>1. Các thắc mắc về bảo hành, sửa chữa, khách hàng liên hệ trực tiếp với ITB qua</strong>:
+		</p><p></p><p></p><ul><p></p><p>	</p><li>HOTLINE Bảo hành, sửa chữa: 0247.306.3555&nbsp;(Miền Bắc)<span style="color:#0000ff"><strong></strong></span>1900.0325 (Nhánh 2 - Miền Nam)&nbsp;(từ thứ 2 – thứ 7, từ 10h00&nbsp;- 18h00, trừ các ngày lễ, Tết)</li><p></p><p>	</p><li>Email chăm sóc khách hàng:&nbsp;<a href="mailto:cskh.itbalo@gmail.com">cskh.itbalo@gmail.com</a></li><p></p><p></p></ul><p></p><p></p><p><strong>2. Địa điểm tiếp nhận balo:</strong></p><p></p><p></p><ul><p></p><p>	</p><li>Trung tâm kỹ thuật itbalo Hà Nội: 2 Xã Đàn, Đống Đa, Hà Nội. Thời gian làm việc: 10h00&nbsp;- 18h00 từ Thứ 2 đến Thứ 7.</li><p></p><p>	</p><li>Trung tâm kỹ thuật itbalo Hồ Chí Minh: 378 Lý Thái Tổ, P10, Q10, Hồ Chí Minh (Vòng xoay Ngã Bảy Lý Thái Tổ). Thời gian làm việc: 10h00&nbsp;- 18h00 từ Thứ 2 đến Thứ 7.</li><p></p><p></p></ul><p></p><p></p><p><strong>3. Ghi chú:</strong></p><p></p><p></p><ul><p></p><p>	</p><li>itbalo khuyến khích khách hàng mang đồng hồ đến thẳng Trung tâm kỹ thuật để được kỹ thuật viên tư vấn và thời gian phục vụ là nhanh nhất. Nếu không thuận lợi trong di chuyển, khách hàng có thể gửi đồng hồ bảo hiểm tại hệ thống cửa hàng itbalo trên toàn quốc.</li><p></p><p></p></ul><p></p><p></p><p style="text-align:justify"><strong>III. MỘT SỐ CÂU HỎI THƯỜNG GẶP TRONG BẢO HÀNH, SỬA CHỮA</strong></p><p></p><p></p><p style="text-align:justify"><strong><em>(A) Thế nào là lỗi của nhà sản xuất?</em></strong></p><p></p><p></p><p style="text-align:justify">Lỗi của nhà sản xuất (NSX) là các lỗi phát sinh trước hoặc trong quá trình sử dụng do NSX gây ra.</p><p></p><p></p><p style="text-align:justify">Cụ thể ở đây là các lỗi về máy móc bên trong đồng hồ: Người dùng sử dụng đúng theo chỉ dẫn song đồng hồ hay bị hỏng vặt, đồng hồ lúc chạy lúc không hay đồng hồ không hoạt động đúng các chức năng như hướng dẫn.</p><p></p><p></p><p style="text-align:justify"><strong><em>(B) Các sản phẩm đổi trả phải giữ nguyên trạng như ban đầu khi mua. Vậy nguyên trạng ban đầu là như thế nào?</em></strong></p><p></p><p></p><p style="text-align:justify">Nghĩa là sản phẩm trong điều kiện còn mới nguyên với các đặc điểm:</p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Chưa xuất hiện tình trạng đã qua sử dụng, bề mặt vỏ đồng hồ không có dấu hiệu trầy xước.</p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Còn đầy đủ phụ kiện: Hộp, tem, túi, phiếu bảo hành, tem thương hiệu, hướng dẫn kỹ thuật ...</p><p></p><p></p><p style="text-align:justify">Nếu sản phẩm đổi trả bị mất những phụ kiện đi kèm hoặc dây đồng hồ bị trầy xước sẽ bị trừ phí khoảng 10-50% giá trị hàng hóa tùy trường hợp cụ thể.</p><p></p><p></p><p style="text-align:justify"><strong><em>(C) Tổn thất bất ngờ là như thế nào?</em></strong></p><p></p><p></p><p style="text-align:justify">Đối với các sản phẩm được áp dụng dịch vụ bao gồm không giới hạn các trường hợp sau được gọi là tổn thất bất ngờ:</p><p></p><p></p><p style="text-align:justify"><strong>Sơ suất rơi vỡ</strong></p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Làm rơi đồng hồ xuống đất khiến đồng hồ không chạy</p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Đánh rơi làm đồng hồ va vào vật cứng, khiến vỡ kính</p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Bị va đụng đồng hồ vào vật cứng kiến đồng hồ bị hỏng hoặc vỡ mặt kính</p><p></p><p></p><p style="text-align:justify"><strong>Sơ suất vô nước</strong></p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Không biết về độ chịu nước của đồng hồ nên sử dụng sai thông số. Ví dụ: đồng hồ chịu nước 3 ATM nhưng lại đi bơi…</p><p></p><p></p><p style="text-align:justify">– &nbsp;&nbsp;Rút núm chỉnh giờ quên không đóng lại nên bị vào nước</p><p></p><p></p><p style="text-align:justify">Tất cả các sản phẩm khi chuyển về Trung tâm bảo hành của itbalo đều được Kĩ thuật trưởng itbalo trực tiếp kiểm tra các lỗi để xác định xem đó là lỗi cố ý hay vô ý. Những trường hợp cố ý gây ra hư hại đồng hồ sẽ không được áp dụng bảo hành.</p><p></p><p></p><p style="text-align:justify">
+		Những trường hợp khác ngoài những trường hợp nói trên không được áp dụng Gói Bảo hiểm DUY NHẤT này.</p><p></p><p></p><p style="text-align:justify"><strong>IV. PHẠM VI ÁP DỤNG</strong></p><p></p><p></p><p style="text-align:justify"></p><p></p><p></p><p style="text-align:center">--------------------------------------------</p><p></p><p></p><p style="text-align:justify">Để biết thêm chi tiết về các thông tin và gói dịch vụ, bảo hành đồng hồ chính hãng tại itbalo, quý khách vui lòng truy cập Hotline Bảo hành, sửa chữa: <span style="color:#0000ff"><strong>19000325 (Nhánh 2)</strong></span>, Email <span style="color:#0000ff">cskh.itbalo@gmail.com</span>&nbsp;hoặc website <strong><a href="http://itbalo.vn"><em>itbalo.vn</em></a></strong>.</p><p></p><p></p><p style="text-align:justify"><em>Bài viết liên quan khác:</em></p><p></p><p></p><ul><p></p><p>	</p><li style="text-align:justify"><em>
+		<a href="/itbalo" rel="nofollow noopener noreferrer" target="_blank">Triết lý kinh doanh chữ tâm hàng đầu</a></em></li><p></p><p>	</p><li style="text-align:justify">
+		<a href="/itbalo" rel="nofollow noopener noreferrer" target="_blank"><em>Dưới 5 triệu nên lựa chọn thương hiệu đồng hồ nào? </em></a></li><p></p><p></p></ul><p></p><p></p><p>&nbsp;</p><p></p><p></p>	</div>
+
+				</div>
+				<div class="clearfix "></div>
+			</div>
+		</div>
+	</div>
+<!-- <script type="text/javascript"> onclick="savePass()"
+	var password = document.getElementById('password');
+	var flag = 1;
+	function check(elem) {
+		if(elem.value.length > 0){
+			if(elem.value != password.value){
+				document.getElementById('alert').innerText = "Mật khẩu mới không giống nhau";
+				flag = 0;
+			}else{
+				document.getElementById('alert').innerText = "";
+				flag = 1;
+			}
+		}
+	}
+	function validate(){
+		if(flag==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+</script> -->
+</body>
+<style>
+
+.avatar-detail {
+    margin-bottom: 40px;
+}
+.time_rate .rate {
+    position: absolute;
+    left: 0px;
+    top: -1px;
+}
+.news_detail .news_time {
+    color: #a0a0a0;
+    font-size: 17px;
+}
+.rate i, #ratings i {
+    width: 17px;
+    height: 17px;
+    display: inline-flex;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    background-repeat: no-repeat;
+}
+
+.news_detail .news_time a {
+    color: var(--main-color);
+}
+.time_rate .share-news {
+    width: 50%;
+    float: right;
+    box-sizing: border-box;
+    text-align: right;
+}
+.avatar-detail {
+    margin-bottom: 40px;
+}
+.news_detail .summary {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 40px;
+}
+.news_detail .description {
+    line-height: 28px;
+    font-size: 16px;
+}
+</style>
+</html>

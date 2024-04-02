@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Tin tức</title>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--Link mới-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Layout -->
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/assets/user/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<!-- start menu -->
+	<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="/assets/user/memenu.js"></script>
+	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+	
+</script>
+</head>
+
+<body >
+	<div class="mt-5 container" layout:fragment="content">
+	  <div class="blog">
+            <div class=" text-center" th:object="${details}" >
+                    <h1><b th:utext="*{title}"></b><br/></h1><br/>
+                    <h3 th:utext="*{shortcontent}"></h3><br/>
+                      <p th:utext="*{content}" style="text-align: left;">
+                    </p>
+            </div>
+            <br/>
+            <h2 class="text-center">Bài viết mới</h2><br/>
+					<div class="grid-in">
+						<ul>
+							<div th:each="p:${news}" class="col-md-4 grid_3" >
+								<a th:href="@{|/itbalo/blog/${p.newsId}|}"><img style="height: 350px;width: 350px;" th:src="@{|/assets/images/${p.image}/|}"
+									class="img-responsive-new" th:href="@{|/itbalo/blog/${p.newsId}|}" /></a>
+								<h3>
+									<a th:href="@{|/itbalo/blog/${p.newsId}|}">[[${p.title}]]</a>
+								</h3>
+								<h4 th:utext="${p.shortcontent}"></h4>
+							</div>
+						</ul>
+					</div>
+        </div>
+	</div>
+	<script src="/assets/vendor-tt/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor-tt/popperjs/popper.min.js"></script>
+	<script src="/assets/vendor-tt/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

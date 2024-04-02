@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- Layout -->
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/user/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/assets/user/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'
+	rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!-- start menu -->
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+<style type="text/css">
+.breadcrumb-item a{
+	color: black; 
+}
+</style>
+</head>
+
+<body layout:fragment="content">
+	<!-- menu -->
+	<div class="container">
+
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Lịch sử mua hàng</a></li>
+				</ol>
+			</nav>
+		</div>
+
+		<!-- Page Content -->
+		<div class="content container-fluid">
+			<!-- Page Header -->
+			<div class="page-header">
+				<div class="row  align-items-center"
+					style="justify-content: space-between;">
+					<div class="col-sm-3">
+						<h3 class="page-title">
+							Lịch sử mua hàng<span id="year"></span>
+						</h3>
+					</div>
+					<div class="col-sm-10 col-md-3 col-lg-4">
+						<div class="input-group">
+							<input type="text" class="form-control col-sm-10"
+								placeholder="Search" name="keyword" id="keyword"
+								th:value="${session.keywords}">
+							<div class="input-group-append">
+								<button class="btn btn-secondary" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search Filter -->
+				<!-- /Search Filter -->
+				<br>
+				<div class="row mt-5">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-striped custom-table datatable">
+								<thead>
+									<tr>
+										<th style="min-width: 50px;">STT</th>
+										<th style="min-width: 150px;">Mã đơn hàng</th>
+										<th style="min-width: 150px;">Tên khách hàng</th>
+										<th style="min-width: 100px;">Ngày đặt hàng</th>
+										<th style="min-width: 100px;">Tổng tiền</th>
+										<th style="min-width: 100px;">Trạng thái</th>
+										<th style="min-width: 150px;">Chi tiết</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="order, state: ${orders}">
+										<td>[[${state.index}]]</td>
+										<td>[[${order.orderId}]]</td>
+										<td>[[${order.account.username}]]</td>
+										<td>[[${order.createDate}]]</td>
+										<td>[[${#numbers.formatDecimal(order.total, 0, 'COMMA', 0, 'POINT')}]] VND</td>
+										<td>
+										<!-- <span class="mode mode_on">[[${order.status}]]</span>-->
+										<span th:if="${order.status} == 1">Chờ duyệt</span>
+										<span th:if="${order.status} == 2">Đang xử lý</span>
+										<span th:if="${order.status} == 3">Đang giao</span>
+										<span th:if="${order.status} == 4">Hoàn thành</span>
+										<span th:if="${order.status} == 0">Đã hủy</span> |
+										<span th:if="${order.getTthaiThanhToan} == 0">Thanh toán khi nhận hàng</span>
+										
+										<span th:if="${order.getTthaiThanhToan} == 1">Đã thanh toán</span>
+										<span th:if="${order.getTthaiThanhToan} == 2">Đã hoàn tiền</span>
+										</td>
+										<td>
+										<!-- 	<div class="btn-group">
+											<a th:href="@{|/itbalo/account/history/detail/${order.orderId}|}">
+												<button type="button" class="btn btn-primary" th:href="@{|/itbalo/account/history/cancel/${order.orderId}|}">Chi tiết</button>
+											</a>
+										</div> -->
+										<div class="btn-group">
+											<a th:href="@{|/itbalo/account/history/cancel/${order.orderId}|}" th:disabled="${order.status} !=1">
+												<button class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop" th:disabled="${order.status} !=1">Huỷ đơn</button>
+											</a>
+										</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+<div class="row">
+                        <ul class="pagination text-center" style="margin-left: 35%;">
+						  <li class="page-item"><a class="page-link" href="/itbalo/account/history?p=0">|< </a></li>
+						  <li class="page-item"><a class="page-link" th:href="@{|/itbalo/account/history?p=${number-1}|}"><<</a></li>
+						  <li class="page-item"><a class="page-link" th:href="@{|/itbalo/account/history?p=${number}|}"> [[${number+1}]]/[[${orders.totalPages}]] </a></li>
+					
+						  <li class="page-item"><a class="page-link" th:href="@{|/itbalo/account/history?p=${number+1}|}">>></a></li>
+						  <li class="page-item"><a class="page-link" th:href="@{|/itbalo/account/history?p=${orders.totalPages-1}|}">>|</a></li>
+						</ul>
+                        </div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

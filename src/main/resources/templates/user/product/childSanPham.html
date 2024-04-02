@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{user/product/sanPham.html}">
+
+<body>
+	<div layout:fragment="content2">
+		<div class="col-md-9 product1">
+			<div class="row">
+				<div class="khungtong">
+					<div style="text-align: center;">
+						<h5 class="alert alert-success" th:if="${messagePage} != null">[[${messagePage}]]</h5>
+					</div>
+					<div id="listProduct" class="col-md-3 mt-4" th:each="listpro : ${listproduct}"
+						style="margin-bottom: 20px;">
+						<div style="height: 330px;">
+							<div class="card" style="width: 18rem; height: 322px;">
+								<a th:href="@{|/itbalo/product/detail/${listpro.productId}|}"
+									style="text-decoration: none;">
+									<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
+										<img class="card-img-top" th:src="@{|/assets/images/${listpro.image}|}" alt=""
+											style="height: 178px; width: 178px;">
+										<div class="discount-label green" th:if="${listpro.category.discount != null}">
+											<p>-[[${listpro.category.discount.percentDiscount}]]%</p>
+										</div>
+										<input id="percent" type="hidden"
+											th:value="${listpro.category.discount.percentDiscount}"
+											th:if="${listpro.category.discount != null}"></input>
+									</div>
+									<div class="card-body" style="text-align: center;">
+										<div>
+											<h5 class="card-title" style="font-size: 18px;" th:text="${listpro.name}">
+											</h5>
+											<input type="hidden" name="nameProduct" th:value="${listpro.name}" />
+										</div>
+										<!--<div style="color: gray; font-size: 12px;">[[*{listpro.brand.name}]] - [[*{listpro.size.name}]] -
+											[[*{listpro.glass.name}]] </div>-->
+										<div style="margin-bottom: 10px;" th:if="${listpro.category.discount != null}">
+											<p class="giagoc">
+												&nbsp;<del>[[*{#numbers.formatInteger(listpro.price,3,'POINT')}]]
+													<span>đ</span></del></p>
+											<p name="priceGiam" class="giamgia" style="font-size: 18px;">
+												[[*{#numbers.formatInteger(listpro.price - (listpro.price
+												*(listpro.category.discount.percentDiscount)/100),3,'POINT')}]] đ</p>
+											<input id="initPrice" name="initPrice" type="hidden"
+												th:value="${listpro.price}" />
+											<input id="lastPrice" name="lastPrice" type="hidden" value=""></input>
+										</div>
+										<div style="margin-bottom: 10px;" th:if="${listpro.category.discount == null}">
+											<p style="font-size: 15px; color: black;">
+												&nbsp;[[*{#numbers.formatInteger(listpro.price,3,'POINT')}]]
+												<span>đ</span></p>
+											<!-- <p style="font-size: 18px;">&nbsp; <b>935000000<span> đ</span></b></p> -->
+											<input id="initPrice" type="hidden" th:value="${listpro.price}" />
+											<input id="lastPrice" type="hidden" value=""></input>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<ul class="pagination" style="margin-left: 350px;">
+						<li class="page-item"><a class="page-link" href="/itbalo/product?p=0"><span
+									class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a></li>
+						<li class="page-item"><a class="page-link" th:href="@{|/itbalo/product?p=${number-1}|}"><span
+									class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></li>
+						<li class="page-item"><a class="page-link" href="/itbalo/product?p=0">
+								[[${number+1}]]/[[${listproduct.totalPages}]]</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{|/itbalo/product?p=${number+1}|}"><span
+									class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
+						<li class="page-item"><a class="page-link"
+								th:href="@{|/itbalo/product?p=${listproduct.totalPages-1}|}"><span
+									class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

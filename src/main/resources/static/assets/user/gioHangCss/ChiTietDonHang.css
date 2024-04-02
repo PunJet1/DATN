@@ -1,0 +1,36 @@
+
+.form-group {
+	width: 200px;
+	margin-left: 20px;
+	margin-right: 20px;
+/* 	border: 1px solid black; */
+}
+.input {
+	color: red;
+}
+
+.textarea {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.thongTin {
+	width: auto;
+	height: auto;
+	padding: 10px;
+	margin-bottom: 10px;
+/* 	border: 1px solid black; */
+/* 		
+}
+
+.thongTin-input {
+/* 	border: 1px solid black; */
+	padding: 10px;
+}
+
+.tongTien {
+	float: right;
+	width: 30%;
+	height: 300px;
+/* 	border: 2px solid red; */
+}

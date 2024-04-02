@@ -1,0 +1,183 @@
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+<title>Đổi mật khẩu</title>
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/user/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/assets/user/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!--//theme-style-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="text/javascript">
+	function savePass() {
+		var pass = $("#password").val();
+		var valid = pass == $("#passConfirm").val();
+		if (!valid) {
+			//alert("Pass");
+			$("#error").css("color","red");
+			$("#error").show();
+			$("#errorDetail").val("0");
+			return false; 
+			
+		}else{
+			$("#error").hide();
+			$("#errorDetail").val("1");
+			return true;
+		}
+	
+	}
+	
+	function conFirm() {
+		var err = $("#errorDetail").val();
+		if(err =="0"){
+			alert("Mật khẩu mới không giống nhau");
+			return false;
+		}
+		$("#formControl").submit();
+		
+	}
+</script>
+<script type="application/x-javascript">
+	
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    
+</script>
+<!--fonts-->
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'
+	rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!-- start menu -->
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".memenu").memenu();
+	});
+</script>
+<script src="/assets/user/simpleCart.min.js">
+	
+</script>
+<script src="jquery.min.js"></script>
+<style type="text/css">
+.breadcrumb-item a{
+	color: black; 
+}
+</style>
+</head>
+
+<body>
+	<!--content-->
+	<div class="container" layout:fragment="content">
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Đổi mật khẩu</a></li>
+				</ol>
+			</nav>
+		</div>
+		<div th:replace="user/product/navleftSP.html"></div>
+		<div class="account col-md-9" >
+			<div class="account-pass">
+				<div class="col-md-12 account-top">
+					<div align="center" style="">
+						<h3 class="display-4">Đổi Mật Khẩu</h3>
+					</div>
+					
+					<br>
+
+					<div th:if="${message != null}" align="center">
+						<p class="text-danger">[[${message}]]</p>
+					</div>
+
+					<form th:action="@{/change_password}" method="post"
+						style="margin-left: 10%;" id="formControl">
+						<div class="form-row py-1">
+							<label>Mật khẩu cũ:</label> <input type="password"
+								class="form-control" name="oldPassword" minlength=6
+								placeholder="Nhập mật khẩu cũ" required autofocus id="oldpass"  style="width: 90%"/>
+						</div>
+						<br>
+
+						<div class="form-row py-1">
+							<label for="password">Mật khẩu mới:</label> <input type="password"
+								name="password" class="form-control" minlength=6 id="password"
+								placeholder="Nhập mật khẩu mới" required  style="width: 90%"/>
+						</div>
+						<br>
+
+						<div class="form-row py-1">
+							<label for="passConfirm">Nhập lại mật khẩu mới:</label> <input
+								type="password" class="form-control" id="passConfirm"
+								placeholder="Xác nhận mật khẩu mới" required oninput="savePass()" style="width: 90%"/>
+						</div>
+						<span id="error" style="display: none">Password
+							mới không giống nhau</span>
+							<input type="hidden" id="errorDetail">
+						<br>
+						<div class="form-row py-1">
+							<button type="button"
+								class="btn btn-success btn-lg btn-block signup-btn" style="width: 90%" onclick="conFirm();">Xác Nhận</button>
+						</div>
+					</form>
+				</div>
+				<div class="clearfix "></div>
+			</div>
+		</div>
+	</div>
+<!-- <script type="text/javascript"> onclick="savePass()"
+	var password = document.getElementById('password');
+	var flag = 1;
+	function check(elem) {
+		if(elem.value.length > 0){
+			if(elem.value != password.value){
+				document.getElementById('alert').innerText = "Mật khẩu mới không giống nhau";
+				flag = 0;
+			}else{
+				document.getElementById('alert').innerText = "";
+				flag = 1;
+			}
+		}
+	}
+	function validate(){
+		if(flag==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+</script> -->
+</body>
+
+</html>

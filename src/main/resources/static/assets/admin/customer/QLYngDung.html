@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Quản Lý Người Dùng</title>
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<!-- <nav class="row">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light col">
+        <a class="navbar-brand" href="#">Admintration</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+          aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span
+                  class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-info" aria-hidden="true"></i> Videos</a>
+            </li>
+            <nav class="item">
+              <a href="" class="nav-link"><i class="fa fa-id-card" aria-hidden="true"></i> Users</a>
+            </nav>
+            <nav class="item">
+              <a href="" class="nav-link"><i class="fa fa-comment" aria-hidden="true"></i> Reports</a>
+            </nav>
+            </form>
+        </div>
+      </nav>
+    </nav> -->
+		<section class="row">
+			<div class="col">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation"><a
+						class="nav-link active" id="videoList-tab" data-toggle="tab"
+						data-target="#danhsach" href="" role="tab"
+						aria-controls="videoList" aria-selected="false">Danh Sách</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link "
+						id="videoEditing-tab" data-toggle="tab" data-target="#chinhsua"
+						href="" role="tab" aria-controls="videoEditing"
+						aria-selected="true" ng-click="reset()">Chỉnh Sửa</a></li>
+
+
+				</ul>
+				<!-- Chinh Sua -->
+				<div class="tab-content" id="myTabContent">
+				
+					<div class="tab-pane fade show" id="chinhsua"
+						role="tabpanel" aria-labelledby="chinhsua-tab">
+						<form action="" class="post">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col">
+											<!-- <input type="image" src="img_submit.gif" alt="ảnh" width="48" height="48"><br>
+                      <input type="file" name="fileToUpload" id="fileToUpload"> -->
+											<div class="col-sm-4 text-center">
+												<label for="image"> <img
+													src="/images/cloud-upload.jpg"
+													style="max-width: 400px; height: 200px;">
+												</label>
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<label for="username">Tài Khoản</label> <input type="text"
+													class="form-control" placeholder="Username" /> <small
+													id="usernameHid" class="form-text text-muted">username
+													is required</small>
+											</div>
+											<div class="form-group">
+												<label for="fullname">Họ Tên</label> <input type="text"
+													class="form-control" placeholder="Fullname" /> <small
+													id="fullnameHid" class="form-text text-muted">Fullname
+													is required</small>
+											</div>
+											<div class="form-group">
+												<label for="email">SĐT</label> <input type="text"
+													class="form-control" placeholder="SĐT" /> <small
+													id="emailHid" class="form-text text-muted">SDT is
+													Required</small>
+											</div>
+											<div class="form-group">
+												<label for="email">Ngày Sinh</label> <input type="date"
+													class="form-control" placeholder="ngày sinh" /> <small
+													id="emailHid" class="form-text text-muted">Email is
+													Required</small>
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<label for="password">Mật Khẩu</label> <input
+													type="password" class="form-control" placeholder="Password" />
+											</div>
+
+											<div class="form-group">
+												<label for="email">Email</label> <input type="text"
+													class="form-control" placeholder="Email" /> <small
+													id="emailHid" class="form-text text-muted">Email is
+													Required</small>
+											</div>
+											<div class="form-group">
+												<label for="email">Địa Chỉ</label> <input type="text"
+													class="form-control" placeholder="dia chi" /> <small
+													id="emailHid" class="form-text text-muted">dia chi
+													is Required</small>
+											</div>
+
+											<div class="form-group">
+												<label for="email">Ngày Tạo TK</label> <input type="date"
+													class="form-control" placeholder="ngay tao tk" /> <small
+													id="emailHid" class="form-text text-muted">ngay tao
+													tk is Required</small>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="mb-3 text-muted text-center">
+									<button class="btn btn-primary">
+										<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+									</button>
+									<button class="btn btn-warning">
+										<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+									</button>
+									<button class="btn btn-danger">
+										<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+									</button>
+									<button class="btn btn-info">
+										<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- Danh Sach -->
+					<div class="tab-pane card active" id="danhsach" role="tabpanel"
+						aria-labelledby="danhsach-tab">
+						<table class="table table-bordered">
+							<tr>
+								<td><b>Tên Đăng Nhập</b></td>
+								<td><b>Họ Tên</b></td>
+								<td><b>Email</b></td>
+								<td><b>Mật Khẩu</b></td>
+								<td><b>Ảnh</b></td>
+								<td><b>SĐT</b></td>
+								<td><b>Địa Chỉ</b></td>
+								<td><b>Ngày Sinh</b></td>
+								<td><b>Ngày Tạo Tài Khoản</b></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>{{item.username}}</td>
+								<td>{{item.brandId}}</td>
+								<td>{{item.brandId}}</td>
+								<td>{{item.brandId}}</td>
+								<td>Ảnh.jpg</td>
+								<td>0312312312</td>
+								<td>HIHI HOHO HAHA</td>
+								<td>31/12/2001</td>
+								<td>30/09/2021</td>
+								<td><a href=""><i class="fa fa-edit" aria-hidden="true">Edit&ensp;</i></a>
+
+								</td>
+							</tr>
+						</table>
+						<div class="panel-footer text-center mb-3">
+							<button class="btn btn-danger">
+								<b class="fa fa-hand-o-up "></b>
+							</button>
+							<button class="btn btn-primary">
+								<b class="fa fa-hand-o-left"></b>
+							</button>
+
+							<button class="btn btn-success">0/10</button>
+
+							<button class="btn btn-primary">
+								<b class="fa fa-hand-o-right"></b>
+							</button>
+							<button class="btn btn-danger">
+								<b class="fa fa-hand-o-down"></b>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="row"></footer>
+	</div>
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script>
+    $('#myTab a').on('click', function (event) {
+      event.preventDefault()
+      $(this).tab('show')
+    })
+  </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+</html>

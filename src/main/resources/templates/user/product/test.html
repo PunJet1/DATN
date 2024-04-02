@@ -1,0 +1,313 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+	<title>Sản phẩm</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/assets/user/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/css/khungsp.css" rel="stylesheet" type="text/css" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+	<!--fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<!-- start menu -->
+	<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="/assets/user/memenu.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".memenu").memenu();
+		});
+	</script>
+	<script src="/assets/user/simpleCart.min.js">
+	</script>
+
+
+	<style type="text/css">
+		.boloc {
+			background: red;
+		}
+	</style>
+
+</head>
+
+<body layout:fragment="content">
+	<div>
+		<div class="container">
+			<div class="nav-bre" style="margin-top: 20px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="#">Sản Phẩm</a></li>
+					</ol>
+				</nav>
+			</div>
+			<div class="col-md-3 product-price">
+				<div class=" rsidebar span_1_of_left">
+					<div class="of-left">
+						<h3>Loại Sản Phẩm</h3>
+					</div>
+					<ul style="margin-left: 10px; ">
+						<li class="loaisp" th:each="listCate : ${listCategory}"
+							style="list-style-type: none; margin: 10px 0px;">
+							<a th:href="@{|/itbalo/product/${listCate.categoryId}|}"
+								style="text-decoration: none; font-size: 17px;">[[${listCate.name}]]</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="product-middle">
+
+					<div class="fit-top">
+						<h6 class="shop-top">Lorem Ipsum</h6>
+						<a href="single.html" class="shop-now">SHOP NOW</a>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="sellers">
+					<div class="of-left-in">
+						<h3 class="tag">Tags</h3>
+					</div>
+					<div class="tags">
+						<ul>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+
+							<div class="clearfix"></div>
+						</ul>
+
+					</div>
+
+				</div>
+				<!---->
+				<div class="product-bottom">
+					<div class="of-left-in">
+						<h3 class="best">Best Sellers</h3>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive "
+									th:src="@{|/assets/images/product/p1.jpg|}" alt=""></a>
+
+						</div>
+						<div class="fashion-grid1">
+							<h6 class="best2">
+								<a href="single.html">Đồng Hồ Bulova Nam Dây Da Automatic 98A187 </a>
+							</h6>
+
+							<span class="price-in1"> 2.999.000 đ</span>
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive "
+									th:src="@{|/assets/images/product/p2.jpg|}" alt=""></a>
+
+						</div>
+						<div class="fashion-grid1">
+							<h6 class="best2">
+								<a href="single.html">Đồng Hồ Citizen C7 Dây Kim Loại Automatic NH8396-82E </a>
+							</h6>
+
+							<span class="price-in1"> 2.999.000 đ</span>
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+
+				</div>
+				<div class=" per1">
+					<a href="single.html"><img class="img-responsive"
+							src="https://thoitranghanoi.vn/admin/uploads/2016/0920/dong-ho-rolex-milgauss-116400gv-wajan.jpg"
+							alt="">
+						<div class="six1">
+							<h4>DISCOUNT</h4>
+							<p>Up to</p>
+							<span>60%</span>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<!-- Sliđe -->
+			<div class="col-md-9" style="margin-bottom: 20px; padding-left: 0px;">
+				<img id="img" style="width: auto;" onclick="changeImage()"
+					src="https://images.fpt.shop/unsafe/fit-in/873x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/7/25/637628469484259700_F_H1_800x300.png"
+					alt="">
+			</div>
+			<script>
+				var index = 1;
+				changeImage = function () {
+
+					var imgs = [
+						"https://images.fpt.shop/unsafe/fit-in/873x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/7/25/637628469484259700_F_H1_800x300.png",
+						"https://images.fpt.shop/unsafe/fit-in/873x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/7/31/637633639065209269_F-H1_800x300.png",
+						"https://images.fpt.shop/unsafe/fit-in/873x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/8/6/637638057406075035_F_H1_800x300.png",
+						"https://images.fpt.shop/unsafe/fit-in/873x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/7/31/637633657926617644_F_H1_800x300%20THIET%20KE%20MAIN%205.png"
+					];
+					document.getElementById("img").src = imgs[index];
+					index++;
+					if (index == 3) {
+						index = 0;
+					}
+				}
+				setInterval(changeImage, 2000);
+			</script>
+			<!-- end of slide -->
+			<div class="col-md-9">
+				<div class="col-md-12">
+					<label for="cars" style="margin-bottom: 10px;">
+						<h4>Bộ Lọc:</h4>
+					</label>
+					<div class="row" id="filter">
+						<form th:action="@{|/itbalo/product/search|}" method="post">
+							<div class="form-group col-sm-3 col-xs-6">
+								<select class="form-control form-control-lg" id="bran" name="bran">
+									<option value="">Hãng--</option>
+									<option th:each="br:${brands}" th:value="${br.brandId}"
+										th:selected="${br.brandId == bran}">[[${br.name}]]</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-3 col-xs-6">
+								<select class="form-control form-control-lg" id="cate" name="cate">
+									<option value="">Phân loại</option>
+									<option th:each="cate:${listCategory}" th:value="${cate.categoryId}">
+										[[${cate.name}]]</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-3 col-xs-6">
+								<select class="form-control form-control-lg" style="width: 190px;" id="pric"
+									name="pric">
+									<option value="">Giá</option>
+									<option value="1">Dưới 2 triệu</option>
+									<option value="2">Từ 2 triệu đến 5 triệu</option>
+									<option value="3">Từ 5 triệu đến 10 triệu</option>
+									<option value="4">Từ 10 triệu đến 15 triệu</option>
+									<option value="5">Từ 15 triệu đến 20 triệu</option>
+									<option value="6">Từ 20 triệu đến 25 triệu</option>
+									<option value="7">Trên 25 triệu</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-3 col-center col-xs-6">
+								<button type="submit" onclick="checkValidate()" class="btn btn-success btn-sm"
+									style="margin-left: 20px;">
+									Tìm kiếm
+								</button>
+							</div>
+						</form>
+					</div>
+					<div style="margin-bottom: 20px;">
+						<div class="khungSapxep">
+							<b>Sắp xếp theo</b>
+							<a th:href="@{|/itbalo/product/khuyenmai|}" class="btn btn-info btn-sm">Khuyến mãi</a>
+							<a th:href="@{|/itbalo/product/moinhat|}" class="btn btn-info btn-sm">Mới Nhất</a>
+							<a th:href="@{|/itbalo/product/banchay|}" class="btn btn-info btn-sm">Bán Chạy</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12" style="margin-bottom: 10px;">
+					<h5>[[${messagePage}]]</h5>
+				</div>
+			</div>
+
+			<div class="col-md-9 product1">
+				<div class="row">
+					<div class="khungtong">
+						<div class="col-md-3" th:each="listpro : ${listproduct.content}" style="margin-bottom: 20px;">
+							<div style="height: 330px;">
+								<div class="card" style="width: 18rem;">
+									<a th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+										style="text-decoration: none;">
+										<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
+											<img class="card-img-top"
+												th:src="@{|/assets/images/product/${listpro.image}|}" alt=""
+												style="height: 178px; width: 178px;">
+											<div class="discount-label green"> <span>-50%</span> </div>
+										</div>
+										<div class="card-body" style="text-align: center;">
+											<div style="height: 60px;">
+												<h5 class="card-title" th:text="${listpro.name}"></h5>
+											</div>
+											<div style="margin-bottom: 10px; ">
+												<p style="font-size: 12px;">&nbsp;<b>[[${listpro.price}]] đ</b> &nbsp;
+													<del>9350000 đ</del></p>
+											</div>
+											<a th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+												class="btn btn-primary abc">Mua Ngay</a>
+										</div>
+									</a>
+								</div>
+							</div>
+
+
+						</div>
+						<div style="text-align: center;">
+							<h5>[[${message}]]</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p>The context path is: ${pageContext.request.contextPath}.</p>
+			<div class="clearfix"></div>
+			<nav class="in">
+				<ul class="pagination">
+					<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+					<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">2 <span class="sr-only"></span></a></li>
+					<li><a href="#">3 <span class="sr-only"></span></a></li>
+					<li><a href="#">4 <span class="sr-only"></span></a></li>
+					<li><a href="#">5 <span class="sr-only"></span></a></li>
+					<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span>
+						</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<!---->
+</body>
+
+</html>

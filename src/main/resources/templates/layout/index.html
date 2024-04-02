@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>Shoes_Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="/assets/user/jquery.min.js"></script>
+  <!-- Custom Theme files -->
+  <!--theme-style-->
+  <link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+
+  <!--//theme-style-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+  <script
+    type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!--fonts-->
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+  <!--//fonts-->
+  <!-- start menu -->
+  <link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="/assets/user/memenu.js"></script>
+  <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+  <script src="/assets/user/simpleCart.min.js"> </script>
+  <script src="/assets/js/shopping-cart-app.js"> </script>
+
+  <style type="text/css">
+    .boloc {
+      background: red;
+    }
+  </style>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* ======= Toast message ======== */
+
+    #toast {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      z-index: 999999;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 2px;
+      padding: 20px 0;
+      min-width: 400px;
+      max-width: 450px;
+      border-left: 4px solid;
+      box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+      transition: all linear 0.3s;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(calc(100% + 32px));
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+
+    .toast--success {
+      border-color: #47d864;
+    }
+
+    .toast--success .toast__icon {
+      color: #47d864;
+    }
+
+    .toast--info {
+      border-color: #2f86eb;
+    }
+
+    .toast--info .toast__icon {
+      color: #2f86eb;
+    }
+
+    .toast--warning {
+      border-color: #ffc021;
+    }
+
+    .toast--warning .toast__icon {
+      color: #ffc021;
+    }
+
+    .toast--error {
+      border-color: #ff623d;
+    }
+
+    .toast--error .toast__icon {
+      color: #ff623d;
+    }
+
+    .toast+.toast {
+      margin-top: 24px;
+    }
+
+    .toast__icon {
+      font-size: 24px;
+    }
+
+    .toast__icon,
+    .toast__close {
+      padding: 0 16px;
+    }
+
+    .toast__body {
+      flex-grow: 1;
+    }
+
+    .toast__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .toast__msg {
+      font-size: 14px;
+      color: #888;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .toast__close {
+      font-size: 20px;
+      color: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+  <div id="toast"></div>
+  <div class="header">
+    <div th:replace="layout/header.html"></div>
+    <div th:replace="layout/nav.html"></div>
+  </div>
+  <div layout:fragment="content"></div>
+  <div th:replace="layout/footer.html"></div>
+  <script>
+    function showSuccessToast() {
+      toast({
+        title: "Thành công!",
+        message: "Bạn đã thêm sản phẩm vào giỏ hàng",
+        type: "success",
+        duration: 5000
+      });
+    }
+
+    function showErrorToast() {
+      toast({
+        title: "Thất bại!",
+        message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+        type: "error",
+        duration: 5000
+      });
+    }
+
+
+    // Toast function
+    function toast({ title = "", message = "", type = "info", duration = 3000 }) {
+      const main = document.getElementById("toast");
+      if (main) {
+        const toast = document.createElement("div");
+
+        // Auto remove toast
+        const autoRemoveId = setTimeout(function () {
+          main.removeChild(toast);
+        }, duration + 1000);
+
+        // Remove toast when clicked
+        toast.onclick = function (e) {
+          if (e.target.closest(".toast__close")) {
+            main.removeChild(toast);
+            clearTimeout(autoRemoveId);
+          }
+        };
+
+        const icons = {
+          success: "fas fa-check-circle",
+          info: "fas fa-info-circle",
+          warning: "fas fa-exclamation-circle",
+          error: "fas fa-exclamation-circle"
+        };
+        const icon = icons[type];
+        const delay = (duration / 1000).toFixed(2);
+
+        toast.classList.add("toast", `toast--${type}`);
+        toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+
+        toast.innerHTML = `
+                    <div class="toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="toast__body">
+                        <h3 class="toast__title">${title}</h3>
+                        <p class="toast__msg">${message}</p>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `;
+        main.appendChild(toast);
+      }
+    }
+
+  </script>
+
+  <script>
+    var sweetalert = function (text) {
+      Swal.fire({
+        icon: "success",
+        title: text,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    };
+    //thông báo lỗi
+    var swarning = function (text) {
+      Swal.fire({
+        icon: "error",
+        title: text,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    };
+
+
+  </script>
+
+</body>
+
+</html>

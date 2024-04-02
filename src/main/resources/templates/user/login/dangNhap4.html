@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="vh-100" style="background-color: #508bfc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+			<form th:action="@{/login}" method="POST" >
+	            <h3 class="mb-5">Sign in</h3>
+						<div class="alert alert-info text-center" th:if="${message}"
+							th:text="${message}"></div>
+	
+						<div class="alert alert-danger text-center" th:if="${param.error}">
+							Username và Password không hợp lệ</div>
+						<div class="alert alert-success text-center"
+							th:if="${param.logout}">Bạn đã đăng xuất</div>
+	            <div class="form-outline mb-4" data-validate="Username is reauired">
+	              <input type="text"  class="form-control form-control-lg" name="username" id="typeEmailX-2"/>
+	              <label class="form-label" for="typeEmailX-2" >User</label>
+	            </div>
+	
+	            <div class="form-outline mb-4" data-validate="Password is required">
+	              <input type="password" name="password" id="typePasswordX-2"  class="form-control form-control-lg" />
+	              <label class="form-label" for="typePasswordX-2">Password</label>
+	            </div>
+	
+	            <!-- Checkbox -->
+	            <div class="form-check d-flex justify-content-start mb-4">
+	              <input class="form-check-input" type="checkbox" value="" id="form1Example3" name="remember-me"/>
+	              <label class="form-check-label" for="form1Example3"> Remember password </label>
+	            </div>
+	
+	            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+			</form>
+            <hr class="my-4">
+
+            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit" >
+	              <a href="/oauth2/authorization/google"
+							class="login100-social-item bg3">
+	              	<i class="fab fa-google me-2"></i>
+	              </a> Sign in with google
+              </button>
+            <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit">
+            	<a href="/oauth2/authorization/facebook"
+							class="login100-social-item bg1">
+	              <i class="fab fa-facebook-f me-2"></i>
+	              </a>Sign in with facebook
+              </button>
+
+				<div class="flex-col-c p-t-10">
+						Bạn chưa có tài khoản?
+						<div>
+							<a th:href="@{/register}" class="txt2"> Đăng ký </a> 
+							<a th:href="@{/itbalo}" class="txt2" style="margin-left: 10px;">Trang Chủ </a>
+							<a th:href="@{/forgot_password}"> Quên mật khẩu? </a>
+						</div>
+				</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</html>

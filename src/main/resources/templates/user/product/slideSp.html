@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+	<!-- Sliđe -->
+            <div class="col-md-7" style="margin-bottom: 20px; padding-left: 0px;">
+                <img id="img" style="width: 832px; height: 300px; padding-left: 20px;" onclick="changeImage()" src="https://bdkhtravinh.vn/mua-dong-ho-nam-o-dau-tphcm/imager_23563.jpg" alt="">
+            </div>
+            <script>
+                var index = 1;
+                changeImage = function() {
+
+                    var imgs = [
+                    	"https://www.trumiwatch.vn/wp-content/uploads/2019/06/apple-watch-series-1-banner.jpg",
+                    	"https://toptenco.com.vn/vnt_upload/weblink/Saint_Honore_1440x500_Banner.jpg",
+                    	"https://muahangmyonline.files.wordpress.com/2013/06/dongho3.jpg",
+                    	"https://bdkhtravinh.vn/mua-dong-ho-nam-o-dau-tphcm/imager_23563.jpg"
+                        
+                    ];
+                    document.getElementById("img").src = imgs[index];
+                    index++;
+                    if (index == 3) {
+                        index = 0;
+                    }
+                }
+                setInterval(changeImage, 3000);
+            </script>
+</body>
+
+</html>

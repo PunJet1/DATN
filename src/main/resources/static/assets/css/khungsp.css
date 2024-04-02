@@ -1,0 +1,107 @@
+.khungtong {
+	margin-left: 30px;
+	width: 830px;
+}
+
+.abc:hover {
+	background-color: #22e89f;
+	color: black;
+}
+
+.khungSapxep {
+	background-color: #e5db7c;
+	height: 50px;
+	width: 802px;
+	padding-top: 10px;
+}
+
+.khungSapxep>a {
+	margin-left: 20px;
+}
+
+.loaisp>a {
+	text-transform: capitalize;
+	color: black;
+}
+
+.loaisp>a:hover {
+	color:  #e5db7c;
+}
+
+.thumbnail {
+	width: 178px;
+	height: 178px;
+	overflow: hidden;
+	border: 1px solid #e5e5e5;
+}
+
+.thumbnail img {
+	width: 100%;
+	height: 100%;
+	transition-duration: 0.5s;
+	/* Safari */
+	-webkit-transition-duration: 0.5s;
+	/* Mozilla Firefox */
+	-moz-transition-duration: 0.5s;
+	/* Opera */
+	-o-transition-duration: 0.5s;
+	/* IE 9 */
+	-ms-transition-duration: 0.5s;
+}
+
+.thumbnail img:hover {
+	transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-moz-transform: scale(1.4);
+	-o-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	cursor: pointer;
+}
+
+.discount-label {
+	position: absolute;
+	padding: 3px;
+	top: 0px;
+	left: 0px;
+	float: left;
+	width: 55px;
+	-webkit-border-radius: 0 4px 0 4px;
+	border-radius: 0 4px 4px 0;
+	text-align: right;
+	border-radius: 7px;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.discount-label p {
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.green {
+	background-color: #16B516;
+}
+
+.green:after {
+	border-right-color: #16B516;
+}
+
+.giamgia {
+	color: #d93826;
+}
+
+.card-title {
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #000;
+}
+
+.card-title:hover {
+	color: red;
+}
+
+.giagoc {
+	font-size: 15px;
+	color: black;
+}

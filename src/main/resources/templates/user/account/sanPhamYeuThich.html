@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+<head>
+<meta charset="utf-8">
+<title>Sản phẩm yêu thích</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/css/khungsp.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.khung {
+	background-color: white;
+	border: 1px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	border-radius: 15px;
+}
+
+.spyt {
+	margin-left: 450px;
+	margin-top: 20px;
+	color: blue;
+}
+
+.anh>img {
+	height: 230px;
+	width: 232px;
+	margin-left: 10px;
+	border-radius: 15px;
+}
+
+.tensp>h6 {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: orange;
+}
+
+.gia {
+	margin-left: 20px;
+}
+
+.btn_muaHang>button {
+	margin-left: 90px;
+	margin-top: 20px;
+	border-radius: 15px;
+}
+
+.fa-heart-o {
+	color: red;
+	cursor: pointer;
+}
+
+.fa-heart {
+	color: red;
+	cursor: pointer;
+}
+.breadcrumb-item a{
+	color: black; 
+}
+</style>
+</head>
+<body layout:fragment="content">
+	<div class="container">
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Sản phẩn yêu thích</a></li>
+				</ol>
+			</nav>
+		</div>
+		<div class="row" align="center">
+			<h4 class="">Sản phẩm yêu thích</h4>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="khungtong" style="width: 1170px;">
+				<div id="listProduct" class="col-md-3 mt-4" th:each="listpro, state: ${wishLists}" style="margin-bottom: 20px;">
+					<div style="height: 330px;">
+                                <div class="card" style="width: 18rem; height: 322px;">
+                                    <a th:href="@{|/itbalo/product/detail/${listpro.product.productId}|}" style="text-decoration: none;">
+                                        <div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
+                                            <img class="card-img-top" th:src="@{|/assets/images/${listpro.product.image}|}" alt="" style="height: 178px; width: 178px;">
+                                            <div class="discount-label green" th:if="${listpro.product.category.discount != null}" style="margin-left: 15px;">
+                                                <p>-[[${listpro.product.category.discount.percentDiscount}]]%</p>
+                                            </div>
+                                            <input id="percent" type="hidden" th:value="${listpro.product.category.discount.percentDiscount}" th:if="${listpro.product.category.discount != null}"></input>
+                                        </div>
+                                        <div class="card-body" style="text-align: center;">
+                                            <div>
+                                                <h5 class="card-title" style="font-size: 18px; padding-top: 10px;" th:text="${listpro.product.name}"></h5>
+                                                <input type="hidden" name="nameProduct" th:value="${listpro.product.name}" />
+                                            </div>
+                                            <div style="color: gray;">[[*{listpro.product.brand.name}]] - [[*{listpro.product.size.name}]] - [[*{listpro.product.glass.name}]] </div>
+                                            <div style="margin-bottom: 10px;" th:if="${listpro.product.category.discount != null}">
+                                                <p class="giagoc">&nbsp;<del>[[*{#numbers.formatInteger(listpro.product.price,3,'POINT')}]] <span>đ</span></del></p>
+                                                <p name="priceGiam" class="giamgia" style="font-size: 18px;">[[*{#numbers.formatInteger(listpro.product.price - (listpro.product.price *(listpro.product.category.discount.percentDiscount)/100),3,'POINT')}]] đ</p>
+                                                <a class="col-sm-3 liked" id="heart" th:href="@{|like/${listpro.product.productId}|}" style="padding-left: 50%;padding-top: 5%;">
+														<i class="fa fa-heart-o" aria-hidden="true"></i>
+												</a>
+                                                <input id="initPrice" name="initPrice" type="hidden" th:value="${listpro.product.price}" />
+                                                <input id="lastPrice" name="lastPrice" type="hidden" value=""></input>
+                                            </div>
+                                            <div style="margin-bottom: 10px;" th:if="${listpro.product.category.discount == null}">
+                                                <p style="font-size: 15px; color: black;" >&nbsp;[[*{#numbers.formatInteger(listpro.product.price,3,'POINT')}]] <span>đ</span></p>
+                                                <!-- <p style="font-size: 18px;">&nbsp; <b>935000000<span> đ</span></b></p> -->
+                                                	<a class="col-sm-3 liked" id="heart" th:href="@{|like/${listpro.product.productId}|}" style="padding-left: 50%;padding-top: 5%;">
+														<i class="fa fa-heart-o" aria-hidden="true"></i>
+													</a>
+                                                <input id="initPrice" type="hidden" th:value="${listpro.product.price}" />
+                                                <input id="lastPrice" type="hidden" value=""></input>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+				</div>
+				<div style="text-align: center;">
+					<h5>[[${message}]]</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$("#heart")
+									.click(
+											function() {
+												if ($("#heart").hasClass(
+														"liked")) {
+													$("#heart")
+															.html(
+																	'<i class="fa fa-heart-o" aria-hidden="true"></i>');
+													$("#heart").removeClass(
+															"liked");
+												} else {
+													$("#heart")
+															.html(
+																	'<i class="fa fa-heart" aria-hidden="true"></i>');
+													$("#heart").addClass(
+															"liked");
+												}
+											});
+						});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/index.html}">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thanh Toán</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Link mới-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+    <!-- Layout -->
+    <link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/assets/user/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!-- start menu -->
+    <link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="/assets/user/memenu.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".memenu").memenu();
+        });
+    </script>
+
+</head>
+
+<body>
+    <main role="main" layout:fragment="content">
+        <div class="container mt-4">
+            <form action="/itbalo/order/checkout" method="post">
+                <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
+
+                <div class="py-5 text-center">
+                    <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
+                    <h2>Thanh toán</h2>
+                    <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 order-md-2 mb-4 ">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Giỏ hàng</span> <span class="badge badge-secondary badge-pill">{{cart.count}}</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed" ng-repeat="i in cart.items">
+                                <div>
+                                    <h6 class="my-0">{{i.name}}-{{i.productId}}</h6>
+                                    <small class="text-muted">{{i.price |number:0}} x {{i.qty}}</small>
+                                </div> <span class="text-muted">{{i.price * i.qty|number:0}}</span>
+                            </li>
+                            <!-- 							<li class="list-group-item d-flex justify-content-between">
+								<span>Tổng thành tiền</span> <strong>{{cart.amount | number:2}} VNĐ</strong>
+							</li> -->
+                        </ul>
+                        <!-- Phần hiển thị voucher -->
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Voucher</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item lh-condensed">
+                                <div class="form-group" th:each="c:${cates}">
+                                    <input ng-model="result" th:value="*{c.voucherName}" ng-change="voucherVal.getValuedVoucher(result)" type="radio" name="rdoResult"> [[*{c.note}]] [[*{c.conditions}]]
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Tổng thành tiền</span> <strong>{{cart.amount|number:0}} VNĐ</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Mã giảm giá</span> <strong>{{result2}} %</strong>
+                            </li>
+                            <!-- voucherVal.amount2 tot -->
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Tiền phải trả</span><strong>{{ totalFinal |
+									number:0}} VNĐ</strong>
+                                <input type="text" class="form-control coupon" name="tongTien" placeholder="Coupon code" ng-value="totalFinal" />
+                                <hr/>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Thông tin khách hàng</h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="kh_ten">Họ và Tên</label> <input type="text" class="form-control" name="kh_ten" id="kh_ten" required="required">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="kh_dienthoai">Điện Thoại</label> <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai" value="" required="required">
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label for="kh_email">Email</label> <input type="text" class="form-control" name="kh_email" id="kh_email" value="" required="required">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="kh_diachi">Địa Chỉ</label> <input type="text" class="form-control" name="kh_diachi" id="kh_diachi" value="" required="required">
+                            </div>
+
+                        </div>
+                        <hr>
+
+                        <h4 class="mb-3">Phương Thức Thanh Toán</h4>
+
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required="" value="1"> <label class="custom-control-label" for="httt-2">Thanh toán C.O.D</label>
+                            </div>
+                            <br>
+                            <div class="custom-control custom-radio">
+                                <input id="httt-1" name="httt_ma" type="radio" class="custom-control-input" required="" value="2"> <label class="custom-control-label" for="httt-1">Thẻ Tín dụng/Ghi nợ</label>
+                            </div>
+                            <br>
+                            <div class="custom-control custom-radio">
+                                <input id="httt-3" name="httt_ma" type="radio" class="custom-control-input" required="" value="3"> <label class="custom-control-label" for="httt-3">Thanh toán QR</label>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang" ng-click="orders.purchase()">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i> Đặt Hàng
+						</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+    </main>
+    <script src="/assets/vendor-tt/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor-tt/popperjs/popper.min.js"></script>
+    <script src="/assets/vendor-tt/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

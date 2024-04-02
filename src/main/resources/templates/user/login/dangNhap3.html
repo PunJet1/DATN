@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org" -->
+<!-- 	th:replace="~{/Layount/MainUser :: dynamic(~{::body})}"> -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Đăng nhập</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="/assets/vendor-tt/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/user/util.css">
+<link rel="stylesheet" type="text/css" href="/assets/user/main.css">
+</head>
+<body>
+	<div class="row justify-content-center">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+
+				<form th:action="@{/login}" method="POST"
+					class="login100-form validate-form">
+					<span class="login100-form-title p-b-49"> Đăng nhập </span>
+
+					<div class="alert alert-info text-center" th:if="${message}"
+						th:text="${message}"></div>
+
+					<div class="alert alert-danger text-center" th:if="${param.error}">
+						Username và Password không hợp lệ</div>
+					<div class="alert alert-success text-center"
+						th:if="${param.logout}">Bạn đã đăng xuất</div>
+					<br>
+
+
+					<div class="wrap-input100 validate-input m-b-23"
+						data-validate="Username is reauired">
+						<span class="label-input100">Tên tài khoản</span> <input
+							class="input100" type="text" name="username"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input"
+						data-validate="Password is required">
+						<span class="label-input100">Mật khẩu</span> <input
+							class="input100" type="password" name="password"> <span
+							class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					<div class=" p-t-8 p-b-31 dis-flex"
+						style="justify-content: space-between;">
+						<a> <input style="margin-right: 10px;" type="checkbox"
+							name="remember-me">Ghi nhớ mật khẩu
+						</a> <a th:href="@{/forgot_password}"> Quên mật khẩu? </a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">Đăng nhập</button>
+						</div>
+					</div>
+
+					<div class="txt1 text-center p-t-54 p-b-20">
+						<span> Hoặc đăng nhập bằng </span>
+					</div>
+
+					<div class="flex-c-m">
+						<a href="/oauth2/authorization/facebook"
+							class="login100-social-item bg1"> <i class="fa fa-facebook"></i>
+						</a> <a href="/oauth2/authorization/google"
+							class="login100-social-item bg3"> <i class="fa fa-google"></i>
+						</a>
+					</div>
+
+					<div class="flex-col-c p-t-10">
+						Bạn chưa có tài khoản?
+						<div>
+							<a th:href="@{/register}" class="txt2"> Đăng ký </a> <a
+								th:href="@{/itbalo}" class="txt2" style="margin-left: 10px;">
+								Trang Chủ </a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+<!-- <script src="https://kit.fontawesome.com/yourcode.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+<!-- CKeditor -->
+
+
+<div class="container">
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item"><a class="nav-link active " data-toggle="tab" data-target="#home" href="">Danh Sách tin
+				tức</a></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="tab" data-target="#menu1" href="">Chỉnh sửa tin tức</a>
+		</li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content card">
+		<div id="home" class="container tab-pane active">
+
+			<table class="table table-bordered table-sm mt-3">
+				<thead>
+					<tr>
+						<th>Mã tin tức</th>
+						<th>Tiêu đề</th>
+						<th>Ảnh</th>
+						<th>Nội dung ngắn</th>
+						<!-- <th>Nội dung</th> -->
+						<th>Hành Động</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in pager.items">
+						<td>{{item.newsId}}</td>
+						<td>{{item.title}}</td>
+						<td><img src="/assets/images/{{item.image}}" style="width: 100px; height: 100px" alt=""></td>
+						<td>{{item.shortcontent}}</td>
+						<!-- <td>{{item.content}}</td> -->
+						<td>
+							<button ng-click="edit(item)" class="btn btn-primary fa fa-wrench">
+								<!-- Chỉnh sửa -->
+							</button>
+							<button ng-click="delete(item)" class="btn btn-danger fa fa-trash">
+								<!-- Xóa -->
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class=" text-center mb-3">
+				<button class="btn btn-danger" ng-click="pager.first()">
+					<b class="fa fa-arrow-up"></b>
+				</button>
+				<button class="btn btn-primary" ng-click="pager.prev()">
+					<b class="fa fa-arrow-left"></b>
+				</button>
+				<button class="btn btn-success">{{pager.page + 1}} of
+					{{pager.count}}</button>
+				<button class="btn btn-primary" ng-click="pager.next()">
+					<b class="fa fa-arrow-right"></b>
+				</button>
+				<button class="btn btn-danger" ng-click="pager.last()">
+					<b class="fa fa-arrow-down"></b>
+				</button>
+			</div>
+		</div>
+		<div id="menu1" class="container tab-pane">
+			<!-- <div class="row mb-3 p-3">
+				<div class="col-sm-4 text-center ">
+					<label for="image"> <img alt="" ng-src="/assets/images/{{form.image}}" class="img-rounded"
+							width="304" height="236">
+					</label>
+				</div>
+				<div class="ml-3 col-sm-7">
+					<div class="row">
+						<label>Mã tin tức</label> <input ng-model="form.newsId" class="form-control form-control-sm"
+							disabled="disabled">
+					</div>
+					<div class="row">
+						<label>Tiêu đề</label> <input ng-model="form.title" class="form-control form-control-sm"
+							id="title">
+						<div class="error-ma-tieu-de">Không để trống mã tiêu đề</div>
+					</div>
+					<div class="row">
+						<label>Tiêu đề</label>
+						<div class="input-group">
+							<span class="input-group-addon"> </span> <input type="text" maxlength="255" id="title"
+								class="form-control form-control-sm" placeholder="Nhập tiêu đề" ng-model="form.title">
+							<div class="invalid-tooltip" id="showErrorTitle"></div>
+						</div>
+					</div>
+					<br>
+
+					<div class="row">
+						<label>Ảnh</label> <input class="form-control" type="file"
+							onchange="angular.element(this).scope().imageChanged(this.files)" id="image">
+						<div class="error-ma-anh">Không để trống ảnh</div>
+					</div>
+					<div class="row">
+						<label>Nội dung ngắn</label>
+					</div>
+					<div class="row">
+						id="editor" :Dùng cho ckeditor
+						<input ng-model="form.shortcontent" class="form-control form-control-sm" id="shortcontent">
+						<div class="error-noi-dung-ngan">Không để trống nội dung ngắn</div>
+					</div>
+					<div class="row">
+						<label>Nội dung ngắn</label>
+						<div class="input-group">
+							<span class="input-group-addon"> </span> <input type="text" maxlength="255"
+								id="shortcontent" class="form-control form-control-sm" placeholder="Nhập nội dung ngắn"
+								ng-model="form.shortcontent">
+							<div class="invalid-tooltip" id="showErrorShortcontent"></div>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<label>Nội dung</label>
+					</div>
+					<div class="row">
+						id="editor" :Dùng cho ckeditor
+						<textarea class="form-control" ng-model="form.content" id="editor" rows="8"
+							name="content">${form.content}</textarea>
+					</div>
+
+				</div>
+			</div> -->
+			<div class="row mb-3 p-3">
+				<div class="col-sm-4 text-center">
+					<label for="image">
+						<img alt="" ng-src="/assets/images/{{form.image}}" class="img-rounded" width="304" height="236">
+					</label>
+				</div>
+				<div class="ml-3 col-sm-7">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Mã tin tức</label>
+						<div class="col-sm-9">
+							<input ng-model="form.newsId" class="form-control form-control-sm" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Tiêu đề</label>
+						<div class="col-sm-9">
+							<input type="text" maxlength="255" id="title" class="form-control form-control-sm"
+								placeholder="Nhập tiêu đề" ng-model="form.title">
+							<div class="invalid-tooltip" id="showErrorTitle"></div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Ảnh</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="file"
+								onchange="angular.element(this).scope().imageChanged(this.files)" id="image">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Nội dung ngắn</label>
+						<div class="col-sm-9">
+							<input type="text" maxlength="255" id="shortcontent" class="form-control form-control-sm"
+								placeholder="Nhập nội dung ngắn" ng-model="form.shortcontent">
+							<div class="invalid-tooltip" id="showErrorShortcontent"></div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Nội dung</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" ng-model="form.content" id="editor" rows="8"
+								name="content">${form.content}</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="text-center mb-3">
+				<!-- validate create() -->
+				<button class="btn btn-primary" ng-click="validate()">
+					<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+				</button>
+				<button class="btn btn-warning" ng-click="update()">
+					<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+				</button>
+				<button class="btn btn-danger" ng-click="delete(form)">
+					<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+				</button>
+				<button class="btn btn-info" ng-click="reset()">
+					<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script>
+	CKEDITOR
+		.replace(
+			'editor',
+			{
+				filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+				filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?type=Images',
+				filebrowserFlashBrowseUrl: 'ckfinder/ckfinder.html?type=Flash',
+				filebrowserUploadUrl: 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+				filebrowserImageUploadUrl: 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+				filebrowserFlashUploadUrl: 'ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+
+			});
+</script> -->
+</boby>
+
+<script>
+	var checkTitle = 0;
+	var checkShortcontent = 0;
+
+	$(document).ready(
+		function () {
+			$("#title").keyup(
+				function () {
+					var name = this.value;
+					if (name == "" || name.trim() == "") {
+						$("#title").addClass("is-invalid");
+						$("#showErrorTitle").text(
+							"Vui lòng nhập tiêu đề!");
+						checkTitle = 10;
+					} else {
+						var length = name.length;
+						var maxLength = $("#sizeName")
+							.attr("maxlength");
+						if (length > maxLength) {
+							$("#title").addClass("is-invalid");
+							$("#showErrorTitle").text(
+								"Không được nhập quá 255 ký tự!");
+							checkTitle = 10;
+						} else {
+							$("#title").removeClass("is-invalid");
+							$("#showErrorTitle").text("");
+							checkTitle = 1;
+						}
+					}
+					handlerButtonSave();
+				});
+
+		});
+
+	$(document).ready(
+		function () {
+			$("#shortcontent").keyup(
+				function () {
+					var name = this.value;
+					if (name == "" || name.trim() == "") {
+						$("#shortcontent").addClass("is-invalid");
+						$("#showErrorShortcontent").text(
+							"Vui lòng nhập nội dung ngắn!");
+						checkShortcontent = 10;
+					} else {
+						var length = name.length;
+						var maxLength = $("#sizeName")
+							.attr("maxlength");
+						if (length > maxLength) {
+							$("#shortcontent").addClass("is-invalid");
+							$("#showErrorShortcontent").text(
+								"Không được nhập quá 255 ký tự!");
+							checkShortcontent = 10;
+						} else {
+							$("#shortcontent").removeClass("is-invalid");
+							$("#showErrorShortcontent").text("");
+							checkShortcontent = 1;
+						}
+					}
+					handlerButtonSave();
+				});
+
+		});
+
+	function checkForm() {
+		$("#title").keyup();
+		$("#shortcontent").keyup();
+		return handlerButtonSave();
+	}
+
+	function handlerButtonSave() {
+		var check = false;
+		if (checkTitle !== 10) {
+			check = true;
+			$("#btnSave").prop("disabled", false);
+		} else {
+			check = false;
+			$("#btnSave").prop("disabled", true);
+		}
+		return check;
+	}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+</html>

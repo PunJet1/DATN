@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<style>
+.bg-register-image {
+	background-position: center;
+	background-size: cover;
+}
+
+.input {
+	width: 30px;
+}
+</style>
+<title>Cập nhật tài khoản</title>
+<!-- Custom fonts for this template-->
+<link href="/assets/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+
+<!-- Layout -->
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/user/jquery.min.js"></script>
+<script src="/assets/js/shopping-cart-app.js">
+	
+</script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/assets/user/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript">
+	
+	
+	
+	
+	
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+</script>
+<!--fonts-->
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'
+	rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!-- start menu -->
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".memenu").memenu();
+	});
+</script>
+<script src="/assets/user/simpleCart.min.js">
+	
+</script>
+<style type="text/css">
+.breadcrumb-item a {
+	color: black;
+}
+</style>
+</head>
+
+<body>
+	<div class="container " layout:fragment="content">
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Thông tin tài
+							khoản</a></li>
+				</ol>
+			</nav>
+		</div>
+		<div class="card o-hidden border-0 shadow-lg my-5">
+			<div class="card-body p-4">
+				<!-- Nested Row within Card Body -->
+				<div class="text-center">
+					<h1 class="h4 text-gray-900 mb-4">Thông Tin Tài Khoản</h1>
+				</div>
+				<div class="row">
+					<div class="card-body">
+						<form action="#" class="user"
+							th:action="@{/itbalo/account/update}" th:object="${account}"
+							method="post">
+							<div class="row">
+								<div class="col-4">
+									<div class="col-sm-4 text-center">
+										<label for="image"> <img alt=""
+											src="/assets/images/{{form.image}}" class="img-rounded"
+											width="304" height="236" th:if="${ckimage != true}"> <img
+											alt="" th:src="@{|/assets/images/${account.image}|}"
+											class="img-rounded" width="304" height="236"
+											th:if="${ckimage == true}">
+										</label> <input type="file" class="form-control-file"
+											ng-model="form.image" id="image" name="image"
+											style="width: 250px;"
+											onchange="angular.element(this).scope().imageChanged(this.files)"
+											ng-value="{{form.image}}"> <input type="hidden"
+											value="{{form.image}}" id="image1" name="image1">
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label for="username">Tài khoản</label> <input type="text"
+											class="form-control" placeholder="Username" id="username"
+											th:field="*{accountId}" readonly />
+									</div>
+									<div class="form-group">
+										<label for="username">Tên tài khoản</label> <input type="text"
+											class="form-control" placeholder="Username" id="username"
+											th:field="*{username}" readonly>
+									</div>
+									<div class="form-group">
+										<label for="fullname">Họ và Tên</label> <input type="text"
+											class="form-control" placeholder="Fullname" id="fullname"
+											th:field="*{fullname}" />
+									</div>
+									<div class="form-group">
+										<label for="sdt">Email</label> <input type="text"
+											class="form-control" placeholder="Email" id="email"
+											th:field="*{email}" />
+									</div>
+									<div class="form-group">
+										<label for="password">Số điện thoại</label> <input
+											type="number" class="form-control"
+											placeholder="Số điện thoại" id="phone" th:field="*{phone}">
+									</div>
+									<div class="form-group">
+										<label for="text">Ngày Sinh</label> <input type="text"
+											class="form-control" placeholder="Ngày sinh" id="bithdate"
+											name="bithdate" th:value="${dateNgaySinh}"
+											ng-blur="checkKyThangInput('bithdate');" />
+									</div>
+									<div class="form-group">
+										<label for="password">Địa chỉ</label> <input type="text"
+											class="form-control" id="diachi" placeholder="Địa Chỉ"
+											th:field="*{address}">
+									</div>
+									<div class="form-group" style="display: none">
+										<label for="username">Mật khẩu</label> <input type="text"
+											class="form-control" placeholder="Username" id="password"
+											th:field="*{password}">
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row justify-content-end">
+								<div class="col-lg-2 col-offset-6 centered">
+									<a href="/itbalo" class="btn btn-secondary btn-icon-split"
+										style="height: 50px;"> <span class="icon text-white-50">
+											<i class="fas fa-arrow-left"></i>
+									</span> <span class="text" style="padding-top: 8px;">Quay Về</span>
+									</a>
+								</div>
+								<div class="col-4">
+									<a href="#" class="btn btn-success btn-icon-split"> <span
+										class="icon text-white-50"> <i class="fa fa-wrench"></i>
+									</span>
+										<button type="submit" class="btn" style="color: white;">Cập
+											Nhật</button>
+									</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="/assets/user/vendor/jquery/jquery.min.js"></script>
+	<script src="/assets/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="/assets/user/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="/assets/js/sb-admin-2.min.js"></script>
+</body>
+</html>

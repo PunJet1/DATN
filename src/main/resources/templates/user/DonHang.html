@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/yourcode.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link href="/User/GioHangCSS/ChiTietDonHang.css" rel='stylesheet'
+	type='text/css' media="all">
+
+
+
+
+<!-- Layout -->
+<link href="/User/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/User/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/User/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<!-- start menu -->
+	<link href="/User/memenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="/User/memenu.js"></script>
+	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+	<script src="/User/simpleCart.min.js"> </script>
+</head>
+<body layout:fragment="content">
+	<div class="container mt-8">
+	<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+			    <li class="breadcrumb-item"><a href="#">Home</a></li>
+			    <li class="breadcrumb-item"><a href="#">Đơn hàng</a></li>
+			  </ol>
+			</nav>
+		</div>
+		<div class="thongTin">
+			<h3>Chi Tiết Đơn Hàng</h3>
+			<div class="thongTin-input ">
+				<div class="form">
+					<div class="d-flex">
+						<div class="form-group">
+							<div>Mã đơn hàng</div>
+							<input ng-model="form.name" class="input form-control">
+						</div>
+						<div class="form-group">
+							<div>Ngày đặt hàng</div>
+							<input ng-model="form.createDate" type="date" id="date1"  onblur="checkDateHtai('date1')"
+								class="form-control ">
+						</div>
+						<div class="form-group">
+							<div>Mã giảm giá</div>
+							<select class="form-control ">
+								<option>1</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="d-flex">
+						<div class="form-group ">
+							<div>Tên khách hàng</div>
+							<input ng-model="form.name" class="form-control ">
+						</div>
+						<div class="form-group">
+							<div>Số điện thoại</div>
+							<input ng-model="form.name" class="form-control">
+						</div>
+						<div class="form-group">
+							<div>Email</div>
+							<input ng-model="form.name" class="form-control">
+						</div>
+					</div>
+					<div class="d-flex">
+						<div class="textarea">
+							<label for="comment">Địa chỉ nhận hàng</label>
+							<textarea class="form-control" rows="2" cols="88" id="comment"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="tongTien" s>
+                sd
+            </div> -->
+		</div>
+		<div class="thongTin">
+			<h3>Danh sach sản phẩm</h3>
+			<div class="thongTin-input">
+				<table class="table table-bordered table-sm">
+					<thead>
+						<tr>
+							<th>Mã sản phẩm</th>
+							<th>Tên sản phẩm</th>
+							<th>Giá tiền</th>
+							<th>Số lượng</th>
+							<th>Tổng tiền</th>
+							<th>Đánh giá</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm">Đánh
+									giá</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm">Đánh
+									giá</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm">Đánh
+									giá</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>x</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm">Đánh
+									giá</button>
+							</td>
+						</tr>
+									
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

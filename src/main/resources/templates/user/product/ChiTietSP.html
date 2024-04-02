@@ -1,0 +1,666 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+	<title>Chi tiết Sản Phẩm</title>
+	<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/assets/user/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script type="application/x-javascript">
+
+
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+ 
+
+</script>
+	<!--fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<!-- start menu -->
+	<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/css/khungsp.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/assets/user/memenu.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".memenu").memenu();
+		});
+	</script>
+
+
+	<script src="/assets/user/main.js"></script>
+	<script src="/assets/user/simpleCart.min.js"></script>
+
+
+	<!-- CSS LIBRARY -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+		integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+		integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+		integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<style type="text/css">
+		#rating {
+			border: none;
+			float: left;
+		}
+
+		#rating>input {
+			display: none;
+		}
+
+		/*ẩn input radio - vì chúng ta đã có label là GUI*/
+		#rating>label:before {
+			margin: 5px;
+			font-size: 1.25em;
+			font-family: FontAwesome;
+			display: inline-block;
+			content: "\f005";
+		}
+
+		/*1 ngôi sao*/
+		#rating>.half:before {
+			content: "\f089";
+			position: absolute;
+		}
+
+		/*0.5 ngôi sao*/
+		#rating>label {
+			color: #ddd;
+			float: right;
+		}
+
+		/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+		/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+		#rating>input:checked~label,
+		#rating:not(:checked)>label:hover,
+		#rating:not(:checked)>label:hover~label {
+			color: orange;
+			/* color: #FFD700; */
+		}
+
+		/* Hover vào các sao phía trước ngôi sao đã chọn*/
+		#rating>input:checked+label:hover,
+		#rating>input:checked~label:hover,
+		#rating>label:hover~input:checked~label,
+		#rating>input:checked~label:hover~label {
+			color: orange;
+			/* color: #FFED85; */
+		}
+
+		.title {
+			clear: both;
+			position: relative;
+			text-align: center;
+			overflow: hidden;
+		}
+
+		.tabs .tab-content {
+			display: none;
+			margin-top: -1px;
+			float: right;
+			width: 100%;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			border: 1px solid #e9e9e9;
+			padding: 30px;
+			margin-bottom: 30px
+		}
+	</style>
+</head>
+
+<body layout:fragment="content" th:attr="onload=@{|loadComment(${item.productId})|}">
+	<div>
+		<div class="nav-bre container" style="margin-top: 5px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/itbalo}">Trang
+							Chủ</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/itbalo/product}">Sản
+							Phẩm</a></li>
+					<li class="breadcrumb-item active" aria-current="page">[[${item.name}]]</li>
+				</ol>
+			</nav>
+		</div>
+		<div class="product ">
+			<div class="container">
+				<div th:replace="user/product/navleftSP.html"></div>
+				<div class="col-md-9 product-price1">
+					<div class="col-md-5 single-top">
+						<div class="flexslider">
+							<ul class="slides ">
+								<!-- <li th:data-thumb="@{|/assets/images/${item.image}|}"><img
+									th:src="@{|/assets/images/${item.image}|}" /></li> -->
+								<li th:each="p:${item.images}" th:data-thumb="@{|/assets/images/${p.images}|}"><img
+										th:src="@{|/assets/images/${p.images}|}" /></li>
+							</ul>
+						</div>
+						<!-- FlexSlider -->
+						<script defer src="/assets/user/jquery.flexslider.js"></script>
+						<link rel="stylesheet" href="/assets/user/flexslider.css" type="text/css" media="screen" />
+
+						<script>
+							// Can also be used with $(document).ready()
+							$(window).load(function () {
+								$('.flexslider').flexslider({
+									animation: "slide",
+									controlNav: "thumbnails"
+								});
+							});
+
+							$(window).load(function () {
+								// The slider being synced must be initialized first
+								$('#carousel').flexslider({
+									animation: "slide",
+									controlNav: "thumbnails",
+									animationLoop: false,
+									slideshow: false,
+									itemWidth: 210,
+									itemMargin: 5,
+									asNavFor: '#slider'
+								});
+
+								$('#slider').flexslider({
+									animation: "slide",
+									controlNav: "thumbnails",
+									animationLoop: false,
+									slideshow: false,
+									sync: "#carousel"
+								});
+							});
+						</script>
+					</div>
+					<div class="col-md-7 single-top-in simpleCart_shelfItem">
+						<div class="single-para ">
+							<h5 style="color: black;">
+								Balo [[${item.brand.name}]] <i>[[${item.name}]]</i>
+							</h5>
+							<div class="star-on" id="saoTB">
+								<div>
+									<!-- 									<ul class="star-footer"> -->
+									<!-- 										<li><a href="#"><i> </i></a></li> -->
+									<!-- 									</ul> -->
+
+								</div>
+								<!-- 								<div class="review"> -->
+								<!-- 									<a href="#0"> đánh giá của khách hàng </a> -->
+								<!-- 								</div> -->
+							</div>
+							<div class="tag-men">
+								<p style="font-size: 15px;">
+									<!-- Ngày đăng:[[*{#dates.format(item.createDate,'dd/MM/yyy')}]] | -->
+									Loại Balo
+									[[${item.category.name}]]
+								</p>
+							</div>
+							<ul class="tag-men" style="font-size: 15px;">
+								<div class="row">
+									<div class="col-md-5">Giá đang khuyến mãi</div>
+									<div class="col-md-5 " style="font-style: italic;color: red;"
+										th:if="${item.category.discount != null}">
+										: <b>[[*{#numbers.formatInteger(item.price - (item.price *
+											(item.category.discount.percentDiscount)/100),3,'POINT')}]] đ</b>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">Giá cũ</div>
+									<div class="col-md-5 ">:
+										[[*{#numbers.formatInteger(item.price,3,'POINT')}]] đ</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">Tiết kiệm được</div>
+									<div class="col-md-5" th:if="${item.category.discount != null}">:
+										[[*{#numbers.formatInteger((item.price *
+										(item.category.discount.percentDiscount)/100),3,'POINT')}]] đ
+										<b
+											style="font-style: italic;color: red;">([[*{item.category.discount.percentDiscount}]]%)</b>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">Hãng</div>
+									<div class="col-md-7">: [[${item.brand.name}]]</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">Size</div>
+									<div class="col-md-7">
+										<select id="sizeSelect">
+											<option value="">Chọn kích thước</option>
+											<option th:value="${item.size.id}" th:text="${item.size.name}"></option>
+										</select>
+									</div>
+									
+								</div>
+								<div class="row" th:if="${item.status} == true">
+									<div class="col-md-5">Trạng thái</div>
+									<div th:if="${item.quantity} > 0" class="col-md-7"
+										style="color:blue;font-size: 15px;">: Còn hàng</div>
+									<div th:if="${item.quantity} <= 0" class="col-md-7"
+										style="color:red;font-size: 15px;">: Hết hàng</div>
+								</div>
+							</ul>
+							<!-- 							<p>This is mô tả</p> -->
+							<ul class="" style="font-size: 15px;" th:if="${item.status} == true">
+								<a onclick="showSuccessToast();" class="add-re btn" href="#0"
+									th:attr="ng-click=@{|cart.add(${item.productId})|}"
+									th:disabled="${item.quantity} <=0">Thêm vào Giỏ Hàng</a>
+
+								<a class="add-re btn" th:href="@{|/appLike/${item.productId}|}" role="button">Thích <i
+										class="fas fa-thumbs-up"></i>
+								</a>
+							</ul>
+							<p th:if="${item.status} == false" style="color:red;font-size: 17px;">Sản phẩm này đã ngừng
+								kinh doanh.</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<!---->
+					<div class="cd-tabs">
+						<nav>
+							<ul class="cd-tabs-navigation">
+								<li><a data-content="fashion" href="#0" class="selected">Thông
+										Số Sản Phẩm </a></li>
+								<li><a data-content="television" href="#0">Đánh Giá <b id="soFB"></b></a></li>
+							</ul>
+						</nav>
+						<ul class="cd-tabs-content">
+							<li data-content="fashion" class="selected" style="margin-top: 10px;">
+								<div class="facts1">
+									<!-- 									<div class="mt-10"> <h2 >Thông tin Sản phẩm</h2></div> -->
+									<div class="color">
+										<p>Nhãn Hiệu</p>
+										<span>[[${item.brand.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Nguồn Gốc</p>
+										<span>[[${item.origin}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Kiểu Balo</p>
+										<span>[[${item.category.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Kích Cỡ</p>
+										<span>[[${item.size.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Chất liệu vỏ</p>
+										<span>[[${item.shell.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Chất liệu dây</p>
+										<span>[[${item.strap.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Chất liệu kính</p>
+										<span>[[${item.glass.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Độ chịu nước</p>
+										<span>[[${item.water.name}]]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Giới tính</p>
+										<span>[[*{item.gender} ? 'Nam':'Nữ']]</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Bảo hành quốc tế</p>
+										<span> 1 năm</span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="color">
+										<p>Mô tả</p>
+										<span>[[${item.description}]]</span>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+
+							</li>
+							<!--<li data-content="cinema">
+
+								<div id="content_tab_9" class="tab-content" style="display: block;">
+									<p style="font-family: verdana, geneva, sans-serif; font-size: 13pt;"><span
+											style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>CHẾ
+												ĐỘ BẢO HÀNH</strong></span></p>
+									<p style="font-family: verdana, geneva, sans-serif; font-size: 10pt;"><span
+											style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>Tất
+												cả các đồng hồ khi bán ra đều kèm theo 2 phiếu bảo hành:</strong></span>
+									</p>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">1
+												Phiếu Bảo Hành (hoặc Thẻ Bảo Hành/Sổ Bảo Hành) của hãng có giá trị bảo
+												hành Quốc tế (Thời gian bảo hành tùy theo quy định của từng
+												hãng).</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">1
+												Phiếu Bảo Hành của Hải Triều (Sử dụng để được thay pin miễn phí vĩnh
+												viễn &amp; Hưởng chế độ bảo hành tăng thêm từ 1-4 năm của Hải
+												Triều).</span></li>
+									</ul>
+									<span
+										style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;"><strong>Ví
+											dụ:</strong> Đồng Hồ Citizen có chế độ bảo hành chính hãng: máy = 12 tháng,
+										Pin = 12 tháng.</span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Khi
+												mua tại Hải Triều, Khách hàng sẽ được tặng thêm thời gian bảo hành từ 4
+												năm về máy. Pin = Vĩnh Viễn.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Tổng
+												cộng: Khi mua tại Hải Triều, đồng hồ Citizen&nbsp;sẽ được bảo hành máy =
+												05 năm, Pin = Vĩnh Viễn.</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>Lưu
+											ý:</strong></span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Đối
+												với sản phẩm còn trong thời gian bảo hành Quốc Tế: Quý khách có thể đem
+												tới Hải Triều hoặc bất kỳ nhà trung tâm bảo hành nào của hãng được ghi
+												trên phiếu để yêu cầu được kiểm tra đồng hồ.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Đối
+												với sản phẩm hết thời gian bảo hành Quốc Tế nhưng vẫn trong thời gian
+												bảo hành tại Hải Triều: Quý khách đem đồng hồ kèm Phiếu Bảo Hành của Hải
+												Triều tới bất kỳ chi nhánh nào của Hải Triều để được hướng dẫn và kiểm
+												tra đồng hồ.</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>Điều
+											Kiện Được Bảo Hành</strong></span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Bảo
+												hành chỉ có giá trị khi đồng hồ có Phiếu bảo hành của hãng &amp; Phiếu
+												bảo hành của Hải Triều đi kèm, điền chính xác, đầy đủ các thông
+												tin.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Phiếu
+												bảo hành phải còn nguyên vẹn, không rách, chấp vá, hoen ố, mờ
+												nhạt.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Còn
+												trong thời gian bảo hành. Thời gian bảo hành được tính từ ngày mua có
+												ghi trên Phiếu Bảo Hành.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Chỉ
+												bảo hành thay thế mới cho những linh kiện, phụ tùng bị hỏng – không thay
+												thế bằng một chiếc đồng hồ khác.</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>Điều
+											Kiện Không Được Bảo Hành</strong></span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Đồng
+												hồ không có Phiếu bảo hành của hãng và Phiếu bảo hành của Hải Triều đi
+												kèm.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Các
+												loại dây đeo, khoá, vỏ, màu xi, mặt số, mặt kiếng bị hỏng hóc, vỡ do sử
+												dụng không đúng, tai nạn, lão hóa tự nhiên, va đập, … trong quá trình sử
+												dụng.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Hỏng
+												hóc do hậu quả gián tiếp của việc sử dụng sai hướng dẫn của hãng có kèm
+												theo đồng hồ.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Trầy
+												xước về dây hoặc mặt kiếng bị trầy xước, vỡ do va chạm trong quá trình
+												sử dụng.&nbsp;</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Tự
+												ý thay đổi máy móc bên trong, mở ra can thiệp sửa chữa trong thời gian
+												còn bảo hành –&nbsp;Tại những nơi không phải là trung tâm của
+												hãng</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>Chế
+											Độ Bảo Hành RED GUARANTEE</strong></span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Tăng
+												thêm 1-2 năm bảo hành tại Hải Triều ngoài chế độ bảo hành Quốc Tế của
+												hãng để có tổng thời gian là 4 năm.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Ưu
+												tiên bảo hành – Đồng hồ sẽ được xếp vào danh sách ưu tiên bảo hành để
+												nhanh chóng quay lại với Quý khách.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Giao
+												nhận đồng hồ bảo hành ngay tại nhà Quý khách.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Cập
+												nhật tình trạng đồng hồ qua điện thoại tới Quý khách. Quý khách được tư
+												vấn, cập nhật tình trạng đồng hồ trong quá trình đồng hồ được bảo
+												hành.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">4
+												năm đánh bóng đồng hồ miễn phí.</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>CHÍNH
+											SÁCH ĐỔI HÀNG</strong></span>
+									<p style="font-family: verdana, geneva, sans-serif; font-size: 10pt;"><span
+											style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;">Trong
+											vòng 7 ngày kể từ ngày mua hàng từ itbalo, Quý khách có thể yêu cầu đổi hàng
+											hoàn toàn miễn phí. Thời hạn 7 ngày được tính theo dấu bưu điện khi Quý
+											khách gửi sản phẩm về cho chúng tôi hoặc thời gian chúng tôi tiếp nhận
+											yêu cầu trực tiếp (tại cửa hàng) của Quý khách.</span></p>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Yêu
+												cầu đổi hàng cần được thực hiện trong vòng 7 ngày kể từ ngày Quý khách
+												nhận được hàng.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Sản
+												phẩm không có dấu hiệu đã qua sử dụng (còn đầy đủ keo dán bảo vệ chống
+												trầy xước mặt đồng hồ, nắp đáy, dây..)</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Sản
+												phẩm không bị dây bẩn, trầy xước, hư hỏng, dính hoá chất hoặc có dấu
+												hiệu cạy mở.</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Các
+												bộ phận, linh kiện, phụ kiện, tài liệu hướng dẫn sử dụng, tài liệu kỹ
+												thuật, quà tặng kèm theo (nếu có), …&nbsp;</span></li>
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Hộp
+												đựng, bao bì đóng gói sản phẩm còn nguyên vẹn, không bị móp, rách, ố
+												vàng, …</span></li>
+										<li><span
+												style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;">Chỉ
+												chấp nhận đổi 1 lần duy nhất tính từ ngày mua sản phẩm.</span></li>
+									</ul>
+									<span
+										style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;"><strong>HƯỚNG
+											DẪN MUA HÀNG</strong></span>
+									<p style="font-family: verdana, geneva, sans-serif; font-size: 10pt;"><span
+											style="font-size: 12pt; line-height: 2.5; font-family: ''Roboto', sans-serif', times, serif;">Do
+											đặc thù mặt hàng đồng hồ cao cấp nên chúng tôi khuyến khích Quý khách tới
+											tham quan và mua sắm tại hệ thống đại lý cửa hàng của itbalo.</span></p>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;"><a
+													href="https://donghohaitrieu.com/lien-he"
+													data-wpel-link="internal"><b>Hệ Thống Chi Nhánh</b></a></span></li>
+									</ul>
+									<span
+										style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;">Trường
+										hợp quý khách ở xa (khu vực không có hệ thống cửa hàng của itbalo), không có
+										thời gian tới cửa hàng, hay theo yêu cầu của quý khách - Để đảm bảo sự thuận
+										tiện nhất cho quá trình mua hàng của Quý khách, itbalo sẽ áp dụng hình thức giao
+										hàng và thu tiền tận nhà (COD) (Quý khách chỉ phải trả tiền khi nhận được
+										hàng)</span>
+									<ul style="list-style-type: square;">
+										<li><span
+												style="font-family: ''Roboto', sans-serif', times, serif; font-size: 12pt; line-height: 2.5;"><strong>Gọi
+													Ngay:</strong> <a href="tel:19006777"
+													data-wpel-link="internal">0364.036.765</a></span></li>
+									</ul>
+								</div>
+
+
+
+							</li>-->
+							<li data-content="television">
+								<!-- Viết đánh giá comment -->
+								<div class="comments-top-top">
+									<div class="top-comment-left">
+										<img class="img-responsive" th:src="@{|/assets/images/1001.jpg|}" alt=""> <a
+											class="add-re" href="#0" onclick="comments()">Bình Luận</a>
+									</div>
+									<div class="top-comment-right">
+										<div id="rating">
+											<input type="radio" id="star5" name="rating" value="5" checked="checked" />
+											<label class="full" for="star5" title="Awesome - 5 stars"></label>
+											<input type="radio" id="star4" name="rating" value="4" /> <label
+												class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+											<input type="radio" id="star3" name="rating" value="3" /> <label
+												class="full" for="star3" title="Meh - 3 stars"></label> <input
+												type="radio" id="star2" name="rating" value="2" /> <label class="full"
+												for="star2" title="Kinda bad - 2 stars"></label>
+
+											<input type="radio" id="star1" name="rating" value="1" /> <label
+												class="full" for="star1" title="Sucks big time - 1 star"></label>
+										</div>
+
+										<textarea class="form-control" type="text" rows="5" id="comment"
+											placeholder="Viết đánh giá của bạn...."></textarea>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+
+								<div id="comen"> </div>
+								<div class="text-center" id="dieuhuong">
+									<a class="add-re" href="#0" onclick="Prev()">Trang Sau</a> <a class="add-re"
+										href="#0" onclick="next()">Trang Trước</a>
+								</div>
+
+							</li>
+
+						</ul>
+					</div>
+
+
+				</div>
+
+			</div>
+			<div class="container">
+				<hr>
+				<h2 class="title text-center"><span>Sản Phẩm Liên Quan</span></h2>
+				<hr>
+				<div class="filtering bottom-product container">
+					<div class="col-md-4 bottom-cd simpleCart_shelfItem" th:each="p:${item.brand.products}">
+						<div class="product-at ">
+							<div id="listProduct" class="col-md-3" style="margin-bottom: 20px;">
+								<div style="height: 330px;">
+									<div class="card" style="width: 18rem; height: 322px;">
+										<a th:href="@{|${p.productId}|}" style="text-decoration: none;">
+											<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
+												<img class="card-img-top" th:src="@{|/assets/images/${p.image}|}" alt=""
+													style="height: 178px; width: 178px;">
+												<div class="discount-label green"
+													th:if="${p.category.discount != null}">
+													<p>-[[${p.category.discount.percentDiscount}]]%</p>
+												</div>
+												<input id="percent" type="hidden"
+													th:value="${p.category.discount.percentDiscount}"
+													th:if="${p.category.discount != null}"></input>
+											</div>
+											<div class="card-body" style="text-align: center;">
+												<div style="height: 50px; margin-top: 15px;">
+													<h5 class="card-title" style="font-size: 20px;font-weight: 500;">
+														[[${p.name}]]</h5>
+													<div style="color:#4F4F4F;font-size: 15px;">[[*{p.brand.name}]] -
+														[[*{p.size.name}]] - [[*{p.glass.name}]] </div>
+												</div>
+
+												<div style="margin-bottom: 15px;margin-top:15px;"
+													th:if="${p.category.discount!= null}">
+													<p class="giagoc">
+														&nbsp;<del>[[*{#numbers.formatInteger(p.price,3,'POINT')}]]
+															<span>đ</span></del></p>
+													<p name="priceGiam" class="giamgia" style="font-size: 18px;">
+														[[*{#numbers.formatInteger(p.price - (p.price
+														*(p.category.discount.percentDiscount)/100),3,'POINT')}]] đ</p>
+												</div>
+												<div style="margin-bottom: 15px;margin-top:15px;"
+													th:if="${p.category.discount == null}">
+													<p style="font-size: 15px;color:red;">
+														&nbsp;[[*{#numbers.formatInteger(p.price,3,'POINT')}]]
+														<span>đ</span></p>
+													<!-- <p style="font-size: 18px;">&nbsp; <b>935000000<span> đ</span></b></p> -->
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"
+		integrity="sha512-eP8DK17a+MOcKHXC5Yrqzd8WI5WKh6F1TIk5QZ/8Lbv+8ssblcz7oGC8ZmQ/ZSAPa7ZmsCU4e/hcovqR8jfJqA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script type="text/javascript">
+		$('.filtering').slick({
+			slidesToShow: 5,
+			slidesToScroll: 2,
+
+			autoplay: true,
+			autoplaySpeed: 3500,
+		});
+	</script>
+	<script src="/Js/ChiTietSP.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css"
+	rel="stylesheet">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+	<div class="container">
+		<div class="col-sm-3">
+			<h3 class="page-title" style="width: 400px">QUẢN LÝ ĐỘ CHỐNG
+				NƯỚC</h3>
+		</div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item"><a class="nav-link active"
+				data-toggle="tab" data-target="#home" href="">Danh Sách chống
+					nước</a></li>
+			<li class="nav-item"><a class="nav-link " data-toggle="tab"
+				data-target="#menu1" href="" ng-click="reset()">Chỉnh sửa chống
+					nước</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content card">
+			<div id="home" class="container tab-pane active">
+				<div class="mt-3 d-flex flex-row-reverse">
+					<div class="p-2 input-group input-group-sm col-sm-3 ">
+						<input type="text" class="form-control" placeholder="Search"
+							id="keyword" ng-model="search.name ">
+						<div class="input-group-prepend">
+							<button class="input-group-text" type="submit"
+								ng-click="timKiem()">Lọc</button>
+						</div>
+					</div>
+					<div class="p-2 col-sm-2">
+						<select id="trangThai" ng-model="status" ng-change="genderStart()"
+							class="form-control form-control-sm">
+							<option value="">-- Tất cả --</option>
+							<option value="true">Hoạt động</option>
+							<option value="false">Dừng hoạt động</option>
+						</select>
+					</div>
+				</div>
+				<table class="table table-bordered table-sm mt-3">
+					<thead>
+						<tr>
+							<th>Mã chống nước</th>
+							<th>Tên chống nước</th>
+							<th>Trạng thái</th>
+							<th>Hành Động</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager.items">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.status? 'Hoạt động':'Dừng hoạt động'}}</td>
+							<td>
+								<button ng-click="edit(item)"
+									class="btn btn-primary fa fa-wrench">
+									<!-- Chỉnh sửa -->
+								</button>
+								<button ng-click="delete(item)"
+									class="btn btn-danger fa fa-trash">
+									<!-- Xóa -->
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class=" text-center mb-3">
+					<button class="btn btn-danger" ng-click="pager.first()">
+						<b class="fa fa-arrow-up"></b>
+					</button>
+					<button class="btn btn-primary" ng-click="pager.prev()">
+						<b class="fa fa-arrow-left"></b>
+					</button>
+					<button class="btn btn-success">{{pager.page + 1}} of
+						{{pager.count}}</button>
+					<button class="btn btn-primary" ng-click="pager.next()">
+						<b class="fa fa-arrow-right"></b>
+					</button>
+					<button class="btn btn-danger" ng-click="pager.last()">
+						<b class="fa fa-arrow-down"></b>
+					</button>
+				</div>
+			</div>
+			<div id="menu1" class="container tab-pane">
+				<div class="row mb-3 p-3">
+					<div class="ml-3 col-sm-7">
+						<div class="row">
+							<label>Mã chống nước</label> <input ng-model="form.id"
+								class="form-control form-control-sm">
+						</div>
+						<!-- <div class="row">
+							<label>Tên chống nước</label> <input ng-model="form.name"
+								id="waterName" maxlength="255"
+								class="form-control form-control-sm">
+						</div> -->
+
+						<div class="row">
+							<label>Tên chống nước</label>
+							<div class="input-group">
+								<span class="input-group-addon"> </span> <input type="text"
+									maxlength="255" id="waterName"
+									class="form-control form-control-sm"
+									placeholder="Nhập tên chống nước" ng-model="form.name">
+								<div class="invalid-tooltip" id="showErrorNameWater"></div>
+							</div>
+						</div>
+						<br>
+
+						<div class="row">
+							<label>Trạng thái</label>
+							<div class="form-control form-control-sm">
+								<label class="radio-inline"> <input
+									ng-model="form.status" ng-value="true" name="available"
+									type="radio"> Hoạt động
+								</label>&ensp; <label class="radio-inline"> <input
+									ng-model="form.status" ng-value="false" name="available"
+									type="radio"> Dừng hoạt động
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="text-center mb-3">
+					<button class="btn btn-primary" ng-click="create()">
+						<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+					</button>
+					<button class="btn btn-warning" ng-click="update()">
+						<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+					</button>
+					<button class="btn btn-danger" ng-click="delete(form)">
+						<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+					</button>
+					<button class="btn btn-info" ng-click="reset()">
+						<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script>
+	var checkwaterName = 0;
+
+	$(document).ready(
+			function() {
+				$("#waterName").keyup(
+						function() {
+							var name = this.value;
+							if (name == "" || name.trim() == "") {
+								$("#waterName").addClass("is-invalid");
+								$("#showErrorNameWater").text(
+										"Vui lòng nhập tên chống nước!");
+								checkwaterName = 10;
+							} else {
+								var length = name.length;
+								var maxLength = $("#waterName").attr(
+										"maxlength");
+								if (length > maxLength) {
+									$("#waterName").addClass("is-invalid");
+									$("#showErrorNameWater").text(
+											"Không được nhập quá 255 ký tự!");
+									checkwaterName = 10;
+								} else {
+									$("#waterName").removeClass("is-invalid");
+									$("#showErrorNameWater").text("");
+									checkwaterName = 1;
+								}
+							}
+							handlerButtonSave();
+						});
+
+			});
+
+	function checkForm() {
+		$("#waterName").keyup();
+		return handlerButtonSave();
+	}
+
+	function handlerButtonSave() {
+		var check = false;
+		if (checkwaterName !== 10) {
+			check = true;
+			$("#btnSave").prop("disabled", false);
+		} else {
+			check = false;
+			$("#btnSave").prop("disabled", true);
+		}
+		return check;
+	}
+	
+	app.controller("water-ctrl", function ($scope, $http) {
+		//alert("water-ctrl")
+		$scope.items = [];
+		$scope.form = [];
+		$scope.cates = [];
+
+		var check ;
+		$scope.initialize = function () {
+			//load product
+			$http.get("/rest/water").then(resp => {
+				$scope.items = resp.data;
+				$scope.reset();
+			})
+
+		}
+		//khởi đầu
+		$scope.initialize();
+		
+		var sweetalert = function(text) {
+			Swal.fire({
+				icon: "success",
+				title: text,
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		}
+
+		//thông báo lỗi
+		var swarning = function(text) {
+			Swal.fire({
+				icon: "error",
+				title: text,
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		}
+		
+		
+		//xóa form
+		$scope.reset = function () {
+			//alert("reset")
+			$scope.form = {
+				id: $scope.form.id,
+				status: true,
+				image: 'cloud-upload.jpg',
+			}
+		}
+		//hiện lên form
+		$scope.edit = function (item) {
+			//alert("edit")
+			$scope.form = angular.copy(item);
+			$(".nav-tabs a:eq(1)").tab('show')
+		}
+
+		$///tìm kiếm
+	    $scope.timKiem = function () {
+	        var name = document.getElementById("keyword").value;
+	        var trangThai = document.getElementById("trangThai").value;
+	        if (trangThai == "") {
+	            trangThai = null;
+	            //alert("Tìm Kiếm: " + name + " trang thai= " + trangThai)
+	            $http.get(`/rest/water/timKiem/${name}/${trangThai}`).then(resp => {
+	                $scope.items = resp.data;
+	            })
+	        } else {
+	            $http.get(`/rest/water/timKiem/${name}/${trangThai}`).then(resp => {
+	                $scope.items = resp.data;
+	            })
+	        }
+	       
+	    }
+	    $scope.genderStart = function (obj) {
+	        var trangThai = document.getElementById("trangThai").value;
+	        //alert("Trang thái " + trangThai )
+	        if (trangThai == "") {
+	            $http.get("/rest/water").then(resp => {
+	                $scope.items = resp.data;
+	            })
+	        } else {
+	            $http.get(`/rest/water/timKiem/${trangThai}`).then(resp => {
+	                $scope.items = resp.data;
+	            })
+	        }
+
+	    }
+	    
+		//Thêm mới
+		$scope.create = function () {
+			//alert("Create ")
+			var item = angular.copy($scope.form);
+			//alert("Tên Thương Hiệu " + item.name)
+			
+			var waterName = document.getElementById("waterName").value;
+			if(waterName.trim() =="" || waterName ==null){
+				swarning("Tên chống nước không được để trống");
+				return false;
+			}
+			
+			$http.get(`/rest/water/${item.name}`).then(resp =>{
+				if (resp.data == '') {
+					//alert("Thương hiệu mới")
+					$http.post(`/rest/water`, item).then(resp => {
+						$scope.items.push(resp.data);
+						$scope.initialize();
+						sweetalert("Thêm mới thành công!");
+						$(".nav-tabs a:eq(0)").tab('show')
+					}).catch(error => {
+						swarning("Thêm mới thất bại");
+						console.log(error);
+					});
+				} else {
+					swarning("Đã có độ chống nước này")
+					console.log(resp.data)
+				}
+			})		
+
+
+		}
+
+		//cập nhật 
+		$scope.update = function () {
+			//alert("update ")
+			var item = angular.copy($scope.form);
+			//alert("id " + item.discountId); 
+			var waterName = document.getElementById("waterName").value;
+			if(waterName.trim() =="" || waterName ==null){
+				swarning("Tên chống nước không được để trống");
+				return false;
+			}
+			
+			$http.put(`/rest/water/${item.id}`, item).then(resp => {
+				var index = $scope.items.findIndex(p => p.id == item.id);
+				$scope.items[index] = item;
+				sweetalert("cập nhật thành công");
+				$(".nav-tabs a:eq(0)").tab('show')
+			}).catch(error => {
+				swarning("Lỗi cập nhật sp" + error)
+				console.log("error", error);
+			})
+		}
+		//xóa 
+		$scope.delete = function (item) {
+			//alert("delete")
+			var t = true;
+			if (t == false) {
+				//alert("Không Xóa");
+			} else {
+				//alert("có xóa");
+				/*$http.delete(`/rest/water/${item.id}`).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items.splice(index, 1);
+					$scope.reset();
+					alert("Xóa Thành Công");
+				})
+					.catch(error => {
+						alert("Lỗi xóa!")
+						console.log("Error", error);
+					})*/
+				$http.put(`/rest/water/delete/${item.id}`, item).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id);
+					$scope.items[index] = item;
+					sweetalert("xóa water thành công");
+					$scope.initialize();
+				}).catch(error => {
+					swarning("Lỗi xóa water" + error)
+					console.log("error", error);
+				})	
+				
+
+			}
+		}
+
+		$scope.check = function (name){
+			$http.get(`/rest/water/${name}`).then(resp =>{
+				if (resp.data == '') {
+					//alert("Không tìm thấy  " + name)
+					check = true;
+				} else {
+					//alert("Tìm thấy  " + name)
+					check = false;
+					console.log(resp.data)
+				}
+			})
+		}
+
+
+		//upload hình
+		$scope.imageChanged = function (files) {
+			//alert("hìn")
+			var data = new FormData();
+			data.append('file', files[0]);
+			$http.post('/rest/upload/images', data, {
+				transformRequest: angular.identity,
+				headers: { 'Content-Type': undefined }
+			}).then(resp => {
+				$scope.form.image = resp.data.name;
+			}).catch(error => {
+				swarning("Lỗi upload hình" + error);
+				console.log("Error", error);
+			})
+		}
+
+
+		$scope.pager = {
+			page: 0,
+			size: 10,
+			get items(){
+				var start = this.page * this.size;
+				return $scope.items.slice(start, start + this.size);
+			},
+			get count(){
+				return Math.ceil(1.0 * $scope.items.length / this.size);
+			},
+			first(){
+				this.page = 0;
+			},
+			prev(){
+				this.page--;
+				if(this.page < 0){
+					this.last();
+				}
+			},
+			next(){
+				this.page++;
+				if(this.page >= this.count){
+					this.first();
+				}
+			},
+			last(){
+				this.page = this.count - 1;
+			}
+		}
+	});
+</script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+</html>

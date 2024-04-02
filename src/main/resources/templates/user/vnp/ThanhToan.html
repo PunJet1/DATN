@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css"
+	rel="stylesheet">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Thanh Toán</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Link mới-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<!-- Layout -->
+<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/assets/user/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="/assets/user/style.css" rel="stylesheet" type="text/css"
+	media="all" />
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords"
+	content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript">
+	
+	
+
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    
+
+
+</script>
+<!--fonts-->
+<link
+	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'
+	rel='stylesheet' type='text/css'>
+<!--//fonts-->
+<!-- start menu -->
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css"
+	media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+<script>
+		$(document).ready(function () {
+			$(".memenu").memenu();
+		});
+	</script>
+</head>
+
+<body>
+	<main role="main" layout:fragment="content">
+		<div class="container mt-4">
+			<form id="frmCreateOrder" action="/itbalo/order/checkout"
+				method="post">
+				<input type="hidden" name="kh_tendangnhap"
+					th:value="${account.username}" />
+
+				<div class="py-5 text-center">
+					<i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
+					<h2>Thanh toán</h2>
+					<p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông
+						tin Giỏ hàng trước khi Đặt hàng.</p>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4 order-md-2 mb-4 ">
+						<h4 class="d-flex justify-content-between align-items-center mb-3">
+							<span class="text-muted">Giỏ hàng</span> <span
+								class="badge badge-secondary badge-pill">{{orderShoppingCart.length}}</span>
+						</h4>
+						<ul class="list-group mb-3">
+							<li
+								class="list-group-item d-flex justify-content-between lh-condensed"
+								ng-repeat="i in orderShoppingCart">
+								<div>
+									<h6 class="my-0">{{i.product.name}}-{{i.product.productId}}</h6>
+									<small class="text-muted">{{i.price |number:0}} x
+										{{i.qty}}</small>
+								</div> <span class="text-muted">{{i.price * i.qty|number:0}}</span>
+							</li>
+						</ul>
+						<!-- Phần hiển thị voucher -->
+						<h4 class="d-flex justify-content-between align-items-center mb-3">
+							<span class="text-muted">Voucher</span>
+						</h4>
+						<ul class="list-group mb-3">
+							<li class="list-group-item lh-condensed">
+								<div class="form-group" th:each="c:${cates}">
+									<input ng-model="result" th:value="*{c.voucherName}"
+										ng-change="voucherVal.getValuedVoucher(result)" type="radio"
+										name="rdoResult"> <span style="font-weight: bold;">
+										[[*{c.voucherName}]]</span>
+									<p>Giảm [[${#numbers.formatDecimal(c.valued, 0, 'COMMA', 0,
+										'POINT')}]] VND. Áp dụng cho đơn từ
+										[[*{#numbers.formatInteger(c.conditions,3,'POINT')}]] VND</p>
+								</div>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span>Tổng thành tiền</span> <strong id="totalAmount">{{
+									totalFinal | number:0}} VNĐ</strong>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span>Tổng tiền vận chuyển</span> <strong id="shipfee">0
+									VND</strong>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span>Mã giảm giá</span> <strong id="sale">{{result2 |
+									number}} VND</strong>
+							</li>
+							<!-- voucherVal.amount2 tot -->
+							<li class="list-group-item d-flex justify-content-between">
+								<span>Tiền phải trả</span>
+								<div>
+									<strong id="sumPrice"> 0 VND</strong> <input type="hidden"
+										class="" id="amount" name="amount" ng-value="totalFinal" />
+									<hr>
+								</div>
+							</li>
+						</ul>
+						<div onclick="order();" class="btn btn-primary btn-lg btn-block"
+							name="btnDatHang">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i> Đặt Hàng
+						</div>
+					</div>
+
+					<div class="col-md-8 order-md-1" th:object="${account}">
+						<h4 class="mb-3">Thông tin khách hàng</h4>
+						<div class="row">
+							<div class="col-md-12 mb-3">
+								<label for="kh_ten">Họ và Tên (<b style="color: red;">*</b>)
+								</label> <input type="text" class="form-control" name="kh_ten"
+									id="kh_ten" th:field="*{fullname}" required="required">
+							</div>
+
+							<div class="col-md-12 mb-3">
+								<label for="kh_dienthoai">Điện Thoại (<b
+									style="color: red;">*</b>)
+								</label> <input type="text" class="form-control" name="kh_dienthoai"
+									id="kh_dienthoai" th:field="*{phone}" required="required">
+							</div>
+
+
+							<div class="col-md-12 mb-3">
+								<label for="kh_email">Email (<b style="color: red;">*</b>)
+								</label> <input type="email" class="form-control" name="kh_email"
+									id="kh_email" th:field="*{email}" required="required">
+							</div>
+							<div class="col-md-12 mb-3">
+								<label class="form-label" for="province">Tỉnh/Thành phố<span>
+										(<b style="color: red;">*</b>)
+								</span></label> <select class="form-select form-control" id="province"></select>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label class="form-label" for="district">Quận/Huyện<span>
+										(<b style="color: red;">*</b>)
+								</span></label> <select class="form-select form-control" id="district">
+									<option value="">Chọn Quận/Huyện</option>
+
+								</select>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label class="form-label" for="ward">Phường/Xã<span>
+										(<b style="color: red;">*</b>)
+								</span></label> <select class="form-select form-control" id="ward">
+									<option value="">Chọn Phường/Xã</option>
+								</select>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label class="form-label" for="servece">Phương thức vận
+									chuyển (<b style="color: red;">*</b>)
+								</label> <select class="form-select form-control" id="service">
+									<option value="">Phương thức Vận chuyển</option>
+								</select>
+							</div>
+							<div class="col-md-12 mb-3">
+								<label for="kh_diachi">Địa Chỉ (<b style="color: red;">*</b>)
+								</label> <input type="text" class="form-control" name="kh_diachi"
+									id="kh_diachi" th:field="*{address}" required="required">
+							</div>
+						</div>
+						<hr>
+
+						<h4 class="mb-3">Phương Thức Thanh Toán</h4>
+
+						<div class="d-block my-3">
+							<div class="custom-control custom-radio">
+								<input id="httt-2" name="httt_ma" type="radio"
+									class="custom-control-input" required="" value="1"> <label
+									class="custom-control-label" for="httt-2">Thanh toán
+									C.O.D</label>
+							</div>
+							<br>
+							<div class="custom-control custom-radio">
+								<input id="httt-1" name="httt_ma" type="radio"
+									class="custom-control-input" required="" value="2"> <label
+									class="custom-control-label" for="httt-1">Thẻ Tín
+									dụng/Ghi nợ/Thanh toán QR</label>
+							</div>
+							<br>
+						</div>
+						<input name="ordertype" id="ordertype" value="billpayment"
+							type="hidden">
+						<div class="form-group" style="display: none;">
+							<label style="color: white">Nội dung thanh toán</label>
+							<textarea class="form-control" cols="20" id="vnp_OrderInfo"
+								name="vnp_OrderInfo" rows="2">Thanh toan</textarea>
+						</div>
+						<!-- <div class="row" style="margin-left: 5px">
+							<label for="language" style="margin-right: 30px;">Ngôn
+								ngữ</label> <select name="language" id="language" class="form-control">
+								<option value="vn">Tiếng Việt</option>
+								<option value="en">English</option>
+							</select>
+						</div>  -->
+
+
+
+					</div>
+				</div>
+			</form>
+		</div>
+		<br>
+		<script>
+		
+		//thông báo thành công
+			var sweetalert = function(text) {
+				Swal.fire({
+					icon: "success",
+					title: text,
+					showConfirmButton: false,
+					timer: 2000,
+				});
+			};
+			//thông báo lỗi
+			var swarning = function(text) {
+				Swal.fire({
+					icon: "error",
+					title: text,
+					showConfirmButton: false,
+					timer: 2000,
+				});
+			};
+			
+			function order() {
+				var pttt2 = document.getElementById('httt-2').checked;
+				var pttt1 = document.getElementById('httt-1').checked;
+
+				
+				
+				if ($("#kh_ten").val() == "" || $("#kh_ten").val() == null) {
+					swarning("Mời khách hàng nhập họ và tên");
+					return false;
+				}
+				if ($("#kh_dienthoai").val() == "" || $("#kh_dienthoai").val() == null) {
+					swarning("Mời khách hàng nhập số điện thoại");
+					return false;
+				}
+
+				if ($("#kh_email").val() == "" || $("#kh_email").val() == null) {
+					swarning("Mời khách hàng nhập email");
+					return false;
+				}
+
+				if ($("#kh_diachi").val() == "" || $("#kh_diachi").val() == null) {
+					swarning("Mời khách hàng nhập địa chỉ giao hàng");
+					return false;
+				}
+
+
+				if (pttt1 == false && pttt2 == false) {
+					swarning("Chọn phương thức thanh toán!");
+					return false;
+				}
+				// Xóa dữ liệu từ localStorage sau khi đã sử dụng
+				localStorage.removeItem('orderShoppingCart');
+				var postData = $("#frmCreateOrder").serialize();
+				var submitUrl = $("#frmCreateOrder").attr("action");
+				$.ajax({
+					type: "POST",
+					url: submitUrl,
+					data: postData,
+					dataType: 'JSON',
+					success: function (x) {
+						console.log(x)
+						if (x.code == '00') {
+
+							if (window.vnpay) {
+								var a = window.localStorage.getItem('cart');
+								console.log(a);
+								vnpay.open({ width: 768, height: 600, url: x.data });
+								console.log("ok1")
+							} else {
+								window.location.href = x.data;
+								console.log("oke2")
+							}
+							return false;
+						} else {
+							alert(x.Message);
+						}
+					}
+				});
+			}
+
+			// xử lý api giao hàng nhanh
+
+			const linkt = "https://online-gateway.ghn.vn/shiip/public-api/master-data/province";
+			const linkh = "https://online-gateway.ghn.vn/shiip/public-api/master-data/district";
+			const linkx = "https://online-gateway.ghn.vn/shiip/public-api/master-data/ward";
+			$(document).ready(function () {
+				window.onload = function () {
+					tinh();
+				};
+				function tinh() {
+					$.ajax({
+						type: "GET",
+						url: linkt,
+						headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+						success: function (data) {
+							renderData(data.data, "province")
+							console.log(data);
+						},
+						error: function (error) {
+							alert("Đã xảy ra lỗi: " + error.responseText);
+						}
+					})
+				}
+			});
+
+			function huyen(provinceid) {
+				$.ajax({
+					type: "GET",
+					url: linkh,
+					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+					data: { province_id: provinceid },
+					success: function (data) {
+						renderDataH(data.data, "district")
+						console.log(data);
+					},
+					error: function (error) {
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
+
+			function phuong(districtid) {
+				$.ajax({
+					type: "GET",
+					url: linkx,
+					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+					data: { district_id: districtid },
+					success: function (data) {
+						renderDataP(data.data, "ward")
+						console.log(data);
+					},
+					error: function (error) {
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
+
+			function service(districtid) {
+				$.ajax({
+					type: "GET",
+					url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/available-services",
+					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+					data: {
+						shop_id: 4463615,
+						from_district: 1572,
+						to_district: districtid,
+
+					},
+
+					success: function (data) {
+						renderDataS(data.data)
+						console.log(data);
+						console.log(districtid);
+					},
+
+					error: function (error) {
+						console.log(error);
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
+
+			function phivc(serviceid, districtid, wardcode, totalAmount) {
+				$.ajax({
+					type: "GET",
+					url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
+					headers: {
+						token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e",
+						shop_id: "4463615"
+					},
+					data: {
+						service_id: serviceid,
+						insurance_value: totalAmount,
+						coupon: null,
+						from_district_id: 1572,
+						to_district_id: districtid,
+						to_ward_code: wardcode,
+						height: 15,
+						length: 15,
+						weight: 500,
+						width: 15
+					},
+					success: function (data) {
+						var amount = data.data.total; 
+
+						var saleText = document.getElementById('sale').innerText;
+						var saleNumber = parseFloat(saleText.replace(/[^\d]/g, ''));
+
+						var formattedAmount = formatCurrency(amount);
+						document.getElementById('shipfee').innerText = formattedAmount.replace(/₫/, 'VNĐ');
+						var sumPrice = totalAmount + amount - saleNumber; 
+						var formattedPrice = formatCurrency(sumPrice);
+						document.getElementById('sumPrice').innerText = formattedPrice.replace(/₫/, 'VNĐ'); 
+
+					},
+					error: function (error) {
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
+			function formatCurrency(amount, locale = 'vi-VN', currencyCode = 'VND') {
+				return amount.toLocaleString(locale, {
+					style: 'currency',
+					currency: currencyCode,
+					minimumFractionDigits: 0,
+					maximumFractionDigits: 0,
+					currencyDisplay: 'symbol',
+				});
+			}
+
+			// Hàm renderData để tạo tùy chọn cho select
+			var renderData = (array, select) => {
+				let row = '<option value="">Chọn Tỉnh/Thành Phố</option>';
+				array.forEach(element => {
+					row += `<option value="${element.ProvinceID}">${element.ProvinceName}</option>`;
+				});
+				document.querySelector("#" + select).innerHTML = row;
+			}
+
+			var renderDataH = (array, select) => {
+				let row = '<option disabled value="">Chọn</option>';
+				array.forEach(element => {
+					row += `<option value="${element.DistrictID}">${element.DistrictName}</option>`;
+				});
+				document.querySelector("#" + select).innerHTML = row;
+			}
+
+			var renderDataP = (array, select) => {
+				let row = '<option disabled value="">Chọn</option>';
+				array.forEach(element => {
+					row += `<option value="${element.WardCode}">${element.WardName}</option>`;
+				});
+				document.querySelector("#" + select).innerHTML = row;
+			}
+
+			var renderDataS = (array) => {
+				let row = '<option  value="">Chọn</option>';
+				array.forEach(element => {
+					row += `<option value="${element.service_id}">${element.short_name}</option>`;
+				});
+				document.querySelector("#service").innerHTML = row;
+			}
+
+			// Xử lý sự kiện thay đổi tỉnh
+			$("#province").change(() => {
+				var e = document.getElementById("province");
+				var value = e.value;
+				huyen(value)
+				console.log(value)
+				printResult();
+			});
+
+			// Xử lý sự kiện thay đổi huyện
+			$("#district").change(() => {
+				var e = document.getElementById("district");
+				var value = e.value;
+				console.log(value)
+				phuong(value)
+				service(value)
+				printResult();
+			});
+
+			// Xử lý sự kiện thay đổi phường
+			$("#ward").change(() => {
+				// lay id huyen tu select
+				var district = document.getElementById("district");
+				var dtid = district.value;
+
+				// lay service id tu select
+				var serviceid = document.getElementById("service");
+				var sid = serviceid.value;
+
+
+				// lay wardcode tu select
+				var ward = document.getElementById("ward");
+				var wardcode = ward.value;
+				//console.log(wardcode)
+				//phivc(sid, dtid, wardcode)
+				printResult();
+			});
+
+			// su kien thay doi dich vu
+
+			$("#service").change(() => {
+				// lay id huyen tu select
+				var district = document.getElementById("district");
+				var dtid = district.value;
+
+				// lay service id tu select
+				var serviceid = document.getElementById("service");
+				var sid = serviceid.value;
+
+
+				// lay wardcode tu select
+				var ward = document.getElementById("ward");
+				var wardcode = ward.value;
+
+				// Lấy phần tử HTML có id là "totalAmount"
+				var totalAmountElement = document.getElementById("totalAmount");
+
+				// Lấy và xử lý nội dung văn bản của phần tử
+				var totalAmountText = totalAmountElement.textContent || totalAmountElement.innerText;
+
+				// Loại bỏ các ký tự không phải số và chuyển đổi thành số
+				var totalAmountValue = parseFloat(totalAmountText.replace(/[^\d]/g, ''));
+				
+				phivc(sid, dtid, wardcode, totalAmountValue);
+				printResult();
+				// document.getElementById('sumPrice').innerText = toltalShipValue + totalAmountValue;
+			});
+
+			// Hàm hiển thị kết quả khi tất cả các lựa chọn đã được chọn
+			var printResult = () => {
+				if ($("#district").val() != "" && $("#province").val() != "" &&
+					$("#ward").val() != "") {
+					let result = $("#ward option:selected").text() +
+						", " + $("#district option:selected").text() + ", " +
+						$("#province option:selected").text();
+					$("#result").val(result);
+					if (localStorage.getItem("address") != null) {
+						localStorage.removeItem("address")
+					}
+					console.log(result)
+					document.getElementById('kh_diachi').value = result;
+				}
+			}
+			
+		</script>
+
+	</main>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/assets/vendor-tt/jquery/jquery.min.js"></script>
+	<script src="/assets/vendor-tt/popperjs/popper.min.js"></script>
+	<script src="/assets/vendor-tt/bootstrap/js/bootstrap.min.js">
+	</script>
+	
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+</body>
+
+
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+</html>

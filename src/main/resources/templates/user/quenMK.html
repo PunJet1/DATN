@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #c0a820;
+            background: -webkit-linear-gradient(to bottom, #e5da7d, #94562f);
+            background: linear-gradient(to bottom, #e5da7d, #94562f);
+        }
+
+        .my-auto {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="">
+    <div class="container my-auto">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5 d-flex align-items-center justify-content-center">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">Bạn Quên Mật Khẩu ?</h1>
+                                        <p class="mb-4">Chúng tôi biết rõ, mọi thứ sẽ xảy ra. Chỉ cần nhập địa chỉ email của bạn vào
+                                             bên dưới và chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu của bạn!</p>
+                                    </div>
+
+                                    <div th:if="${error != null}">
+                                        <p class="text-danger">[[${error}]]</p>
+                                    </div>
+                                    <div th:if="${message != null}">
+                                        <p class="text-warning">[[${message}]]</p>
+                                    </div>
+
+                                    <form th:action="@{/forgot_password}" method="post" class="user">
+                                        <div class="form-row py-1">
+                                            <input type="email" name="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Điền Email..." required autofocus>
+                                        </div>
+
+                                        <div class="form-row py-1">
+                                            <button type="submit"
+                                                    class="btn btn-success btn-lg btn-block signup-btn">Gửi Đi</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                      
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" th:href="@{/login}">Bạn có sẵn tài khoản? Đăng nhập!</a>
+                                         <a class="small" th:href="@{/itbalo}">Trang Chủ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/assetsvendor/jquery/jquery.min.js"></script>
+    <script src="/assetsvendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/assetsvendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/assetsjs/sb-admin-2.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+	<div class="col-md-9">
+                <div class="col-md-12">
+                    <label for="cars" style="margin-bottom: 10px;">
+						<h4>Bộ Lọc:</h4>
+					</label>
+                    <div class="row" id="filter">
+                        <form th:action="@{|/itbalo/product/search|}" method="post">
+                            <div class="form-group col-sm-3 col-xs-6">
+                                <select class="form-control form-control-lg" id="bran" name="bran">
+                                <option value="">Hãng--</option>
+								<option th:each="br:${brands}" th:value="${br.brandId}" th:selected="(${br.brandId} == ${bran})">[[${br.name}]]</option>	
+								</select>
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-6">
+                                <select class="form-control form-control-lg" id="cate" name="cate">
+									<option value="">Phân loại</option>
+									<option th:each="cate1:${listCategory}" th:value="${cate1.categoryId}" th:selected="(${cate1.categoryId} == ${cate})">[[${cate1.name}]]</option>
+								</select>
+                            </div>
+                            <div class="form-group col-sm-3 col-xs-6">
+                                <select class="form-control form-control-lg" style="width: 190px;" id="pric" name="pric">
+									<option value="">Giá</option>
+									<option value="1" th:selected="${pric == '1'}">Dưới 2 triệu</option>
+									<option value="2" th:selected="${pric == '2'}">Từ 2 triệu đến 5 triệu</option>
+									<option value="3" th:selected="${pric == '3'}">Từ 5 triệu đến 10 triệu</option>
+									<option value="4" th:selected="${pric == '4'}">Từ 10 triệu đến 15 triệu</option>
+									<option value="5" th:selected="${pric == '5'}">Từ 15 triệu đến 20 triệu</option>
+									<option value="6" th:selected="${pric == '6'}">Từ 20 triệu đến 25 triệu</option>
+									<option value="7" th:selected="${pric == '7'}">Trên 25 triệu</option>
+								</select>
+                            </div>
+                            <div class="form-group col-sm-3 col-center col-xs-6">
+                                <button type="submit" onclick="checkValidate()" class="btn btn-success btn-sm" style="margin-left: 50px;">
+										Tìm kiếm
+									</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div class="khungSapxep">
+                            <b style="margin-left: 10px;" >Sắp xếp theo</b>
+                            <a th:href="@{|/itbalo/product/khuyenmai|}" class="btn btn-success  btn-sm">Khuyến mãi</a>
+                            <a th:href="@{|/itbalo/product/moinhat|}" class="btn btn-success  btn-sm">Mới Nhất</a>
+                            <a th:href="@{|/itbalo/product/banchay|}" class="btn btn-success  btn-sm">Bán Chạy</a>
+                        </div>
+                    </div>
+                    <div style="text-align: center;margin-right: -30px;">
+                            <h5 class="alert alert-danger" th:if="${message} != null">[[${message}]]</h5>
+                        </div>
+                </div>
+            </div>
+</body>
+
+</html>

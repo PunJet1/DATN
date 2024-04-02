@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/index.html}">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+	<!-- Layout -->
+	<link href="/assets/user/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="/assets/user/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="/assets/user/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+   Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<!-- start menu -->
+	<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="/assets/user/memenu.js"></script>
+	<script>$(document).ready(function () {$(".memenu").memenu();});</script>
+</head>
+
+<body layout:fragment="content">
+	<!-- menu -->
+	<div class="container">
+
+		<div class="nav-bre" style="margin-top: 20px;">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Lịch sử mua hàng</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Chi tiết đơn hàng</li>
+				</ol>
+			</nav>
+		</div>
+
+		<!-- Page Content -->
+		<div class="content container-fluid">
+			<!-- Page Header -->
+			<div class="page-header">
+				<div class="row  align-items-center" style="justify-content: left;">
+					<div class="">
+						<h3 class="page-title">
+							Chi tiết đơn hàng<span id="year"></span>
+						</h3>
+					</div>
+				</div>
+
+				<!-- Search Filter -->
+				<!-- /Search Filter -->
+				<div class="row">
+					<div class="col-md-12 mt-5">
+						<div class="table-responsive">
+							<table class="table table-striped custom-table datatable">
+								<thead>
+									<tr>
+										<th>STT</th>
+										<th>Mã sản phẩm</th>
+										<th>Đơn giá (VNĐ)</th>
+										<th>Số lượng</th>
+										<th>Tổng tiền (VNĐ)</th>
+										<th>Chi tiết</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="detail, state: ${details}">
+										<td>[[${state.index}]]</td>
+										<td>[[${detail.product.name}]]</td>
+										<td>[[${#numbers.formatDecimal(detail.price , 0, 'COMMA', 0, 'POINT')}]]</td>
+										<td>[[${detail.quantity}]]</td>
+										<td>[[${#numbers.formatDecimal(detail.quantity * detail.price , 0, 'COMMA', 0,
+											'POINT')}]]</td>
+										<td>
+											<a th:href="@{|/itbalo/product/detail/${detail.product.productId}|}"
+												class="link-primary">Xem</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

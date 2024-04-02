@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link href="/assets/user/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/assets/user/memenu.js"></script>
+
+<body>
+	<div>
+		<div class="noidung">
+			<div class="header-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<form id="search-form" th:action="@{/itbalo/search}" method="get" style="margin-top: 5px;"
+								th:object="${account}" enctype="multipart/form-data">
+								<div class="form-group col-xs-9">
+									<input class="form-control" type="text" name="nameSearch"
+										placeholder="Nhập tên hãng, loại sản phẩm,..." />
+								</div>
+								<div class="form-group col-xs-3">
+									<a href="#">
+										<button type="submit" class="btn btn-warning">
+											<i class="fa fa-search" aria-hidden="true"></i>Tìm Kiếm
+										</button>
+									</a>
+								</div>
+							</form>
+						</div>
+						<div class="col-md-6">
+							<div class="header-left row">
+								<ul style="padding-bottom: 20px;">
+									<li><a th:href="@{/login}" th:if="${#request.remoteUser} == null">Đăng nhập</a></li>
+									<li><a th:href="@{/register}" th:if="${#request.remoteUser} == null">Đăng ký</a>
+									</li>
+									<li><a th:href="@{/itbalo/cartItem}">
+											<div class="total">
+												{{cart.amount | number:0}} VNĐ ( {{cart.count}} sản phẩm ) <i class="fa
+													fa-shopping-cart" style="font-size: 25px; color: white;">
+													</i>
+											</div>
+										</a>
+									</li>
+									<li th:if="${#request.remoteUser}">
+										<a th:href="@{/logout}">Đăng Xuất ([[${#request.remoteUser}]])</a>
+									</li>
+									<!-- <li th:if="${#request.isUserInRole('ADMIN') || #request.isUserInRole('USER')}">
+									<a th:href="@{/admin}">Admin</a> -->
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

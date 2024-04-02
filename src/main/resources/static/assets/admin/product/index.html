@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style>
+		body {
+			width: 100%;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="col-sm-3">
+			<h3 class="page-title" style="width: 350px">QUẢN LÝ SẢN PHẨM </h3>
+		</div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs " role="tablist">
+			<li class="nav-item"><a class="nav-link active" data-toggle="tab" data-target="#home" href="">Danh Sách</a>
+			</li>
+			<li class="nav-item"><a class="nav-link " data-toggle="tab" data-target="#menu1" href=""
+					ng-click="reset()">Chỉnh Sửa</a></li>
+			<li class="nav-item"><a class="nav-link " data-toggle="tab" data-target="#menu2" href="">Ảnh</a></li>
+			<li class="nav-item"><a class="nav-link " data-toggle="tab" data-target="#menu3" href="">Kích thước sản
+					phẩm</a></li>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content card">
+			<div id="home" class="container tab-pane active">
+				<div class="mt-3 d-flex flex-row-reverse">
+					<div class="p-2 input-group input-group-sm col-sm-3 ">
+						<input type="text" class="form-control" placeholder="Search" id="keyword"
+							ng-model="search.name ">
+						<div class="input-group-prepend">
+							<button class="input-group-text" type="submit" ng-click="timKiem()">Lọc</button>
+						</div>
+					</div>
+					<div class="p-2 col-sm-2">
+						<select id="trangThai" ng-model="status" ng-change="genderStart()"
+							class="form-control form-control-sm">
+							<option value="">-- Tất cả --</option>
+							<option value="true">Đang bán</option>
+							<option value="false">Ngừng bán</option>
+						</select>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="mb-3">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id Sản Phẩm</th>
+									<th>Mã Sản Phẩm</th>
+									<th>Hãng</th>
+									<th>Loại Giày</th>
+									<th>Giá Sản Phẩm</th>
+									<th>Số Lượng</th>
+									<th>Hình Ảnh</th>
+									<th>Trạng Thái</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in pager.itemsProduct">
+									<td>{{item.productId}}</td>
+									<td>{{item.name}}</td>
+									<td>{{item.brand.name}}</td>
+									<td>{{item.category.name}}</td>
+									<td>{{item.price | number :-3}}</td>
+									<td>{{item.quantity}}</td>
+									<td><img src="/assets/images/{{item.image}}" style="width: 50px; height: 45px"
+											alt=""></td>
+									<td>{{item.status? 'Đang bán':'Ngừng bán'}}</td>
+									<td>
+										<div class="btn-group">
+											<button ng-click="edit(item)" class="btn btn-primary fa fa-wrench">
+											</button>
+											<button ng-click="delete(item)" class="btn btn-danger fa fa-trash">
+											</button>
+											<button ng-click="editImage(item)" class="btn btn-info fa fa-picture-o"
+												aria-hidden="true"></button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="text-muted text-center mb-3">
+					<button class="btn btn-danger" ng-click="pager.first()">
+						<b class="fa fa-arrow-up"></b>
+					</button>
+					<button class="btn btn-primary" ng-click="pager.prev()">
+						<b class="fa fa-arrow-left"></b>
+					</button>
+
+					<button class="btn btn-success">{{pager.page + 1}} of
+						{{pager.count}}</button>
+
+					<button class="btn btn-primary" ng-click="pager.next()">
+						<b class="fa fa-arrow-right"></b>
+					</button>
+					<button class="btn btn-danger" ng-click="pager.last()">
+						<b class="fa fa-arrow-down"></b>
+					</button>
+				</div>
+			</div>
+
+
+			<div id="menu1" class="container tab-pane card">
+				<div class="d-flex pt-2 mt-2 mb-2">
+					<div class="form-group col-sm-4">
+						<label for="image"> <img alt="" src="/assets/images/{{formProduct.image}}" class="img-rounded"
+								width="304" height="236">
+						</label> <input type="file" class="form-control-file" id="image"
+							onchange="angular.element(this).scope().imageChanged(this.files)">
+					</div>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="form-group col-sm-4">
+								<div>Mã sản phẩm:</div>
+								<input ng-model="formProduct.name" maxlength="30" class="form-control form-control-sm"
+									id="productName">
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Loại Giày:</div>
+								<select ng-model="formProduct.category.categoryId" id="categoySelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in cates" ng-value="c.categoryId">{{c.name}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Hãng sản phẩm:</div>
+								<select ng-model="formProduct.brand.brandId" id="brandSelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in brand" ng-value="c.brandId">{{c.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-4">
+								<div>Chất liệu giày:</div>
+								<select ng-model="formProduct.shell.id" id="shellSelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in shell" ng-value="c.id">{{c.name}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Ngày thêm sản phẩm:</div>
+								<input ng-model="formProduct.createDate" type="date"
+									onblur="checkDateHtai('proCreateDate')" class="form-control form-control-sm"
+									id="proCreateDate">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-sm-4">
+								<div>Size giày:</div>
+								<select ng-model="formProduct.size.id" id="sizeSelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in size" ng-value="c.id">{{c.name}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Chất liệu kính:</div>
+								<select ng-model="formProduct.glass.id" id="glassSelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in glass" ng-value="c.id">{{c.name}}</option>
+								</select>
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Chất liệu dây:</div>
+								<select ng-model="formProduct.strap.id" id="strapSelect"
+									class="form-control form-control-sm">
+									<option value="">-- Chọn --</option>
+									<option ng-repeat="c in strap" ng-value="c.id">{{c.name}}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row">
+
+							<div class="form-group col-sm-4">
+								<div>Giá Giày:</div>
+								<input ng-model="formProduct.price" id="productPrice"
+									class="form-control form-control-sm"
+									ng-keyup="formatSoNguyenDuong(formProduct.price,'gia');">
+							</div>
+							<div class="form-group col-sm-4">
+								<div>Số lượng sản phẩm:</div>
+								<input ng-model="formProduct.quantity" id="productQuantity"
+									class="form-control form-control-sm"
+									ng-keyup="formatSoNguyenDuong(formProduct.quantity,'sl');">
+							</div>
+
+							<div class="form-group col-sm-4">
+								<div>Trạng thái sản phẩm:</div>
+								<div class="form-control">
+									<label class="radio-inline"> <input ng-model="formProduct.status" ng-value="true"
+											name="available" type="radio" checked>Đang bán
+									</label> <label class="radio-inline"> <input ng-model="formProduct.status"
+											ng-value="false" name="available" type="radio">Ngừng bán
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-sm-4">
+								<div>Xuất xứ:</div>
+								<input ng-model="formProduct.origin" id="productOrigin"
+									class="form-control form-control-sm" maxlength="255">
+							</div>
+
+							<div class="form-group col-sm-8">
+								<br>
+								<div class="form-control">
+									<label class="radio-inline col-sm-4"> <input ng-model="formProduct.gender"
+											ng-value="true" name="genderRadio" type="radio" checked>Giày Nam
+									</label> <label class="radio-inline col-sm-4"> <input ng-model="formProduct.gender"
+											ng-value="false" name="genderRadio" type="radio">Giày Nữ
+									</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div>Mô tả sản phẩm:</div>
+							<textarea class="form-control" ng-model="formProduct.description" rows="5"
+								id="comment"></textarea>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="p-2 text-center">
+					<button class="btn btn-primary" ng-click="create()">
+						<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+					</button>
+					<button class="btn btn-warning" ng-click="update()">
+						<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+					</button>
+					<button class="btn btn-danger" ng-click="delete(formProduct)">
+						<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+					</button>
+					<button class="btn btn-info" ng-click="reset()">
+						<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+					</button>
+				</div>
+			</div>
+
+			<div id="menu2" class="container tab-pane card">
+				<div class="row p-2 clearfix">
+					<div class="col-5 p-2 float-left">
+						<label for="images">
+							<img alt="" src="/assets/images/{{formImagePr.images}}" class="img-rounded" width="304"
+								height="236">
+						</label> <input type="file" class="form-control-file" id="images"
+							onchange="angular.element(this).scope().imageChanged(this.files)">
+						<div class="mt-2">
+							<button class="btn btn-primary" ng-click="createImage()">
+								<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+							</button>
+							<button class="btn btn-warning" ng-click="updateImage()">
+								<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+							</button>
+							<button class="btn btn-danger" ng-click="deleteImage()">
+								<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+							</button>
+							<button class="btn btn-info" ng-click="reset()">
+								<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+							</button>
+						</div>
+					</div>
+
+					<div class="col-7 p-2 float-right">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<div class="input-group input-group-sm">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Sản phẩm</span>
+									</div>
+									<select ng-model="formImagePr.product.productId" ng-change="genderChanged()"
+										selected="" class="form-control form-control-sm">
+										<option value="">-- Tất cả --</option>
+										<option ng-repeat="c in itemsProduct" ng-value="c.productId">{{c.name}}</option>
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Tên sản phẩm</th>
+									<th>Ảnh</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in pagerImage.itemsImagePr">
+									<td>{{item.imageId}}</td>
+									<td>{{item.product.name}}</td>
+									<td><img src="/assets/images/{{item.images}}" style="width: 50px; height: 50px"
+											alt=""></td>
+									<td>
+										<div class="btn-group">
+											<button ng-click="image(item)" class="btn  fa fa-pencil"></button>
+											<button ng-click="deleteImage(item)" class="btn  fa fa-trash-o"
+												aria-hidden="true"></button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="p-2 text-center">
+							<button class="btn btn-danger" ng-click="pagerImage.first()">
+								<b class="fa fa-arrow-up "></b>
+							</button>
+							<button class="btn btn-primary" ng-click="pagerImage.prev()">
+								<b class="fa fa-arrow-left"></b>
+							</button>
+
+							<button class="btn btn-success">{{pagerImage.page + 1}} of
+								{{pagerImage.countImage}}</button>
+
+							<button class="btn btn-primary" ng-click="pagerImage.next()">
+								<b class="fa fa-arrow-right"></b>
+							</button>
+							<button class="btn btn-danger" ng-click="pagerImage.last()">
+								<b class="fa fa-arrow-down"></b>
+							</button>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+			<div id="menu3" class="container tab-pane card">
+				<div class="row p-2 clearfix">
+					<div class="col-5 p-2 float-left">
+						<div class="form-group">
+							<div>Sản phẩm:</div>
+							<select ng-model="formProductSizePr.product.productId" id="productName" selected=""
+								class="form-control form-control-sm">
+								<option value="">-- Tất cả --</option>
+								<option ng-repeat="c in itemsProduct" ng-value="c.productId">{{c.name}}</option>
+
+							</select>
+						</div>
+						<div class="form-group">
+							<div>Size giày:</div>
+							<select ng-model="formProduct.size.id" id="sizeSelect" class="form-control form-control-sm">
+								<option value="">-- Chọn --</option>
+								<option ng-repeat="c in size" ng-value="c.id">{{c.name}}</option>
+							</select>
+						</div>
+<!--						<div class="form-group">-->
+<!--							<div>Giá Giày:</div>-->
+<!--							<input ng-model="formProduct.price" id="productPrice" class="form-control form-control-sm"-->
+<!--								ng-keyup="formatSoNguyenDuong(formProduct.price,'gia');">-->
+<!--						</div>-->
+						<div class="mt-2">
+							<button class="btn btn-primary" ng-click="createProductSize()">
+								<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+							</button>
+							<button class="btn btn-warning" ng-click="updateProductSize()">
+								<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+							</button>
+							<button class="btn btn-danger" ng-click="deleteImage()">
+								<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+							</button>
+							<button class="btn btn-info" ng-click="reset()">
+								<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+							</button>
+						</div>
+					</div>
+
+					<div class="col-7 p-2 float-right">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<div class="input-group input-group-sm">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Sản phẩm</span>
+									</div>
+									<select ng-model="formProductSizePr.product.productId" ng-change="genderChanged2()"
+										selected="" class="form-control form-control-sm">
+										<option value="">-- Tất cả --</option>
+										<option ng-repeat="c in itemsProduct" ng-value="c.productId">{{c.name}}</option>
+
+									</select>
+								</div>
+							</div>
+						</div>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Tên sản phẩm</th>
+									<th>Size</th>
+									
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in itemsProductSizePr">
+									<td>{{item.productSizeId}}</td>
+									<td>{{item.product.name}}</td>
+									<td>{{item.size.name}}</td>
+									
+									<td>
+										<div class="btn-group">
+											<button ng-click="productsize(item)" class="btn  fa fa-pencil"></button>
+											<button ng-click="deleteImage(item)" class="btn  fa fa-trash-o"
+												aria-hidden="true"></button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="p-2 text-center">
+							<button class="btn btn-danger" ng-click="pagerImage.first()">
+								<b class="fa fa-arrow-up "></b>
+							</button>
+							<button class="btn btn-primary" ng-click="pagerImage.prev()">
+								<b class="fa fa-arrow-left"></b>
+							</button>
+
+							<button class="btn btn-success">{{pagerImage.page + 1}} of
+								{{pagerImage.countImage}}</button>
+
+							<button class="btn btn-primary" ng-click="pagerImage.next()">
+								<b class="fa fa-arrow-right"></b>
+							</button>
+							<button class="btn btn-danger" ng-click="pagerImage.last()">
+								<b class="fa fa-arrow-down"></b>
+							</button>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+</body>
+<script type="text/javascript">
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+</html>

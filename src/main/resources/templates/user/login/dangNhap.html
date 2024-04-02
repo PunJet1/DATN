@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/assets/vendor-tt/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/user/util.css">
+<link rel="stylesheet" type="text/css" href="/assets/user/main.css">
+<style>
+	@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+	.login-block {
+		background: url('https://img4.thuthuatphanmem.vn/uploads/2020/12/25/background-don-sac-hd_101111188.jpg');
+		/* fallback for old browsers */
+		/* background: -webkit-linear-gradient(to bottom, rgb(199, 253, 2), #07ffff); */
+		/* Chrome 10-25, Safari 5.1-6 */
+		/* background: linear-gradient(to bottom, #f6f4f4, #fdcbcb); */
+		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		float: left;
+		width: 100%;
+		height: 100%;
+		padding: 60px 0;
+		font-family: Poppins-Regular, sans-serif;
+		font-size: 16px;
+
+	}
+
+	.banner-sec {
+		background: url('https://anhdep123.com/wp-content/uploads/2021/01/hinh-anh-giay-dep-1068x1068.jpg') no-repeat;
+		background-size: cover;
+		min-height: 600px;
+		border-radius: 0 10px 10px 0;
+		padding: 0;
+
+	}
+
+	.container {
+		background: #fff;
+		border-radius: 10px;
+		box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.2);
+		border: black;
+	}
+
+	.carousel-inner {
+		border-radius: 0 10px 10px 0;
+	}
+
+	.carousel-caption {
+		text-align: left;
+		left: 5%;
+	}
+
+	.login-sec {
+		padding: 30px 30px;
+		position: relative;
+		margin-bottom: 20px
+	}
+
+	.login-sec .copy-text {
+		position: absolute;
+		width: 100%;
+		bottom: 10px;
+		font-size: 15px;
+		text-align: center;
+	}
+
+	.login-sec .copy-text i {
+		color: #c0a820;
+	}
+
+	.login-sec .copy-text a {
+		color: #c0a820;
+	}
+
+	.login-sec h2 {
+		margin-bottom: 30px;
+		font-weight: 800px;
+		font-size: 30px;
+		color: #c0a820;
+		font-family: Poppins-Regular, sans-serif;
+	}
+
+	.login-sec h2:after {
+		content: " ";
+		width: 100px;
+		height: 5px;
+		background: #c0a820;
+		display: block;
+		margin-top: 20px;
+		border-radius: 3px;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: beige;
+
+	}
+
+	.btn-login {
+		background: #c0a820;
+		color: #fff;
+		font-weight: 600;
+	}
+
+	.banner-text {
+		width: 70%;
+		position: absolute;
+		bottom: 40px;
+		padding-left: 20px;
+	}
+
+	.banner-text h2 {
+		color: #fff;
+		font-weight: 600;
+	}
+
+	.banner-text h2:after {
+		content: " ";
+		width: 100px;
+		height: 5px;
+		background: #FFF;
+		display: block;
+		margin-top: 20px;
+		border-radius: 3px;
+	}
+
+	.banner-text p {
+		color: #fff;
+	}
+
+	.banner-sec-nav {
+		width: 800px;
+		height: 600px;
+	}
+</style>
+<section class="login-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 login-sec">
+				<h2 class="text-center">ĐĂNG NHẬP</h2>
+				<div class="alert alert-danger text-center" th:if="${message == 'LOCK' && message != '' }"
+					style="font-size: 16px;">Thông báo tài
+					khoản bị khóa vui lòng liên hệ shoes_store.cskh@gmail.com</div>
+				<div class="alert alert-danger text-center" th:if="${param.error}">Tài khoản hoặc Mật khẩu không hợp lệ
+				</div>
+				<div class="alert alert-success text-center" th:if="${param.logout}" style="font-size: 16px;">Bạn đã
+					đăng xuất</div>
+				<form class="login-form" th:action="@{/login}" method="POST">
+					<div class="form-group" data-validate="Username is reauired">
+						<label for="exampleInputEmail1" style="font-size: 16px;">Tên Tài Khoản</label>
+						<input type="text" class="form-control" placeholder="Tài khoản" name="username"
+							data-symbol="&#xf206;">
+
+					</div>
+					<div class="form-group" data-validate="Password is required">
+						<label for="exampleInputPassword1" style="font-size: 16px;">Mật Khẩu</label>
+						<input type="password" name="password" class="form-control" placeholder="Mật khẩu"
+							data-symbol="&#xf190;">
+					</div>
+
+
+					<div class="form-check">
+						<label class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="remember-me">
+							<small style="color: black; font-size: 16px;">Lưu mật khẩu </small>
+							<small><a th:href="@{/forgot_password}"
+									style="color: black;margin-left: 80px; font-size: 16px;"> Quên mật
+									khẩu?</a></small>
+						</label>
+						<!-- <button type="submit" class="btn btn-login float-right">Submit</button> -->
+					</div>
+					<button type="submit" class="btn btn-login mt-3 offset-4" style="font-size: 16px;">Đăng
+						nhập</button>
+				</form>
+
+				<div class="flex-col-c p-t-10" style="padding-top: 20px; font-size: 16px;">
+					Bạn chưa có tài khoản?
+					<div style="padding-top: 16px;">
+						<div class="flex-c-m">
+							<a href="/oauth2/authorization/facebook" class="login100-social-item bg1"> <i
+									class="fa fa-facebook"></i>
+							</a> <a href="/oauth2/authorization/google" class="login100-social-item bg3"> <i
+									class="fa fa-google"></i>
+							</a>
+						</div>
+						<small><a th:href="@{/register}" class="txt2" style="color: black; font-size: 16px;"> Đăng ký
+							</a></small>
+						<small><a th:href="@{/itbalo}" class="txt2"
+								style="margin-left: 10px; color: black; font-size: 16px;">Trang
+								chủ</a></small>
+					</div>
+				</div>
+
+				<div class="copy-text" style="font-size: 16px;">Created with <i class="fa fa-heart"></i> by <a
+						href="/itbalo">Shoes_store</a></div>
+			</div>
+			<div class="col-lg-8 banner-sec-nav">
+				<div class="banner-sec">
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+</html>

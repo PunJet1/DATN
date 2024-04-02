@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<!-- menu -->
+	<div class="container">
+		<div class="col-sm-3">
+			<h3 class="page-title" style="width: 350px">QUẢN LÝ VOUCHER </h3>
+		</div>
+		<!-- Page Content -->
+		<div class="content container-fluid">
+			<!-- Page Header -->
+			<div class="page-header">
+				<table class="table table-borderless">
+					<thead>
+						<tr>
+							<th style="min-width: 50px;"></th>
+							<th style="min-width: 150px;"></th>
+							<th style="min-width: 150px;"></th>
+							<th style="min-width: 100px;"> </th>
+							<th style="min-width: 100px;">
+								<div class="input-group">
+									<input type="text" class="form-control" id="keyword" ng-model="search.name "
+										placeholder="Search">
+									<div class="input-group-append">
+										<button class="btn btn-secondary" type="button" ng-click="timKiem()">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
+								</div>
+							</th>
+							<th><select class="select floating" style="height: 40px;" id="trangThai" ng-model="status"
+									ng-change="genderStart()">
+									<option value="">-- Tất cả --</option>
+									<option value="true">Hoạt động</option>
+									<option value="false">Dừng hoạt động</option>
+								</select></th>
+							<th><button class="btn btn-secondary" type="button" data-toggle="modal"
+									data-target="#exampleModal">Thêm</button></th>
+						</tr>
+					</thead>
+				</table>
+				<!-- /Search Filter -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-striped custom-table datatable table-bordered	">
+								<thead>
+									<tr class="text-nowrap">
+										<th style="min-width: 50px;">Tên Voucher</th>
+										<th style="min-width: 100px;">Trị giá (VND)</th>
+										<th style="min-width: 50px;">Số Lượng</th>
+										<th style="min-width: 50px;">Điều Kiện (VND)</th>
+										<th style="min-width: 100px;">Ngày bắt đầu</th>
+										<th style="min-width: 100px;">Ngày kết thúc</th>
+										<th style="min-width: 100px;">Trạng thái</th>
+										<th style="min-width: 100px;">Ghi chú</th>
+										<th style="min-width: 100px;">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in pager.items">
+										<td>{{item.voucherName}}</td>
+										<td>{{item.valued | number :-3}}</td>
+										<td>{{item.quantity}}</td>
+										<td>{{item.conditions | number :-3}}</td>
+										<td>{{item.ngayBatDau | date : 'dd-MM-yyyy'}}</td>
+										<td>{{item.ngayKetThuc | date : 'dd-MM-yyyy'}}</td>
+										<td>{{item.statustt? 'Hoạt động':'Dừng hoạt động'}}</td>
+										<td>{{item.note}}</td>
+										<td>
+											<div class="btn-group" ng-click="edit(item)">
+												<a class="dropdown-toggle dropdown_icon" data-toggle="modal"
+													data-target="#exampleModal"> <i class="fas fa-edit"></i>
+												</a>
+											</div>
+											<div class="btn-group" ng-click="delete(item)">
+												<a class="dropdown-toggle dropdown_icon" data-toggle="dropdown"> <i
+														class="fa fa fa-trash"></i>
+												</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="panel-footer text-center">
+								<button class="btn btn-danger" ng-click="pager.first()">
+									<b class="fa fa-arrow-up"></b>
+								</button>
+								<button class="btn btn-primary" ng-click="pager.prev()">
+									<b class="fa fa-arrow-left"></b>
+								</button>
+								<button class="btn btn-success">{{pager.page + 1}} of {{pager.count}}</button>
+								<button class="btn btn-primary" ng-click="pager.next()">
+									<b class="fa fa-arrow-right"></b>
+								</button>
+								<button class="btn btn-danger" ng-click="pager.last()">
+									<b class="fa fa-arrow-down"></b>
+								</button>
+							</div>
+							<!-- Button trigger modal -->
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Chi tiết
+												voucher</h5>
+										</div>
+										<div class="modal-body">
+
+											<div class="form-group">
+												<label for="exampleFormControlInput1">Tên voucher</label> <input
+													ng-model="form.voucherName" id="voucherName"
+													class="form-control form-control-sm" maxlength="255"
+													ng-change="removeAccents(this);">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlInput1">Trị giá(VND)</label><input
+													id="triGia" ng-model="form.valued"
+													class="form-control form-control-sm"
+													onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlSelect1">Số lượng</label> <input
+													ng-model="form.quantity" class="form-control form-control-sm"
+													onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlInput1">Điều kiện(VND)</label> <input
+													ng-model="form.conditions" class="form-control form-control-sm"
+													onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlSelect1">Ngày bắt đầu</label> <input
+													type="date" onblur="checkDateHtai('ngayBatDau')"
+													ng-model="form.ngayBatDau" id="ngayBatDau"
+													class="form-control form-control-sm"
+													onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlSelect1">Ngày kết thúc</label> <input
+													type="date" ng-model="form.ngayKetThuc" id="ngayKetThuc"
+													class="form-control form-control-sm"
+													onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlInput1">Ghi chú</label>
+												<textarea class="form-control" ng-model="form.note" rows="5"></textarea>
+											</div>
+											<div class="form-group">
+												<label for="exampleFormControlSelect1">Trạng thái</label>
+												<div class="form-control form-control-sm">
+													<label class="radio-inline"> <input ng-model="form.statustt"
+															ng-value="true" name="available" type="radio"> Hoạt động
+													</label>&ensp; <label class="radio-inline"> <input
+															ng-model="form.statustt" ng-value="false" name="available"
+															type="radio"> Dừng hoạt động
+													</label>
+												</div>
+											</div>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Thoát</button>
+											<button type="button" class="btn btn-primary" ng-click="luu()">Lưu</button>
+											<button type="button" class="btn btn-primary"
+												ng-click="reset()">Xóa</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+</html>
