@@ -92,6 +92,8 @@
 											</button>
 											<button ng-click="editImage(item)" class="btn btn-info fa fa-picture-o"
 												aria-hidden="true"></button>
+											<button ng-click="editProductSize(item)" class="btn btn-warning fa fa-cog"
+												aria-hidden="true"></button>
 										</div>
 									</td>
 								</tr>
@@ -358,7 +360,7 @@
 
 
 			</div>
-			<div id="menu3" class="container tab-pane card">
+			<!-- <div id="menu3" class="container tab-pane card">
 				<div class="row p-2 clearfix">
 					<div class="col-5 p-2 float-left">
 						<div class="form-group">
@@ -377,11 +379,6 @@
 								<option ng-repeat="c in size" ng-value="c.id">{{c.name}}</option>
 							</select>
 						</div>
-<!--						<div class="form-group">-->
-<!--							<div>Giá Giày:</div>-->
-<!--							<input ng-model="formProduct.price" id="productPrice" class="form-control form-control-sm"-->
-<!--								ng-keyup="formatSoNguyenDuong(formProduct.price,'gia');">-->
-<!--						</div>-->
 						<div class="mt-2">
 							<button class="btn btn-primary" ng-click="createProductSize()">
 								<i class="fa fa-plus" aria-hidden="true"></i> Thêm
@@ -420,7 +417,7 @@
 									<th>Id</th>
 									<th>Tên sản phẩm</th>
 									<th>Size</th>
-									
+									<th>Price</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -429,7 +426,7 @@
 									<td>{{item.productSizeId}}</td>
 									<td>{{item.product.name}}</td>
 									<td>{{item.size.name}}</td>
-									
+									<td>{{item.product.price}}</td>
 									<td>
 										<div class="btn-group">
 											<button ng-click="productsize(item)" class="btn  fa fa-pencil"></button>
@@ -464,7 +461,109 @@
 				</div>
 
 
+			</div> -->
+
+			<div id="menu3" class="container tab-pane card">
+				<div class="row p-2 clearfix">
+					<div class="col-5 p-2 float-left">
+						<div class="form-group">
+							<div>Sản phẩm:</div>
+							<select ng-model="formProductSizePr.product.productId" id="productName" selected=""
+									class="form-control form-control-sm">
+								<option value="">-- Tất cả --</option>
+								<option ng-repeat="c in itemsProduct" ng-value="c.productId">{{c.name}}</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<div>Size giày:</div>
+							<select ng-model="formProductSize.size.id" id="sizeSelect" class="form-control form-control-sm">
+								<option value="">-- Chọn --</option>
+								<option ng-repeat="c in size" ng-value="c.id">{{c.name}}</option>
+							</select>
+						</div>
+						<div class="mt-2">
+							<button class="btn btn-primary" ng-click="createProductSize()">
+								<i class="fa fa-plus" aria-hidden="true"></i> Thêm
+							</button>
+							<button class="btn btn-warning" ng-click="updateProductSize()">
+								<i class="fa fa-wrench" aria-hidden="true"></i> Cập Nhật
+							</button>
+							<button class="btn btn-danger" ng-click="deleteProductSize()">
+								<i class="fa fa-trash" aria-hidden="true"></i> Xóa
+							</button>
+							<button class="btn btn-info" ng-click="reset()">
+								<i class="fa fa-refresh" aria-hidden="true"></i> Xóa Form
+							</button>
+						</div>
+					</div>
+			
+					<div class="col-7 p-2 float-right">
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<div class="input-group input-group-sm">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Sản phẩm</span>
+									</div>
+									<select ng-model="formProductSizePr.product.productId" ng-change="genderChanged2()"
+											selected="" class="form-control form-control-sm">
+										<option value="">-- Tất cả --</option>
+										<option ng-repeat="c in itemsProduct" ng-value="c.productId">{{c.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<table class="table table-bordered">
+							<thead>
+							<tr>
+								<th>Id</th>
+								<th>Tên sản phẩm</th>
+								<th>Size</th>
+								<th>Price</th>
+								<th></th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="item in itemsProductSizePr">
+								<td>{{item.productSizeId}}</td>
+								<td>{{item.product.name}}</td>
+								<td>{{item.size.name}}</td>
+								<td>{{item.price}}</td>
+								<td>
+									<div class="btn-group">
+										<button ng-click="productsize(item)" class="btn  fa fa-pencil"></button>
+										<button ng-click="deleteProductSize(item)" class="btn  fa fa-trash-o"
+												aria-hidden="true"></button>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+			
+						<div class="p-2 text-center">
+							<button class="btn btn-danger" ng-click="pagerProductSize.first()">
+								<b class="fa fa-arrow-up "></b>
+							</button>
+							<button class="btn btn-primary" ng-click="pagerProductSize.prev()">
+								<b class="fa fa-arrow-left"></b>
+							</button>
+			
+							<button class="btn btn-success">{{pagerProductSize.page + 1}} of
+								{{pagerProductSize.countProductSize}}</button>
+			
+							<button class="btn btn-primary" ng-click="pagerProductSize.next()">
+								<b class="fa fa-arrow-right"></b>
+							</button>
+							<button class="btn btn-danger" ng-click="pagerProductSize.last()">
+								<b class="fa fa-arrow-down"></b>
+							</button>
+						</div>
+					</div>
+			
+				</div>
 			</div>
+			
+
+
 		</div>
 </body>
 <script type="text/javascript">

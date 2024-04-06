@@ -87,6 +87,41 @@
 	color: black;
 }
 </style>
+<script>
+	var sweetalert = function (text) {
+		Swal.fire({
+			icon: "success",
+			title: text,
+			showConfirmButton: false,
+			timer: 2000,
+		});
+	};
+	//thông báo lỗi
+	var swarning = function (text) {
+		Swal.fire({
+			icon: "error",
+			title: text,
+			showConfirmButton: false,
+			timer: 2000,
+		});
+	};
+	function submitForm() {
+        var fullname = document.getElementById('fullname').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var bithdate = document.getElementById('bithdate').value;
+        var diachi = document.getElementById('diachi').value;
+
+        if (!fullname || !email || !phone || !bithdate || !diachi) {
+            swarning('Vui lòng nhập đầy đủ thông tin.');
+        } else {
+            sweetalert('Cập nhật thành công!');
+            // Gửi biểu mẫu nếu muốn
+            // document.querySelector('form').submit();
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -135,14 +170,16 @@
 											th:field="*{accountId}" readonly />
 									</div>
 									<div class="form-group">
-										<label for="username">Tên tài khoản</label> <input type="text"
+										<label for="username" >Tên tài khoản</label> 
+										<input type="text"
 											class="form-control" placeholder="Username" id="username"
 											th:field="*{username}" readonly>
 									</div>
 									<div class="form-group">
 										<label for="fullname">Họ và Tên</label> <input type="text"
-											class="form-control" placeholder="Fullname" id="fullname"
-											th:field="*{fullname}" />
+											class="form-control" placeholder="Fullname" id="fullname" name="fullname"
+											th:field="*{fullname}" th:errorClass="is-invalid" />
+											<div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="invalid-feedback"></div>
 									</div>
 									<div class="form-group">
 										<label for="sdt">Email</label> <input type="text"
@@ -175,18 +212,19 @@
 							<hr>
 							<div class="row justify-content-end">
 								<div class="col-lg-2 col-offset-6 centered">
-									<a href="/itbalo" class="btn btn-secondary btn-icon-split"
-										style="height: 50px;"> <span class="icon text-white-50">
+									<a href="/itbalo" class="btn btn-secondary btn-icon-split" style="height: 50px;">
+										<span class="icon text-white-50">
 											<i class="fas fa-arrow-left"></i>
-									</span> <span class="text" style="padding-top: 8px;">Quay Về</span>
+										</span>
+										<span class="text" style="padding-top: 8px;">Quay Về</span>
 									</a>
 								</div>
 								<div class="col-4">
-									<a href="#" class="btn btn-success btn-icon-split"> <span
-										class="icon text-white-50"> <i class="fa fa-wrench"></i>
-									</span>
-										<button type="submit" class="btn" style="color: white;">Cập
-											Nhật</button>
+									<a href="#" class="btn btn-success btn-icon-split" onclick="submitForm()">
+										<span class="icon text-white-50">
+											<i class="fa fa-wrench"></i>
+										</span>
+										<button type="submit" class="btn" style="color: white;">Cập Nhật</button>
 									</a>
 								</div>
 							</div>
@@ -197,7 +235,6 @@
 		</div>
 
 	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="/assets/user/vendor/jquery/jquery.min.js"></script>
 	<script src="/assets/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -19,31 +19,42 @@ import com.watch.service.ProductSizeService;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/rest/productsizes")
+
 public class ProductSizeRestController {
-	
-	@Autowired
-	ProductSizeService productSizeService;
-	
-	@GetMapping
-	public List<ProductSize> getAll(){
-	     return	productSizeService.findAll();
-	}
-	
-	@GetMapping("{id}")
-	public List<ProductSize> findByProductId(@PathVariable("id") Integer id){
-		return productSizeService.findById(id);
-	}
-	
-	@PutMapping("{id}")
-	public ProductSize update(@PathVariable("id") Integer id, @RequestBody ProductSize productSize) {
-		return productSizeService.save(productSize);
-	}
-	@PostMapping
-	public ProductSize create(@RequestBody ProductSize productSize) {
-		return productSizeService.save(productSize);
-	}
-	@DeleteMapping("{id}")
-	public void delete(@PathVariable("id") Integer id) {
-		productSizeService.deleteById(id);
-	}
+
+    @Autowired
+    ProductSizeService productSizeService;
+
+    @GetMapping("{id}")
+    public ProductSize getProductSizeById(@PathVariable Integer id) {
+        return productSizeService.getById(id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Integer id) {
+        ProductSize productSize = productSizeService.getById(id);
+        if (productSize != null) {
+            productSizeService.delete(productSize);
+        }
+    }
+
+    @GetMapping("/product/{productId}")
+    public List<ProductSize> getProductSizesByProductId(@PathVariable Integer productId) {
+        return productSizeService.findById(productId);
+    }
+
+    @GetMapping
+    public List<ProductSize> getAllProductSizes() {
+        return productSizeService.findAll();
+    }
+
+    @PostMapping
+    public ProductSize create(@RequestBody ProductSize productSize) {
+        return productSizeService.save(productSize);
+    }
+
+    // @PutMapping("{id}")
+    // public ProductSize update(@PathVariable("id") Integer id, @RequestBody ProductSize productSize) {
+    //     return productSizeService.save(productSize);
+    // }
 }

@@ -49,6 +49,7 @@ public class Accounts implements Serializable {
 	@Size(max = 120)
 	private String password;
 	@Column(columnDefinition = "NVARCHAR(255) NULL")
+	@NotBlank(message = "Khong duoc bo trong ho va ten")
 	private String fullname;	
 	@NotBlank
 	@Size(max = 50)

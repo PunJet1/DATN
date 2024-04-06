@@ -1,7 +1,7 @@
-app.controller("product-ctrl", function($scope, $http) {
+app.controller("product-ctrl", function ($scope, $http) {
 	//alert("product")
 	$scope.itemsProduct = [];
-	$scope.formProduct = [];
+	$scope.formProduct = {};
 
 	$scope.cates = [];
 	$scope.brand = [];
@@ -12,15 +12,19 @@ app.controller("product-ctrl", function($scope, $http) {
 	$scope.shell = [];
 	$scope.products = [];
 
-	$scope.itemsImagePr = []
-	$scope.formImagePr = []
+	$scope.productSizes = [];
+	$scope.selectedProductId = '';
+	$scope.selectedSizeId = '';
 
-	$scope.itemsProductSizePr = []
-	$scope.formProductSizePr = []
+	$scope.itemsImagePr = [];
+	$scope.formImagePr = {};
+
+	$scope.itemsProductSizePr = [];
+	$scope.formProductSizePr = {};
 
 
 	//thông báo thành công
-	var sweetalert = function(text) {
+	var sweetalert = function (text) {
 		Swal.fire({
 			icon: "success",
 			title: text,
@@ -30,7 +34,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 	//thông báo lỗi
-	var swarning = function(text) {
+	var swarning = function (text) {
 		Swal.fire({
 			icon: "error",
 			title: text,
@@ -39,7 +43,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		});
 	}
 
-	var showphoto = function(text) {
+	var showphoto = function (text) {
 		Swal.fire({
 			//	icon: "error",
 			title: text,
@@ -50,7 +54,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 
 	var productId;
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		//load product
 		$http.get("/rest/products").then(resp => {
 			$scope.itemsProduct = resp.data;
@@ -99,15 +103,15 @@ app.controller("product-ctrl", function($scope, $http) {
 		//load productsize
 		$http.get("/rest/productsizes").then(resp => {
 			$scope.itemsProductSize = resp.data;
-			console.log($scope.itemsProductSize);
-		});
+			console.log($scope.itemsProductSize)
+		})
 		productId = "";
 	}
 	//khởi đầu
 	$scope.initialize();
 
 	//Thêm mới
-	$scope.create = function() {
+	$scope.create = function () {
 		//alert("Create")
 		var item = angular.copy($scope.formProduct);
 		item.createDate = item.createDate;
@@ -218,7 +222,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	}
 	//cập nhật sp
-	$scope.update = function() {
+	$scope.update = function () {
 		//alert("update sp")
 		var item = angular.copy($scope.formProduct);
 		item.crateDate = item.createDate;
@@ -325,7 +329,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		});;
 	}
 	//xóa sp
-	$scope.delete = function(item) {
+	$scope.delete = function (item) {
 		//alert("delete sp" + item.productId)
 		var t = true;
 		if (t == false) {
@@ -355,7 +359,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	}
 
-	$scope.formatSoNguyenDuong = function(value, obj) {
+	$scope.formatSoNguyenDuong = function (value, obj) {
 		var strvalue;
 		strvalue = value;
 		var str = strvalue.split('.');
@@ -387,7 +391,7 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	}
 
-	$scope.allowPressNeg = function(value) {
+	$scope.allowPressNeg = function (value) {
 		var dsChar = '-';
 		if (value.indexOf(dsChar) >= 0) {
 			if ((event.keyCode < 48 && event.keyCode != 9) || event.keyCode > 57) event.returnValue = false;
@@ -396,7 +400,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		}
 	}
 
-	$scope.formatSoNguyenDuongMaxLength = function(value, maxLength) {
+	$scope.formatSoNguyenDuongMaxLength = function (value, maxLength) {
 		var strvalue;
 		strvalue = value;
 		var strvalue2 = strvalue.replace(/\./g, '');
@@ -424,7 +428,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		eval(obj).value = (((sign) ? '' : '-') + num);
 	}
 
-	$scope.IsNumeric = function(sText) {
+	$scope.IsNumeric = function (sText) {
 		var ValidChars = "0123456789.,-";
 		var IsNumber = true;
 		var Char;
@@ -439,7 +443,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		return IsNumber;
 	}
 
-	$scope.getVal = function(num) {
+	$scope.getVal = function (num) {
 		if (num == '' || $scope.checkNumeric(num)) {
 			return '';
 		} else {
@@ -447,7 +451,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		}
 	}
 
-	$scope.checkNumeric = function(sText) {
+	$scope.checkNumeric = function (sText) {
 		var ValidChars = "0123456789";
 		var IsNumber = true;
 		if (ValidChars.indexOf(sText) != -1) {
@@ -457,7 +461,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 	//upload hình
-	$scope.imageChanged = function(files) {
+	$scope.imageChanged = function (files) {
 		//alert("hìn")
 		var data = new FormData();
 		data.append('file', files[0]);
@@ -474,7 +478,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 	//xóa form
-	$scope.reset = function() {
+	$scope.reset = function () {
 		//alert("Xóa Form")
 		$("#image").val("");
 		$scope.formProduct = {
@@ -488,7 +492,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		}
 	}
 	///tìm kiếm
-	$scope.timKiem = function() {
+	$scope.timKiem = function () {
 		var name = document.getElementById("keyword").value;
 		var trangThai = document.getElementById("trangThai").value;
 		if (trangThai == "") {
@@ -504,7 +508,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		}
 
 	}
-	$scope.genderStart = function(obj) {
+	$scope.genderStart = function (obj) {
 		var trangThai = document.getElementById("trangThai").value;
 		//alert("Trang thái " + trangThai )
 		if (trangThai == "") {
@@ -522,7 +526,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	//imageProduct
 	//hiện lên form product
 	var nameCheck = "";
-	$scope.edit = function(item) {
+	$scope.edit = function (item) {
 		$scope.formProduct = angular.copy(item);
 		//$scope.formProduct.createDate = $filter('date')(item.createDate, "dd/MM/yyyy");
 		$(".nav-tabs a:eq(1)").tab('show');
@@ -531,7 +535,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 	//hiện image
-	$scope.editImage = function(item) {
+	$scope.editImage = function (item) {
 		showphoto("Ảnh: " + item.productId)
 		console.log(item)
 		$scope.formImagePr = {
@@ -545,7 +549,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		$(".nav-tabs a:eq(2)").tab('show')
 	}
 
-	$scope.image = function(item) {
+	$scope.image = function (item) {
 		// alert("product " + item.product.productId)
 		console.log(item)
 		$scope.formImagePr = angular.copy(item);
@@ -554,7 +558,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 
-	$scope.genderChanged = function() {
+	$scope.genderChanged = function () {
 		productId = $scope.formImagePr.product.productId;
 		if (productId == "") {
 			//alert("chọn tất cả ")
@@ -572,39 +576,15 @@ app.controller("product-ctrl", function($scope, $http) {
 	}
 
 
-	$scope.tableImage = function(id) {
+	$scope.tableImage = function (id) {
 		$http.get(`/rest/ImageProduct/${id}`).then(resp => {
 			$scope.itemsImagePr = resp.data;
 		})
 	}
 
 
-	$scope.genderChanged2 = function() {
-		productId = $scope.formProductSizePr.product.productId;
-		if (productId == "") {
-			//alert("chọn tất cả ")
-			$http.get(`/rest/productsizes`).then(resp => {
-				$scope.itemsProductSizePr = resp.data;
-			})
-			productId = "";
-		} else {
-			//alert("genderChanged " + productId)
-			productId = $scope.formProductSizePr.product.productId;
-			$scope.tableProductSize(productId);
-			$scope.pagerProductSize();
-
-		}
-	}
-
-
-	$scope.tableProductSize = function(id) {
-		$http.get(`/rest/productsizes/${id}`).then(resp => {
-			$scope.itemsProductSizePr = resp.data;
-		})
-	}
-
 	//Thêm mới ảnh
-	$scope.createImage = function() {
+	$scope.createImage = function () {
 		//$scope.formImagePr.image = resp.data.name;
 		var item = angular.copy($scope.formImagePr);
 		if (productId == "") {
@@ -624,7 +604,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		}
 	}
 	//cập nhật anh
-	$scope.updateImage = function() {
+	$scope.updateImage = function () {
 		//alert("updateImage")
 		var item = angular.copy($scope.formImagePr);
 		$http.put(`/rest/ImageProduct/${item.imageId}`, item).then(resp => {
@@ -637,7 +617,7 @@ app.controller("product-ctrl", function($scope, $http) {
 		})
 	}
 	//xóa ảnh
-	$scope.deleteImage = function(item) {
+	$scope.deleteImage = function (item) {
 		//alert("delete Iamge" + item.imageId)
 		$http.delete(`/rest/ImageProduct/${item.imageId}`).then(resp => {
 			debugger
@@ -655,41 +635,16 @@ app.controller("product-ctrl", function($scope, $http) {
 			})
 	}
 
-	// hiện lên form product
-	var nameCheck = "";
-	$scope.edit = function(item) {
-		$scope.formProduct = angular.copy(item);
-		//$scope.formProduct.createDate = $filter('date')(item.createDate, "dd/MM/yyyy");
-		$(".nav-tabs a:eq(2)").tab('show');
-		nameCheck = $scope.formProduct.name;
-		$("#productsize").val("");
-	}
+	// Hiển thị form productsize để chỉnh sửa
+	$scope.edit = function (item) {
+		$scope.formProductSize = angular.copy(item);
+		$(".nav-tabs a:eq(0)").tab('show');
+	};
 
-	//hiện productsize
-	$scope.editProductSize = function(item) {
-		$scope.formProductSizePr.product = {
-			productId: item.productId,
-		}
-		$scope.formProduct = {
-			product: {
-				id: item.product.id
-			},
-			size: {
-				id: item.size.id
-			},
-			price: item.price
-		};
-		productId = item.productId;
-		$scope.tableProductSize(item.productId);
-		$(".nav-tabs a:eq(3)").tab('show')
-	}
-
-	$scope.productsize = function(item) {
-		// alert("product " + item.product.productId)
-		console.log(item)
+	// Hiển thị productsize
+	$scope.editProductSize = function (item) {
 		$scope.formProductSizePr = angular.copy(item);
-		// Cập nhật dữ liệu formProduct trước khi chuyển tab
-		$scope.formProduct = {
+		$scope.formProductSize = {
 			product: {
 				id: item.product.id
 			},
@@ -698,44 +653,74 @@ app.controller("product-ctrl", function($scope, $http) {
 			},
 			price: item.price
 		};
-		$scope.tableProductSize(item.product.productId);
-		$(".nav-tabs a:eq(3)").tab('show')
-	}
+		$scope.tableProductSize(item.product.id);
+		$(".nav-tabs a:eq(3)").tab('show');
+	};
 
-	//Thêm mới ảnh
-	$scope.createProductSize = function() {
-		//$scope.formImagePr.image = resp.data.name;
-		var item = angular.copy($scope.formProductSizePr);
-		if (productId == "") {
-			swarning("Chưa chọn sp")
+	$scope.productsize = function (item) {
+		$scope.formProductSizePr = angular.copy(item);
+		$scope.formProductSize = {
+			product: {
+				id: item.product.id
+			},
+			size: {
+				id: item.size.id
+			},
+			price: item.price
+		};
+		$scope.tableProductSize(item.product.id);
+		$(".nav-tabs a:eq(3)").tab('show');
+	};
+
+	$scope.genderChanged2 = function () {
+		var productId = $scope.formProductSizePr.product.id;
+		if (!productId) {
+			$http.get(`/rest/productsizes`).then(resp => {
+				$scope.itemsProductSizePr = resp.data;
+			});
+			productId = "";
 		} else {
-			//alert("Thêm Mới Anh cho SP " + item.product.productId)
-			console.log(item)
+			$scope.tableProductSize(productId);
+			$scope.pagerProductSize();
+		}
+	};
+
+	// Load bảng productsize
+	$scope.tableProductSize = function (id) {
+		$http.get(`/rest/productsizes/${id}`).then(resp => {
+			$scope.itemsProductSizePr = resp.data;
+		});
+	};
+
+	// Thêm mới productsize
+	$scope.createProductSize = function () {
+		var item = angular.copy($scope.formProductSize);
+		if (!productId) {
+			swarning("Chưa chọn sản phẩm.");
+		} else {
 			$http.post(`/rest/productsizes`, item).then(resp => {
 				$scope.itemsProductSizePr.push(resp.data);
-				//$scope.reset();
-				$scope.tableImage(productId);
+				$scope.tableProductSize(productId);
 				sweetalert("Thêm mới size sản phẩm thành công!");
 			}).catch(error => {
-				swarning("Thêm mới size sản phẩm thất bại");
+				swarning("Thêm mới size sản phẩm thất bại.");
 				console.log(error);
 			});
 		}
-	}
-	//cập nhật anh
+	};
 
-	$scope.updateProductSize = function() {
-		//alert("updateImage")
-		var item = angular.copy($scope.formProductSizePr);
+	// Cập nhật productsize
+	$scope.updateProductSize = function () {
+		var item = angular.copy($scope.formProductSize);
 		$http.put(`/rest/productsizes/${item.productSizeId}`, item).then(resp => {
 			var index = $scope.itemsProductSizePr.findIndex(p => p.productSizeId == item.productSizeId);
 			$scope.itemsProductSizePr[index] = item;
-			sweetalert("cập nhật thành công");
+			sweetalert("Cập nhật size sản phẩm thành công.");
 		}).catch(error => {
-			swarning("Lỗi cập nhật sp" + error)
+			swarning("Lỗi cập nhật size sản phẩm: " + error);
 			console.log(error);
-		})
-	}
+		});
+	};
 
 	//phân trang product
 	$scope.pager = {

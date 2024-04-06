@@ -2,13 +2,16 @@ package com.watch.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 public class AccountDto {
 	private int accountId;
 	private String userName;

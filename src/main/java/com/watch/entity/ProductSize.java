@@ -15,24 +15,25 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-public class ProductSize implements Serializable{
-	
-	@Id
+
+public class ProductSize implements Serializable {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_size_id")
-    int productSizeId;
+    private int productSizeId;
 
     @ManyToOne
-    @JoinColumn(name = "productid", nullable = false)
-    Product product;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "sizeid", nullable = false)
-    Size size;
+    @JoinColumn(name = "size_id")
+    private Size size;
 
-    @Column(name = "price", nullable = false)
-    double price;
-    
+    @Column
+    private double price;
+
+    // Constructors
+
     public ProductSize() {
     }
 
@@ -42,7 +43,8 @@ public class ProductSize implements Serializable{
         this.price = price;
     }
 
-    // Getters and Setters
+    // Getter and setter methods
+
     public int getProductSizeId() {
         return productSizeId;
     }

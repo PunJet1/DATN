@@ -2,23 +2,24 @@ package com.watch.service;
 
 import java.util.List;
 
-import com.watch.entity.ImageProduct;
 import com.watch.entity.ProductSize;
+
 
 public interface ProductSizeService {
 
-	ProductSize getById(Integer id);
-
-	List<ProductSize> findAll();
-
-	List<ProductSize> findById(Integer id);
-
-	ProductSize update(ProductSize productsize);
+    ProductSize getById(Integer id);
 
 	void delete(ProductSize entity);
 
-	<S extends ProductSize> S save(S entity);
-
 	void deleteById(Integer id);
 
+	List<ProductSize> findById(Integer id);
+
+	List<ProductSize> findAllById(Iterable<Integer> ids);
+
+	List<ProductSize> findAll();
+
+	<S extends ProductSize> S save(S entity);
+	
+	ProductSize update(ProductSize productSize);
 }
