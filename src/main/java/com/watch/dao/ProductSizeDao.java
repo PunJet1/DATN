@@ -9,6 +9,6 @@ import com.watch.entity.ProductSize;
 
 public interface ProductSizeDao extends JpaRepository<ProductSize,Integer>{
 
-    @Query("SELECT ps FROM ProductSize ps WHERE ps.product.size.id = ?1")
+    @Query("SELECT ps FROM ProductSize ps WHERE ps.product.id = ?1")
     List<ProductSize> findByProductId(Integer productId);
 }

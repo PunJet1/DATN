@@ -635,25 +635,21 @@ app.controller("product-ctrl", function ($scope, $http) {
 			})
 	}
 
-	// Hiển thị form productsize để chỉnh sửa
-	$scope.edit = function (item) {
-		$scope.formProductSize = angular.copy(item);
-		$(".nav-tabs a:eq(0)").tab('show');
-	};
+
 
 	// Hiển thị productsize
 	$scope.editProductSize = function (item) {
 		$scope.formProductSizePr = angular.copy(item);
 		$scope.formProductSize = {
 			product: {
-				id: item.product.id
+				id: item.productid
 			},
 			size: {
-				id: item.size.id
+				id: item.id
 			},
 			price: item.price
 		};
-		$scope.tableProductSize(item.product.id);
+		$scope.tableProductSize(item.productid);
 		$(".nav-tabs a:eq(3)").tab('show');
 	};
 
@@ -661,14 +657,14 @@ app.controller("product-ctrl", function ($scope, $http) {
 		$scope.formProductSizePr = angular.copy(item);
 		$scope.formProductSize = {
 			product: {
-				id: item.product.id
+				id: item.productid
 			},
 			size: {
-				id: item.size.id
+				id: item.sizeid
 			},
 			price: item.price
 		};
-		$scope.tableProductSize(item.product.id);
+		$scope.tableProductSize(item.productid);
 		$(".nav-tabs a:eq(3)").tab('show');
 	};
 

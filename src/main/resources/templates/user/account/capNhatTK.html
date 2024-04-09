@@ -123,6 +123,63 @@
 .breadcrumb-item a {
 	color: black;
 }
+.signup-form {
+	width: 480px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+.signup-form form {
+	border-radius: 5px;
+	margin-bottom: 20px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 40px;
+}
+
+.signup-form a {
+	color: #5cb85c;
+}
+
+.signup-form h2 {
+	text-align: center;
+	font-size: 34px;
+	margin: 10px 0 15px;
+}
+
+.signup-form .hint-text {
+	color: #999;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+
+.signup-form .btn {
+	font-size: 18px;
+	line-height: 26px;
+
+	text-align: center;
+}
+
+.signup-btn {
+	text-align: center;
+	border-color: #5cb85c;
+	transition: all 0.4s;
+}
+
+.signup-btn:hover {
+	background: #5cb85c;
+	opacity: 0.8;
+}
+
+.invalid-feedback {
+	font-size: 14px;
+	font-weight: 600;
+	text-align: left;
+}
 </style>
 </head>
 
@@ -144,7 +201,7 @@
 					<h1 class="h4 text-gray-900 mb-4">Thông Tin Tài Khoản</h1>
 				</div>
 				<div class="row">
-					<div class="card-body">
+					<div class="card-body signup-form">
 						<form action="#" class="user"
 							th:action="@{/itbalo/account/update}" th:object="${account}"
 							method="post">
@@ -162,7 +219,8 @@
 											style="width: 250px;"
 											onchange="angular.element(this).scope().imageChanged(this.files)"
 											ng-value="{{form.image}}"> <input type="hidden"
-											value="{{form.image}}" id="image1" name="image1">
+											value="{{form.image}}" id="image1" name="image1" th:errorClass="is-invalid" required>
+											<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="invalid-feedback"></div>
 									</div>
 								</div>
 								<div class="col">
@@ -189,18 +247,21 @@
 									<div class="form-group">
 										<label for="password">Số điện thoại</label> <input
 											type="number" class="form-control"
-											placeholder="Số điện thoại" id="phone" th:field="*{phone}" required>
+											placeholder="Số điện thoại" id="phone" th:field="*{phone}" name="phone" th:errorClass="is-invalid" required>
+											<div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="invalid-feedback"></div>
 									</div>
 									<div class="form-group">
 										<label for="text">Ngày Sinh</label> <input type="text"
 											class="form-control" placeholder="Ngày sinh" id="bithdate"
 											name="bithdate" th:value="${dateNgaySinh}"
-											ng-blur="checkKyThangInput('bithdate');" required />
+											ng-blur="checkKyThangInput('bithdate');" th:errorClass="is-invalid" required />
+											<div th:if="${#fields.hasErrors('bithdate')}" th:errors="*{bithdate}" class="invalid-feedback"></div>
 									</div>
 									<div class="form-group">
 										<label for="password">Địa chỉ</label> <input type="text"
-											class="form-control" id="diachi" placeholder="Địa Chỉ"
-											th:field="*{address}" required>
+											class="form-control" id="diachi" placeholder="Địa Chỉ" name="address"
+											th:field="*{address}" th:errorClass="is-invalid" required>
+											<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
 									</div>
 									<div class="form-group" style="display: none">
 										<label for="username">Mật khẩu</label> <input type="text"
