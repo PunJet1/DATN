@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 
 
 @Data
-// @AllArgsConstructor
-// @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class AccountDto {
 	private int accountId;
 	private String userName;
@@ -19,6 +19,7 @@ public class AccountDto {
 	private String passwords;
 	private String fullname;
 	private String email;
+	@NotBlank(message = "Vui lòng điền số điện thoại")
 	private String phone;
 	private String address;
 	private Date birthdate;
@@ -76,23 +77,23 @@ public class AccountDto {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-	public AccountDto(int accountId, String userName, String image, String passwords, String fullname, String email,
-			String phone, String address, Date birthdate) {
-		super();
-		this.accountId = accountId;
-		this.userName = userName;
-		this.image = image;
-		this.passwords = passwords;
-		this.fullname = fullname;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.birthdate = birthdate;
-	}
-	public AccountDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	// public AccountDto(int accountId, String userName, String image, String passwords, String fullname, String email,
+	// 		String phone, String address, Date birthdate) {
+	// 	super();
+	// 	this.accountId = accountId;
+	// 	this.userName = userName;
+	// 	this.image = image;
+	// 	this.passwords = passwords;
+	// 	this.fullname = fullname;
+	// 	this.email = email;
+	// 	this.phone = phone;
+	// 	this.address = address;
+	// 	this.birthdate = birthdate;
+	// }
+	// public AccountDto() {
+	// 	super();
+	// 	// TODO Auto-generated constructor stub
+	// }
 	
 	
 }
