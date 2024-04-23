@@ -166,11 +166,11 @@ app.controller("product-ctrl", function ($scope, $http) {
 			swarning("Số lượng sản phẩm không được để trống");
 			return false;
 		}
-		// var shellSelect = document.getElementById("shellSelect").value;
-		// if(shellSelect =="" || shellSelect ==null){
-		// 	swarning("Vỏ bọc sản phẩm không được để trống");
-		// 	return false;
-		// } 
+		var shellSelect = document.getElementById("shellSelect").value;
+		if(shellSelect =="" || shellSelect ==null){
+			swarning("Vỏ bọc sản phẩm không được để trống");
+			return false;
+		} 
 		var productOrigin = document.getElementById("productOrigin").value;
 		if (productOrigin == "" || productOrigin == null) {
 			swarning("Xuất xứ sản phẩm không được để trống");
@@ -619,9 +619,9 @@ app.controller("product-ctrl", function ($scope, $http) {
 	//xóa ảnh
 	$scope.deleteImage = function (item) {
 		//alert("delete Iamge" + item.imageId)
-		$http.delete(`/rest/ImageProduct/${item.imageId}`).then(resp => {
+		$http.delete(`/rest/ImageProduct/${item.imageid}`).then(resp => {
 			debugger
-			var index = $scope.itemsImagePr.findIndex(p => p.imageId == item.imageId);
+			var index = $scope.itemsImagePr.findIndex(p => p.id == item.id);
 			$scope.itemsImagePr.splice(index, 1);
 
 			$scope.formImagePr = {

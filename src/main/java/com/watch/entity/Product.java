@@ -62,9 +62,9 @@ public class Product implements Serializable{
 	@JoinColumn(name = "strap_id")
 	private Strap_material strap;
 	
-	@ManyToOne
-	@JoinColumn(name = "water_id")
-	private Water_resistant water;
+	// @ManyToOne
+	// @JoinColumn(name = "water_id")
+	// private Water_resistant water;
 	
 	@Column(columnDefinition = "NVARCHAR(255)  NULL")
 	private String origin;
@@ -85,10 +85,10 @@ public class Product implements Serializable{
 	@OneToMany(mappedBy = "product")
 	private List<ProductSize> productsizes;
 
-	
+	// Water_resistant water,
 	public Product(int productId, String name, String description, Date updateDate, Date createDate, Category category,
 			Brand brand, int quantity, double price, Size size, Glass_material glass, Shell_material shell,
-			Strap_material strap, Water_resistant water, String origin, String image, boolean status,
+			Strap_material strap, String origin, String image, boolean status,
 			boolean gender, List<ImageProduct> images) {
 		super();
 		this.productId = productId;
@@ -104,7 +104,7 @@ public class Product implements Serializable{
 		this.glass = glass;
 		this.shell = shell;
 		this.strap = strap;
-		this.water = water;
+		// this.water = water;
 		this.origin = origin;
 		this.image = image;
 		this.status = status;
@@ -322,16 +322,16 @@ public class Product implements Serializable{
 
 
 
-	public Water_resistant getWater() {
-		return water;
-	}
+	// public Water_resistant getWater() {
+	// 	return water;
+	// }
 
 
 
 
-	public void setWater(Water_resistant water) {
-		this.water = water;
-	}
+	// public void setWater(Water_resistant water) {
+	// 	this.water = water;
+	// }
 
 
 

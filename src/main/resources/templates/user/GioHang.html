@@ -59,6 +59,15 @@
             height: 260px;
             width: 260px;
         }
+
+        .d-flex {
+            display: flex;
+            justify-content: center;
+        }
+    
+        .text-center {
+            text-align: center;
+        }
     </style>
     <!-- Phần chuyển trang -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -83,14 +92,14 @@
                 <div class="card">
                     <div class="table-responsive">
                         <table class="table table-borderless table-shopping-cart">
-                            <thead class="thead-dark text-muted">
+                            <thead class="thead-dark text-muted" >
                                 <tr class="small text-uppercase">
-                                	<th scope="col"></th>
-                                    <th scope="col">Ảnh</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col" width="220">Số lượng</th>
-                                    <th scope="col" width="220">Giá</th>
-                                    <th scope="col">Hành động</th>
+                                    <th scope="col">#</th> <!-- Thêm số thứ tự -->
+                                    <th scope="col" class="text-center">Ảnh</th>
+                                    <th scope="col" class="text-center">Tên sản phẩm</th>
+                                    <th scope="col" width="150" class="text-center">Số lượng</th> <!-- Giảm chiều rộng để tránh tràn ra ngoài -->
+                                    <th scope="col" width="150" class="text-center">Giá</th> <!-- Giảm chiều rộng để tránh tràn ra ngoài -->
+                                    <th scope="col" class="text-center">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,28 +107,28 @@
                                 	 <td class="d-flex" style="justify-content: center; padding-top: 60px;">              
                                         <input style="height: 20px; width: 20px;" ng-change="calculateTotalAmount()" type="checkbox" ng-model="item.selected" class="form-check-input">
                                     </td>
-                                    <td>
+                                    <td >
                                         <a href="/itbalo/product/detail/{{item.productId}}">
                                             <img src="/assets/images/{{item.image}}" width="150" height="150">
                                         </a>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div style="margin-top: 50px;">
                                             <a href="/itbalo/product/detail/{{item.productId}}">{{item.name}}</a>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div style="margin-top: 45px; border:hidden;">
                                             <input ng-change="cart.checkQuantity($index)" ng-model="item.qty" ng-pattern="^[0-9]*[1-9][0-9]*$" type="number" min="1" id="qty" onkeyup="value=value.replace(/[^0123456789\\.]/g,'');">
                                             <ng-show="cartForm.qty.$dirty && cartForm.qty.$invalid">
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="price-wrap" style="margin-top: 50px;">
                                             <a class="price">{{item.price * item.qty|number:0}} VNĐ</a>
                                         </div>
                                     </td>
-                                   	<td>
+                                   	<td class="text-center">
                                    		<button ng-click="cart.remove($index)" class="btn btn-ssm btn-danger" style="margin-top: 45px;">
                                             <i class='fa fa-trash'></i>
                                         </button>

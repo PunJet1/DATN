@@ -300,18 +300,63 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
     
 
     // $scope.cart.loadFromLocalStorage();
-    $scope.orders = {
+    // $scope.orders = {
 
+    //     createDate: new Date(),
+    //     address: "",
+    //     status: "",
+    //     //lấy tổng tiền khi áp dụng voucher 
+    //     total: $scope.totalFinal,
+    //     //{username:$("#username").text()}
+    //     account:{accountId: $("#account").val()},
+        
+    //     voucher: {voucherName: $scope.result},
+    //     //Hàm duyệt các mặt hàng trong giỏ
+    //     get orderDetails() {
+    //         const selectedItems = $scope.cart.items.filter(item => item.selected);
+        
+    //         const orderDetails = selectedItems.map(item => {
+    //             return {
+    //                 product: { productId: item.productId , name: item.name},
+    //                 price: item.price,
+    //                 quantity: item.qty,
+    //                 valueVoucher: item.valueVoucher,
+    //             };
+    //         });
+    //         localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+    //         return orderDetails;
+    //     },              
+    //     purchase() { 
+    //         var order = angular.copy(this);
+    //         console.log(order);
+    //         $http.post(`/rest/orders`, order).then(resp => {
+    //            /* $scope.cart.clear();*/
+    //             location.href = "/itbalo/order/checkout";
+    //         }).cath(error => {
+    //             swarning("Dat hang loi");
+    //             console.log(error)
+    //         })
+    //     }
+    // }
+
+    $scope.orders = {
         createDate: new Date(),
         address: "",
         status: "",
-        //lấy tổng tiền khi áp dụng voucher 
-        total: $scope.totalFinal,
-        //{username:$("#username").text()}
-        account:{accountId: $("#account").val()},
-        
+        // Khai báo total là một phương thức getter
+        get total() {
+            // Tính tổng tiền dựa trên số lượng sản phẩm trong giỏ hàng
+            return $scope.cart.items.reduce((total, item) => {
+                // Nếu sản phẩm được chọn, cộng thêm vào tổng tiền
+                if (item.selected) {
+                    total += (item.price * item.qty);
+                }
+                return total;
+            }, 0);
+        },
+        account: {accountId: $("#account").val()},
         voucher: {voucherName: $scope.result},
-        //Hàm duyệt các mặt hàng trong giỏ
+        // Phương thức orderDetails không thay đổi
         get orderDetails() {
             const selectedItems = $scope.cart.items.filter(item => item.selected);
         
@@ -325,7 +370,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
             });
             localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
             return orderDetails;
-        },              
+        },
         purchase() { 
             var order = angular.copy(this);
             console.log(order);
@@ -337,7 +382,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
                 console.log(error)
             })
         }
-    }
+    };
+    
     // Khởi tạo biến totalAmount
     $scope.totalAmount = 0;
 
@@ -348,7 +394,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
             return total + (item.price * item.qty);
         }, 0);
     };
-    
+
     $scope.orderShoppingCart = JSON.parse(localStorage.getItem('orderDetails')) || [];
     
     $scope.form = [];

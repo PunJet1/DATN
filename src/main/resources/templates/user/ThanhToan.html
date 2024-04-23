@@ -77,9 +77,9 @@
                                     <small class="text-muted">{{i.price |number:0}} x {{i.qty}}</small>
                                 </div> <span class="text-muted">{{i.price * i.qty|number:0}}</span>
                             </li>
-                            <!-- 							<li class="list-group-item d-flex justify-content-between">
-								<span>Tổng thành tiền</span> <strong>{{cart.amount | number:2}} VNĐ</strong>
-							</li> -->
+                           <li class="list-group-item d-flex justify-content-between">
+								<span>Tổng thành tiền</span> <strong>{{totalAmount | number:2}} VNĐ</strong>
+							</li>
                         </ul>
                         <!-- Phần hiển thị voucher -->
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -92,7 +92,7 @@
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
-                                <span>Tổng thành tiền</span> <strong>{{cart.amount|number:0}} VNĐ</strong>
+                                <span>Tổng thành tiền</span> <strong>{{ totalAmount |number:0}} VNĐ</strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Mã giảm giá</span> <strong>{{result2}} %</strong>

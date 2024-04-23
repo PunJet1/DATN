@@ -159,8 +159,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-5 single-top">
 						<div class="flexslider">
 							<ul class="slides ">
-								<!-- <li th:data-thumb="@{|/assets/images/${item.image}|}"><img
-									th:src="@{|/assets/images/${item.image}|}" /></li> -->
+								 <li th:data-thumb="@{|/assets/images/${item.image}|}"><img
+									th:src="@{|/assets/images/${item.image}|}" /></li> 
 								<li th:each="p:${item.images}" th:data-thumb="@{|/assets/images/${p.images}|}"><img
 										th:src="@{|/assets/images/${p.images}|}" /></li>
 							</ul>
@@ -331,11 +331,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<span>[[${item.glass.name}]]</span>
 										<div class="clearfix"></div>
 									</div>
-									<div class="color">
-										<p>Độ chịu nước</p>
-										<span>[[${item.water.name}]]</span>
-										<div class="clearfix"></div>
-									</div>
+					
 									<div class="color">
 										<p>Giới tính</p>
 										<span>[[*{item.gender} ? 'Nam':'Nữ']]</span>
@@ -354,7 +350,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 
 							</li>
-							<!--<li data-content="cinema">
+							,<!--<li data-content="cinema">
 
 								<div id="content_tab_9" class="tab-content" style="display: block;">
 									<p style="font-family: verdana, geneva, sans-serif; font-size: 13pt;"><span

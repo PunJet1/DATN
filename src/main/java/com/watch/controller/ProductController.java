@@ -454,10 +454,10 @@ public class ProductController {
 				checkColorWaterThick(id);
 				model.addAttribute("messagePage", "==> Thẻ: Màu "+the);
 			}
-			if(id.equals("3atm")||id.equals("5atm")||id.equals("10atm")||id.equals("20atm")) {
-				checkColorWaterThick(id);
-				model.addAttribute("messagePage", "==> Thẻ: Độ chịu nước: "+the);
-			}
+			// if(id.equals("3atm")||id.equals("5atm")||id.equals("10atm")||id.equals("20atm")) {
+			// 	checkColorWaterThick(id);
+			// 	model.addAttribute("messagePage", "==> Thẻ: Độ chịu nước: "+the);
+			// }
 			if(id.equals("36mm")||id.equals("38mm")||id.equals("40mm")||id.equals("42mm")) {
 				checkColorWaterThick(id);
 				model.addAttribute("messagePage", "==> Thẻ: Độ dày: "+the);

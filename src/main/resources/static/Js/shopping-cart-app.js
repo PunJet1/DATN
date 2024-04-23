@@ -37,7 +37,7 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
 		get count() {
 			return this.items
 				.map(item => item.qty)
-				.reduce((total, qty) => total += qty, 0);
+				.reduce((total, qty) => total -= qty, 0);
 		},
 		//tổng thành tiền các mặt hàng
 		get amount() {

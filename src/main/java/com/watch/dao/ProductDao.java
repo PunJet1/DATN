@@ -50,11 +50,11 @@ public interface ProductDao extends JpaRepository<Product, Integer>{
 	Page<Product> selectDateNew(Pageable page);
 
 	@Query(value = "SELECT brand_id,category_id,product.create_date,description,image,name,\r\n"
-			+ "origin,product.price,product.product_id,product.gender,product.glass_id,product.shell_id,product.size_id,product.water_id,product.strap_id,product.update_date,product.quantity,product.status, count(order_detail.product_id) as 'tongspmua'\r\n"
+			+ "origin,product.price,product.product_id,product.gender,product.glass_id,product.shell_id,product.size_id,product.strap_id,product.update_date,product.quantity,product.status, count(order_detail.product_id) as 'tongspmua'\r\n"
 			+ "FROM  product ,orders, order_detail where  product.product_id = order_detail.product_id\r\n"
 			+ "and  order_detail.order_id = orders.order_id\r\n"
 			+ "GROUP BY brand_id,category_id,product.create_date,description,image,name,\r\n"
-			+ "origin,product.price,product.product_id,product.gender,product.glass_id,product.shell_id,product.size_id,product.water_id,product.strap_id,product.update_date,product.quantity,product.status\r\n"
+			+ "origin,product.price,product.product_id,product.gender,product.glass_id,product.shell_id,product.size_id,product.strap_id,product.update_date,product.quantity,product.status\r\n"
 			+ "HAVING count(order_detail.product_id) > 0\r\n"
 			+ "order by tongspmua desc",nativeQuery = true)
 	Page<Product> selectBanChayNhat(Pageable page);
