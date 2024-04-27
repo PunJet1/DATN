@@ -101,13 +101,13 @@ public class SecurityController {
 		Accounts acount = useAcc.User();
 		if(acount!=null) {
 			if(acount.isStatus() == true) {
-				return"redirect:/itbalo";
+				return"redirect:/shoesstore";
 			}else {
 				return"redirect:/login";
 			}
 		}
 		model.addAttribute("message", "Đăng nhập thành công");
-		return "redirect:/itbalo";
+		return "redirect:/shoesstore";
 		 //return "/user/login/test";
 	}
 
@@ -190,14 +190,14 @@ public class SecurityController {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
 
-		helper.setFrom("khoalnapc03346@fpt.edu.vn", "Đăng Ký Tài Khoản Thành Công");
+		helper.setFrom("khoahmpc04769@fpt.edu.vn", "Đăng Ký Tài Khoản Thành Công");
 		helper.setTo(recipientEmail);
 
 		String subject = "Đây là mail xác nhận đăng ký tài khoản của bạn đã thành công";
 
 		String content = "<p>Chào bạn,</p>" + "<p>Bạn đã đăng ký thành công tài khoản của mình.</p>"
-				+ "<p>Cảm ơn bạn đã tin tưởng ITBalo.COM, "
-				+ "hãy đăng nhập và đặt mua chiếc balo mà bạn thích ngay nào!!!</p>";
+				+ "<p>Cảm ơn bạn đã tin tưởng ShoesStore.COM, "
+				+ "hãy đăng nhập và đặt mua đôi giày mà bạn thích ngay nào!!!</p>";
 
 		helper.setSubject(subject);
 

@@ -8,6 +8,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Đăng ký</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style>
 /* body {
 	background: #dfe7e9;
@@ -140,6 +142,30 @@
 	text-align: left;
 }
 </style>
+<script>
+
+	function submitForm() {
+	var username = document.getElementsByName("username")[0].value;
+    var email = document.getElementsByName("email")[0].value;
+    var password = document.getElementsByName("password")[0].value;
+    var rpassword = document.getElementsByName("rpassword")[0].value;
+    var fullname = document.getElementsByName("fullname")[0].value;
+
+    if (username || email || password || rpassword || fullname) {
+        sweetalert('Đăng ký thành công');
+    }
+
+	function showSuccessSweetalert() {
+		sweetalert({
+		  title: "Thành công!",
+		  message: "Đăng ký thành công",
+		  type: "success",
+		  duration: 10000
+		});
+	  }
+	}
+
+</script>
 </head>
 
 <body layout:fragment="content">
@@ -148,7 +174,7 @@
 
 		<div class="signup-form" align="center">
 
-			<form th:action="@{/register}" th:object="${userDTO}" method="post" class="user">
+			<form th:action="@{/register}" th:object="${userDTO}" method="post" class="user" >
 
 				<h2 class="display-4">Đăng Ký</h2><br>
 
@@ -180,17 +206,19 @@
 				</div><br>
 				<div class="form-row py-1">
 					<button type="submit"
-							class="btn btn-success btn-lg btn-block signup-btn">Đăng ký</button>
+							class="btn btn-success btn-lg btn-block signup-btn" onclick="submitForm()">Đăng ký</button>
 				</div>
 			</form>
 			<div class="text-center">
 				Bạn đã có tài khoản? <a th:href="@{/login}">Đăng
 				nhập</a><br>
-				Quay về!!! <a th:href="@{/itbalo}">Trang Chủ</a>
+				Quay về!!! <a th:href="@{/shoesstore}">Trang Chủ</a>
 			</div>
 		</div>
 	</div>
 </div>
+
+
 
 <!--<div class="row justify-content-sm-center">-->
 <!--	<div class="col col-md-5 text-center">-->

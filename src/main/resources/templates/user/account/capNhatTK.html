@@ -28,6 +28,10 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
+<!--sweetalert2-->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
 <!-- Custom styles for this template-->
 <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -37,13 +41,16 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="/assets/user/jquery.min.js"></script>
 <script src="/assets/js/shopping-cart-app.js">
-	
+
+
 </script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="/assets/user/style.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!--//theme-style-->
+<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
@@ -62,6 +69,7 @@
 
 
 </script>
+
 <!--fonts-->
 <link
 	href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
@@ -87,6 +95,40 @@
 	color: black;
 }
 </style>
+
+<script>
+	function submitForm() {
+		var phone = document.getElementById('phone').value;
+		var bithdate = document.getElementById('bithdate').value;
+		var diachi = document.getElementById('diachi').value;
+	
+		if (!phone || !bithdate || !diachi) {
+			swarning('Vui lòng nhập đầy đủ thông tin.');
+		} else {
+			sweetalert('Cập nhật thành công!');
+		}
+	}
+
+	function showSuccessSweetalert() {
+		sweetalert({
+		  title: "Thành công!",
+		  message: "Cập nhật thành công",
+		  type: "success",
+		  duration: 10000 
+		});
+	  }
+	
+	  function showErrorSweetalert() {
+		swarning({
+		  title: "Thất bại!",
+		  message: "Cập nhật thất bại",
+		  type: "error",
+		  duration: 10000 
+		});
+	  }
+</script>
+
+
 </head>
 
 <body>
@@ -142,33 +184,33 @@
 									<div class="form-group">
 										<label for="fullname">Họ và Tên</label> <input type="text"
 											class="form-control" placeholder="Fullname" id="fullname"
-											th:field="*{fullname}" />
+											th:field="*{fullname}"  />
 									</div>
 									<div class="form-group">
 										<label for="sdt">Email</label> <input type="text"
 											class="form-control" placeholder="Email" id="email"
-											th:field="*{email}" />
+											th:field="*{email}"  />
 									</div>
 									<div class="form-group">
 										<label for="password">Số điện thoại</label> <input
 											type="number" class="form-control"
-											placeholder="Số điện thoại" id="phone" th:field="*{phone}">
+											placeholder="Số điện thoại" id="phone" th:field="*{phone}"  >
 									</div>
 									<div class="form-group">
 										<label for="text">Ngày Sinh</label> <input type="text"
 											class="form-control" placeholder="Ngày sinh" id="bithdate"
 											name="bithdate" th:value="${dateNgaySinh}"
-											ng-blur="checkKyThangInput('bithdate');" />
+											ng-blur="checkKyThangInput('bithdate');"  />
 									</div>
 									<div class="form-group">
 										<label for="password">Địa chỉ</label> <input type="text"
 											class="form-control" id="diachi" placeholder="Địa Chỉ"
-											th:field="*{address}">
+											th:field="*{address}"  >
 									</div>
 									<div class="form-group" style="display: none">
 										<label for="username">Mật khẩu</label> <input type="text"
 											class="form-control" placeholder="Username" id="password"
-											th:field="*{password}">
+											th:field="*{password}" >
 									</div>
 								</div>
 							</div>
@@ -182,7 +224,7 @@
 									</a>
 								</div>
 								<div class="col-4">
-									<a href="#" class="btn btn-success btn-icon-split"> <span
+									<a href="#" class="btn btn-success btn-icon-split" onclick="submitForm()"> <span
 										class="icon text-white-50"> <i class="fa fa-wrench"></i>
 									</span>
 										<button type="submit" class="btn" style="color: white;">Cập
@@ -207,5 +249,6 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="/assets/js/sb-admin-2.min.js"></script>
+
 </body>
 </html>
