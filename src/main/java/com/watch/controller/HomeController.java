@@ -61,7 +61,7 @@ public class HomeController {
 	}
 	
 	//Home người dùng
-	@GetMapping({"/shoesstore","/shoesstore/home"})
+	@GetMapping({"/itbalo","/itbalo/home"})
 	public String homeClient(Model model) {
 		List<Product> list = productService.findTop6Img();
 		model.addAttribute("items", list);
