@@ -55,13 +55,13 @@ public class HomeController {
     HttpSession session;
 	
 	//home người admin
-	@GetMapping({"/","/admin","/admin/itbalo"})
+	@GetMapping({"/","/admin","/admin/shoesstore"})
 	public String homeAmin(Model model) {
 		return "redirect:/assets/admin/main/homeAdmin.html";
 	}
 	
 	//Home người dùng
-	@GetMapping({"/itbalo","/itbalo/home"})
+	@GetMapping({"/shoesstore","/shoesstore/home"})
 	public String homeClient(Model model) {
 		List<Product> list = productService.findTop6Img();
 		model.addAttribute("items", list);

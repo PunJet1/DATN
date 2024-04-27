@@ -10,8 +10,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
 <style>
 .bg-register-image {
 	background-position: center;
@@ -84,101 +82,9 @@
 <script src="/assets/user/simpleCart.min.js">
 	
 </script>
-<script>
-    function submitForm() {
-        var fullname = document.getElementById('fullname').value;
-        var email = document.getElementById('email').value;
-        var phone = document.getElementById('phone').value;
-        var bithdate = document.getElementById('bithdate').value;
-        var diachi = document.getElementById('diachi').value;
-
-        if (!fullname || !email || !phone || !bithdate || !diachi) {
-            swarning('Vui lòng nhập đầy đủ thông tin.');
-        } else {
-            sweetalert('Cập nhật thành công!');
-            // Gửi biểu mẫu nếu muốn
-            // document.querySelector('form').submit();
-        }
-    }
-	var sweetalert = function (text) {
-		Swal.fire({
-			icon: "success",
-			title: text,
-			showConfirmButton: false,
-			timer: 100000,
-		});
-	}
-
-	//thông báo lỗi
-	var swarning = function (text) {
-		Swal.fire({
-			icon: "error",
-			title: text,
-			showConfirmButton: false,
-			timer: 100000,
-		});
-	}
-</script>
 <style type="text/css">
 .breadcrumb-item a {
 	color: black;
-}
-.signup-form {
-	width: 480px;
-	margin: 0 auto;
-	padding: 30px 0;
-}
-
-.signup-form form {
-	border-radius: 5px;
-	margin-bottom: 20px;
-	background: #fff;
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	padding: 40px;
-}
-
-.signup-form a {
-	color: #5cb85c;
-}
-
-.signup-form h2 {
-	text-align: center;
-	font-size: 34px;
-	margin: 10px 0 15px;
-}
-
-.signup-form .hint-text {
-	color: #999;
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.signup-form .form-group {
-	margin-bottom: 20px;
-}
-
-.signup-form .btn {
-	font-size: 18px;
-	line-height: 26px;
-
-	text-align: center;
-}
-
-.signup-btn {
-	text-align: center;
-	border-color: #5cb85c;
-	transition: all 0.4s;
-}
-
-.signup-btn:hover {
-	background: #5cb85c;
-	opacity: 0.8;
-}
-
-.invalid-feedback {
-	font-size: 14px;
-	font-weight: 600;
-	text-align: left;
 }
 </style>
 </head>
@@ -201,7 +107,7 @@
 					<h1 class="h4 text-gray-900 mb-4">Thông Tin Tài Khoản</h1>
 				</div>
 				<div class="row">
-					<div class="card-body signup-form">
+					<div class="card-body">
 						<form action="#" class="user"
 							th:action="@{/itbalo/account/update}" th:object="${account}"
 							method="post">
@@ -219,8 +125,7 @@
 											style="width: 250px;"
 											onchange="angular.element(this).scope().imageChanged(this.files)"
 											ng-value="{{form.image}}"> <input type="hidden"
-											value="{{form.image}}" id="image1" name="image1" th:errorClass="is-invalid" required>
-											<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="invalid-feedback"></div>
+											value="{{form.image}}" id="image1" name="image1">
 									</div>
 								</div>
 								<div class="col">
@@ -237,36 +142,33 @@
 									<div class="form-group">
 										<label for="fullname">Họ và Tên</label> <input type="text"
 											class="form-control" placeholder="Fullname" id="fullname"
-											th:field="*{fullname}" required/>
+											th:field="*{fullname}" />
 									</div>
 									<div class="form-group">
 										<label for="sdt">Email</label> <input type="text"
 											class="form-control" placeholder="Email" id="email"
-											th:field="*{email}" required/>
+											th:field="*{email}" />
 									</div>
 									<div class="form-group">
 										<label for="password">Số điện thoại</label> <input
 											type="number" class="form-control"
-											placeholder="Số điện thoại" id="phone" th:field="*{phone}" name="phone" th:errorClass="is-invalid" required>
-											<div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="invalid-feedback"></div>
+											placeholder="Số điện thoại" id="phone" th:field="*{phone}">
 									</div>
 									<div class="form-group">
 										<label for="text">Ngày Sinh</label> <input type="text"
 											class="form-control" placeholder="Ngày sinh" id="bithdate"
 											name="bithdate" th:value="${dateNgaySinh}"
-											ng-blur="checkKyThangInput('bithdate');" th:errorClass="is-invalid" required />
-											<div th:if="${#fields.hasErrors('bithdate')}" th:errors="*{bithdate}" class="invalid-feedback"></div>
+											ng-blur="checkKyThangInput('bithdate');" />
 									</div>
 									<div class="form-group">
 										<label for="password">Địa chỉ</label> <input type="text"
-											class="form-control" id="diachi" placeholder="Địa Chỉ" name="address"
-											th:field="*{address}" th:errorClass="is-invalid" required>
-											<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback"></div>
+											class="form-control" id="diachi" placeholder="Địa Chỉ"
+											th:field="*{address}">
 									</div>
 									<div class="form-group" style="display: none">
 										<label for="username">Mật khẩu</label> <input type="text"
 											class="form-control" placeholder="Username" id="password"
-											th:field="*{password}" required>
+											th:field="*{password}">
 									</div>
 								</div>
 							</div>
@@ -280,7 +182,7 @@
 									</a>
 								</div>
 								<div class="col-4">
-									<a href="#" class="btn btn-success btn-icon-split" onclick="submitForm()" > <span
+									<a href="#" class="btn btn-success btn-icon-split"> <span
 										class="icon text-white-50"> <i class="fa fa-wrench"></i>
 									</span>
 										<button type="submit" class="btn" style="color: white;">Cập
