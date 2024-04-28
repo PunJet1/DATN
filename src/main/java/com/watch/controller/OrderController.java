@@ -536,8 +536,8 @@ public class OrderController {
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		message.setTo(email);
-		message.setSubject("Đặt hàng thành công tại ITBalo.COM");
-		message.setText("Cảm ơn bạn đã mua hàng tại ITBalo.COM.\r\n"
+		message.setSubject("Đặt hàng thành công tại ShoesStore.COM");
+		message.setText("Cảm ơn bạn đã mua hàng tại ShoesStore.COM.\r\n"
 				+ "Mã hóa đơn của bạn là: " + order.getOrderId() + "\r\n"
 				+ "Vui lòng click vào đường link: http://localhost:8080/itbalo/account/history/detail/"
 				+ order.getOrderId() + " để xem chi tiết hóa đơn.\r\n"

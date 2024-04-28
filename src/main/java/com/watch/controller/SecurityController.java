@@ -245,7 +245,7 @@ public class SecurityController {
 	public void sendEmail(String recipientEmail, String link) throws MessagingException, UnsupportedEncodingException {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
-		helper.setFrom("khoalnapc03346@fpt.edu.vn", "khoalnapc03346@fpt.edu.vn");
+		helper.setFrom("khoahmpc04769@fpt.edu.vn", "khoahmpc04769@fpt.edu.vn");
 		helper.setTo(recipientEmail);
 
 		String subject = "Đây là liên kết để đặt lại mật khẩu của bạn";
