@@ -114,7 +114,7 @@
 		  title: "Thành công!",
 		  message: "Cập nhật thành công",
 		  type: "success",
-		  duration: 10000 
+		  duration: 500000
 		});
 	  }
 	
@@ -123,7 +123,7 @@
 		  title: "Thất bại!",
 		  message: "Cập nhật thất bại",
 		  type: "error",
-		  duration: 10000 
+		  duration: 500000
 		});
 	  }
 </script>
@@ -152,7 +152,7 @@
 					<div class="card-body">
 						<form action="#" class="user"
 							th:action="@{/itbalo/account/update}" th:object="${account}"
-							method="post">
+							method="post" onsubmit="submitForm()">
 							<div class="row">
 								<div class="col-4">
 									<div class="col-sm-4 text-center">
@@ -217,14 +217,14 @@
 							<hr>
 							<div class="row justify-content-end">
 								<div class="col-lg-2 col-offset-6 centered">
-									<a href="/itbalo" class="btn btn-secondary btn-icon-split"
+									<a href="/shoesstore" class="btn btn-secondary btn-icon-split"
 										style="height: 50px;"> <span class="icon text-white-50">
 											<i class="fas fa-arrow-left"></i>
 									</span> <span class="text" style="padding-top: 8px;">Quay Về</span>
 									</a>
 								</div>
 								<div class="col-4">
-									<a href="#" class="btn btn-success btn-icon-split" onclick="submitForm()"> <span
+									<a href="" class="btn btn-success btn-icon-split" onclick="submitForm()"> <span
 										class="icon text-white-50"> <i class="fa fa-wrench"></i>
 									</span>
 										<button type="submit" class="btn" style="color: white;">Cập
