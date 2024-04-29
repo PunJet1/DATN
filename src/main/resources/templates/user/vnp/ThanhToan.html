@@ -331,62 +331,7 @@
 				});
 			}
 
-			// xử lý api giao hàng nhanh
 
-			const linkt = "https://online-gateway.ghn.vn/shiip/public-api/master-data/province";
-			const linkh = "https://online-gateway.ghn.vn/shiip/public-api/master-data/district";
-			const linkx = "https://online-gateway.ghn.vn/shiip/public-api/master-data/ward";
-			$(document).ready(function () {
-				window.onload = function () {
-					tinh();
-				};
-				function tinh() {
-					$.ajax({
-						type: "GET",
-						url: linkt,
-						headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
-						success: function (data) {
-							renderData(data.data, "province")
-							console.log(data);
-						},
-						error: function (error) {
-							alert("Đã xảy ra lỗi: " + error.responseText);
-						}
-					})
-				}
-			});
-
-			function huyen(provinceid) {
-				$.ajax({
-					type: "GET",
-					url: linkh,
-					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
-					data: { province_id: provinceid },
-					success: function (data) {
-						renderDataH(data.data, "district")
-						console.log(data);
-					},
-					error: function (error) {
-						alert("Đã xảy ra lỗi: " + error.responseText);
-					}
-				})
-			}
-
-			function phuong(districtid) {
-				$.ajax({
-					type: "GET",
-					url: linkx,
-					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
-					data: { district_id: districtid },
-					success: function (data) {
-						renderDataP(data.data, "ward")
-						console.log(data);
-					},
-					error: function (error) {
-						alert("Đã xảy ra lỗi: " + error.responseText);
-					}
-				})
-			}
 
 			function service(districtid) {
 				$.ajax({

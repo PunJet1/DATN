@@ -94,19 +94,19 @@
                         <table class="table table-borderless table-shopping-cart">
                             <thead class="thead-dark text-muted" >
                                 <tr class="small text-uppercase">
-                                    <th scope="col">#</th> <!-- Thêm số thứ tự -->
-                                    <th scope="col" class="text-center">Ảnh</th>
-                                    <th scope="col" class="text-center">Tên sản phẩm</th>
-                                    <th scope="col" width="150" class="text-center">Số lượng</th> <!-- Giảm chiều rộng để tránh tràn ra ngoài -->
-                                    <th scope="col" width="150" class="text-center">Giá</th> <!-- Giảm chiều rộng để tránh tràn ra ngoài -->
-                                    <th scope="col" class="text-center">Hành động</th>
-                                </tr>
+                                    <!-- <th scope="col">#</th> Thêm số thứ tự -->
+                                    <th scope="col" class="text-center" width="150">Ảnh</th>
+                                    <th scope="col" class="text-center" width="150">Tên sản phẩm</th>
+                                    <th scope="col" class="text-center" width="150">Số lượng</th>
+                                    <th scope="col" class="text-center" width="150">Giá</th>
+                                    <th scope="col" class="text-center"  width="150">Hành động</th>
+                                </tr>   
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in cart.items">
-                                	 <td class="d-flex" style="justify-content: center; padding-top: 60px;">              
+                                	 <!--<td class="d-flex" style="justify-content: center; padding-top: 60px;">              
                                         <input style="height: 20px; width: 20px;" ng-change="calculateTotalAmount()" type="checkbox" ng-model="item.selected" class="form-check-input">
-                                    </td>
+                                    </td>-->
                                     <td >
                                         <a href="/shoesstore/product/detail/{{item.productId}}">
                                             <img src="/assets/images/{{item.image}}" width="150" height="150">
@@ -135,11 +135,12 @@
                                    	</td>
                                 </tr>                                
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
                 <div class="total d-flex justify-content-end mt-3 text-danger" style="font-size: 20px;font-weight:500;">
-						Tổng số tiền:	{{ totalAmount | number:0 }} VNĐ
+						Tổng số tiền:	{{ cart.amount | number:0 }} VNĐ
 						</div>
                 <br />
                 <a class="btn btn-warning" th:href="@{/shoesstore/product}">Tiếp

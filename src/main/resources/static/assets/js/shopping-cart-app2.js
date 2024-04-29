@@ -212,5 +212,16 @@ app.controller("shopping-cart-ctrl", function ($scope, $http) {
             // console.log(demo)
         }
     }
+
+    // Khởi tạo biến totalAmount
+    $scope.totalAmount = 0;
+
+    // Hàm tính tổng số tiền khi có sự thay đổi trong các mục được chọn
+    $scope.calculateTotalAmount = function() {
+        const selectedItems = $scope.cart.items.filter(item => item.selected);
+        $scope.totalAmount = selectedItems.reduce((total, item) => {
+            return total + (item.price * item.qty);
+        }, 0);
+    };
 }
 )
