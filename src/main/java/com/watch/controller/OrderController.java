@@ -97,7 +97,7 @@ public class OrderController {
 	BrandService brandService;
 	Accounts account;
 
-	@GetMapping("/itbalo/order/checkout")
+	@GetMapping("/shoesstore/order/checkout")
 	public String checkout(Model model) {
 		if (useAcc.User() == null) {
 			return "redirect:/login";
@@ -121,7 +121,7 @@ public class OrderController {
 
 	}
 
-	@PostMapping("/itbalo/order/checkout")
+	@PostMapping("/shoesstore/order/checkout")
 	@ResponseBody
 	public String checkoutPost(Model model, @ModelAttribute("account") Accounts accountKh) throws IOException {
 		List<Strap_material> straps = strapSv.findAll();
@@ -539,7 +539,7 @@ public class OrderController {
 		message.setSubject("Đặt hàng thành công tại ShoesStore.COM");
 		message.setText("Cảm ơn bạn đã mua hàng tại ShoesStore.COM.\r\n"
 				+ "Mã hóa đơn của bạn là: " + order.getOrderId() + "\r\n"
-				+ "Vui lòng click vào đường link: http://localhost:8080/itbalo/account/history/detail/"
+				+ "Vui lòng click vào đường link: http://localhost:8080/shoesstore/account/history/detail/"
 				+ order.getOrderId() + " để xem chi tiết hóa đơn.\r\n"
 				+ "Xin chân thành cảm ơn đã sử dụng dịch vụ.");
 		emailSender.send(message);

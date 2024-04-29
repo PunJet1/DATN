@@ -83,7 +83,7 @@
 				<div id="listProduct" class="col-md-3 mt-4" th:each="listpro, state: ${wishLists}" style="margin-bottom: 20px;">
 					<div style="height: 330px;">
                                 <div class="card" style="width: 18rem; height: 322px;">
-                                    <a th:href="@{|/itbalo/product/detail/${listpro.product.productId}|}" style="text-decoration: none;">
+                                    <a th:href="@{|/shoesstore/product/detail/${listpro.product.productId}|}" style="text-decoration: none;">
                                         <div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
                                             <img class="card-img-top" th:src="@{|/assets/images/${listpro.product.image}|}" alt="" style="height: 178px; width: 178px;">
                                             <div class="discount-label green" th:if="${listpro.product.category.discount != null}" style="margin-left: 15px;">

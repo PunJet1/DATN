@@ -84,7 +84,7 @@ public class LoginController {
 		return"redirect:/login";
 	}
 		
-	@GetMapping("/itbalo/chinhSachBaoHanh")
+	@GetMapping("/shoesstore/chinhSachBaoHanh")
 	public String chinhSachBaoHanh(Model model) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);
@@ -96,7 +96,7 @@ public class LoginController {
 		return "/user/csbh/csbh";
 	}
 	
-	@GetMapping("/itbalo/chinhSachDoiTra")
+	@GetMapping("/shoesstore/chinhSachDoiTra")
 	public String chinhSachDoiTra(Model model) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);

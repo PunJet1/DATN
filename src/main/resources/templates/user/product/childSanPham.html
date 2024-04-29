@@ -14,7 +14,7 @@
 						style="margin-bottom: 20px;">
 						<div style="height: 330px;">
 							<div class="card" style="width: 18rem; height: 322px;">
-								<a th:href="@{|/itbalo/product/detail/${listpro.productId}|}"
+								<a th:href="@{|/shoesstore/product/detail/${listpro.productId}|}"
 									style="text-decoration: none;">
 									<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
 										<img class="card-img-top" th:src="@{|/assets/images/${listpro.image}|}" alt=""
@@ -61,16 +61,16 @@
 				</div>
 				<div class="row">
 					<ul class="pagination" style="margin-left: 350px;">
-						<li class="page-item"><a class="page-link" href="/itbalo/product?p=0"><span
+						<li class="page-item"><a class="page-link" href="/shoesstore/product?p=0"><span
 									class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a></li>
-						<li class="page-item"><a class="page-link" th:href="@{|/itbalo/product?p=${number-1}|}"><span
+						<li class="page-item"><a class="page-link" th:href="@{|/shoesstore/product?p=${number-1}|}"><span
 									class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></li>
-						<li class="page-item"><a class="page-link" href="/itbalo/product?p=0">
+						<li class="page-item"><a class="page-link" href="/shoesstore/product?p=0">
 								[[${number+1}]]/[[${listproduct.totalPages}]]</a></li>
-						<li class="page-item"><a class="page-link" th:href="@{|/itbalo/product?p=${number+1}|}"><span
+						<li class="page-item"><a class="page-link" th:href="@{|/shoesstore/product?p=${number+1}|}"><span
 									class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
 						<li class="page-item"><a class="page-link"
-								th:href="@{|/itbalo/product?p=${listproduct.totalPages-1}|}"><span
+								th:href="@{|/shoesstore/product?p=${listproduct.totalPages-1}|}"><span
 									class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a></li>
 					</ul>
 				</div>

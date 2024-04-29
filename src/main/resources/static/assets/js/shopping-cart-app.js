@@ -49,7 +49,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
 			if (item) {
 				if(item.qty >= item.quantity){
 					 swarning("Số lượng sản phẩm đã đạt giới hạn!");
-					 location.href = "/itbalo/cartItem";
+					 location.href = "/shoesstore/cartItem";
 					 return;
 				}
 				else{
@@ -376,7 +376,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
             console.log(order);
             $http.post(`/rest/orders`, order).then(resp => {
                /* $scope.cart.clear();*/
-                location.href = "/itbalo/order/checkout";
+                location.href = "/shoesstore/order/checkout";
             }).cath(error => {
                 swarning("Dat hang loi");
                 console.log(error)

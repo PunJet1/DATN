@@ -174,7 +174,7 @@
 				</div>
 				<div class="fashion-grid1">
 					<h6 class="best2">
-						<a th:href="@{'/itbalo/product/detail/' + ${proBest.productId}}" th:text="${proBest.name}"></a>
+						<a th:href="@{'/shoesstore/product/detail/' + ${proBest.productId}}" th:text="${proBest.name}"></a>
 					</h6>
 					<span class="price-in1"
 						th:if="${proBest.category.discount!= null}">[[*{#numbers.formatInteger(proBest.price

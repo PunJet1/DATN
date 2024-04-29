@@ -76,7 +76,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<ul style="margin-left: 10px; ">
 						<li class="loaisp" th:each="listCate : ${listCategory}"
 							style="list-style-type: none; margin: 10px 0px;">
-							<a th:href="@{|/itbalo/product/${listCate.categoryId}|}"
+							<a th:href="@{|/shoesstore/product/${listCate.categoryId}|}"
 								style="text-decoration: none; font-size: 17px;">[[${listCate.name}]]</a>
 						</li>
 					</ul>
@@ -198,7 +198,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<h4>Bộ Lọc:</h4>
 					</label>
 					<div class="row" id="filter">
-						<form th:action="@{|/itbalo/product/search|}" method="post">
+						<form th:action="@{|/shoesstore/product/search|}" method="post">
 							<div class="form-group col-sm-3 col-xs-6">
 								<select class="form-control form-control-lg" id="bran" name="bran">
 									<option value="">Hãng--</option>
@@ -237,9 +237,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div style="margin-bottom: 20px;">
 						<div class="khungSapxep">
 							<b>Sắp xếp theo</b>
-							<a th:href="@{|/itbalo/product/khuyenmai|}" class="btn btn-info btn-sm">Khuyến mãi</a>
-							<a th:href="@{|/itbalo/product/moinhat|}" class="btn btn-info btn-sm">Mới Nhất</a>
-							<a th:href="@{|/itbalo/product/banchay|}" class="btn btn-info btn-sm">Bán Chạy</a>
+							<a th:href="@{|/shoesstore/product/khuyenmai|}" class="btn btn-info btn-sm">Khuyến mãi</a>
+							<a th:href="@{|/shoesstore/product/moinhat|}" class="btn btn-info btn-sm">Mới Nhất</a>
+							<a th:href="@{|/shoesstore/product/banchay|}" class="btn btn-info btn-sm">Bán Chạy</a>
 						</div>
 					</div>
 				</div>
@@ -254,7 +254,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="col-md-3" th:each="listpro : ${listproduct.content}" style="margin-bottom: 20px;">
 							<div style="height: 330px;">
 								<div class="card" style="width: 18rem;">
-									<a th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+									<a th:href="@{|shoesstore/product/detail/${listpro.productId}|}"
 										style="text-decoration: none;">
 										<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
 											<img class="card-img-top"
@@ -270,7 +270,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 												<p style="font-size: 12px;">&nbsp;<b>[[${listpro.price}]] đ</b> &nbsp;
 													<del>9350000 đ</del></p>
 											</div>
-											<a th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+											<a th:href="@{|shoesstore/product/detail/${listpro.productId}|}"
 												class="btn btn-primary abc">Mua Ngay</a>
 										</div>
 									</a>

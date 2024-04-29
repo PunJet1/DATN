@@ -10,7 +10,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6">
-							<form id="search-form" th:action="@{/itbalo/search}" method="get" style="margin-top: 5px;"
+							<form id="search-form" th:action="@{/shoesstore/search}" method="get" style="margin-top: 5px;"
 								th:object="${account}" enctype="multipart/form-data">
 								<div class="form-group col-xs-9">
 									<input class="form-control" type="text" name="nameSearch"
@@ -31,7 +31,7 @@
 									<li><a th:href="@{/login}" th:if="${#request.remoteUser} == null">Đăng nhập</a></li>
 									<li><a th:href="@{/register}" th:if="${#request.remoteUser} == null">Đăng ký</a>
 									</li>
-									<li><a th:href="@{/itbalo/cartItem}">
+									<li><a th:href="@{/shoesstore/cartItem}">
 											<div class="total">
 												{{totalAmount | number:0}} VNĐ ( {{cart.count}} sản phẩm ) <i class="fa
 													fa-shopping-cart" style="font-size: 25px; color: white;">

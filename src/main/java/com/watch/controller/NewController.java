@@ -15,7 +15,7 @@ import com.watch.service.NewsService;
 public class NewController {
 	@Autowired
 	private NewsService vser;
-	@RequestMapping("/itbalo/blog/{newsId}")
+	@RequestMapping("/shoesstore/blog/{newsId}")
 	//lấy thông tin từ trình duyệt gắn vào Integer id (PathValueable)
 	public String detail(Model model,@PathVariable("newsId") Integer id) {
 		News item=vser.getById(id);

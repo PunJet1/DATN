@@ -75,7 +75,7 @@ public class WishListController {
 			}
 			//return "user/product/ChiTietSP";
 			//return "redirect:/itbalo/product/" + Product.getProductId();
-		    return "redirect:/itbalo/account/favorite";
+		    return "redirect:/shoesstore/account/favorite";
 	    }
 	    
 	    

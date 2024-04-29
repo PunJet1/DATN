@@ -84,7 +84,7 @@ public class AccountController {
 	ProductService productSV;
 
 	// Get Cap nhat tai khoan
-	@GetMapping("/itbalo/account/view")
+	@GetMapping("/shoesstore/account/view")
 	public String capNhatTaiKhoan(Model model, HttpServletRequest request) {
 
 		if (useAcc.User() == null) {
@@ -119,7 +119,7 @@ public class AccountController {
 	}
 
 	// Get lichSuMuahang
-	@GetMapping("/itbalo/account/history")
+	@GetMapping("/shoesstore/account/history")
 	public String lichSuMuahang(Model model, HttpServletRequest request, @RequestParam("p") Optional<Integer> p) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);
@@ -145,7 +145,7 @@ public class AccountController {
 	}
 
 	// huy don hang
-	@GetMapping("/itbalo/account/history/cancel/{orderId}")
+	@GetMapping("/shoesstore/account/history/cancel/{orderId}")
 	public String huyDon(Model model, HttpServletRequest request, @PathVariable("orderId") Integer orderId,
 			@RequestParam("p") Optional<Integer> p) {
 		try {
@@ -208,7 +208,7 @@ public class AccountController {
 		}
 	}
 
-	@RequestMapping("/itbalo/account/history/search")
+	@RequestMapping("/shoesstore/account/history/search")
 	public String Search(Model model, @RequestParam("keyword") String kw, @RequestParam("page") Optional<Integer> p) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);
@@ -228,7 +228,7 @@ public class AccountController {
 		return "product/list";
 	}
 
-	@GetMapping("/itbalo/account/favorite")
+	@GetMapping("/shoesstore/account/favorite")
 	public String sanPhamYeuThich(Model model, HttpServletRequest request) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);
@@ -247,7 +247,7 @@ public class AccountController {
 	}
 
 	// Get doiMatKhau
-	@GetMapping("/itbalo/account/changePassword")
+	@GetMapping("/shoesstore/account/changePassword")
 	public String doiMatKhau(Model model) {
 		if (useAcc.User() == null) {
 			return "redirect:/login";
@@ -262,7 +262,7 @@ public class AccountController {
 		return "/user/account/doiMatKhau";
 	}
 
-	@GetMapping("/itbalo/account/like/{id}")
+	@GetMapping("/shoesstore/account/like/{id}")
 	public String likeOrUnlike(@PathVariable("id") Integer id, Model model) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);
@@ -279,10 +279,10 @@ public class AccountController {
 		Long idac = account.getAccountId();
 		WishList wl = wishListService.findBy(id, idac);
 		wishListService.delete(wl);
-		return "redirect:/itbalo/account/favorite";
+		return "redirect:/shoesstore/account/favorite";
 	}
 
-	@PostMapping("/itbalo/account/update")
+	@PostMapping("/shoesstore/account/update")
 	public String capNhatTaiKhoan2(@ModelAttribute("account") Accounts account, @RequestParam("image1") String image1,
 			@RequestParam("bithdate") String bithdate, Model model) throws ParseException {
 		if (useAcc.User() == null) {
@@ -323,10 +323,10 @@ public class AccountController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/itbalo/account/view";
+		return "redirect:/shoesstore/account/view";
 	}
 
-	@GetMapping("/itbalo/account/history/detail/{orderId}")
+	@GetMapping("/shoesstore/account/history/detail/{orderId}")
 	public String chiTietDonHang(Model model, @PathVariable("orderId") Integer orderId, HttpServletRequest request) {
 		List<Strap_material> straps = strapSv.findAll();
 		model.addAttribute("straps", straps);

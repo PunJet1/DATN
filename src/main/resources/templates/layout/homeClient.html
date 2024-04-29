@@ -227,14 +227,14 @@
 				<div class="content-top" style="padding-top: 50px;">
 					<h2>Hàng mới nhất</h2>
 					<div class="row dhn" style="margin-top:10px;">
-						<a class="btn btn-secondary bg-danger" th:href="@{|/itbalo/product/gender/nam|}"
+						<a class="btn btn-secondary bg-danger" th:href="@{|/shoesstore/product/gender/nam|}"
 							style="margin-right: 20px;">GIÀY NAM</a>
-						<a class="btn btn-secondary bg-danger" th:href="@{|/itbalo/product/gender/nu|}">GIÀY NỮ</a>
+						<a class="btn btn-secondary bg-danger" th:href="@{|/shoesstore/product/gender/nu|}">GIÀY NỮ</a>
 					</div>
 					<div class="grid-in">
 						<div class="col-md-4 grid-top" th:each="listpro : ${items}" style="margin-bottom: 0px; ">
 							<div class="thumbnail" style="margin-bottom: 0px; padding-bottom: 0px;">
-								<a th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+								<a th:href="@{|shoesstore/product/detail/${listpro.productId}|}"
 									class="b-link-stripe b-animate-go  thickbox">
 									<img class="img-responsive" th:src="@{|/assets/images/${listpro.image}|}" alt=""
 										style="width: 348px; height: 348px;">
@@ -242,7 +242,7 @@
 							</div>
 
 							<div class="proName text-center">
-								<a class="link-danger" th:href="@{|itbalo/product/detail/${listpro.productId}|}"
+								<a class="link-danger" th:href="@{|shoesstore/product/detail/${listpro.productId}|}"
 									style="text-decoration: none; font-size: 20px;font-weight: 500;">
 									[[*{listpro.name}]]
 								</a>
@@ -269,7 +269,7 @@
 				<div class="content-top-bottom">
 					<h2>Bộ sưu tập nổi bật</h2>
 					<div class="col-md-6 men">
-						<a th:href="@{|/itbalo/brand/citizen|}" class="b-link-stripe b-animate-go  thickbox">
+						<a th:href="@{|/shoesstore/brand/citizen|}" class="b-link-stripe b-animate-go  thickbox">
 							<img class="img-responsive" src="static/assets/image/home1.jpg" alt=""
 								style="width: 540px; height: 428px;">
 							<div class="b-wrapper">
@@ -283,7 +283,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="col-md1 ">
-							<a th:href="@{|/itbalo/brand/ogival|}" class="b-link-stripe b-animate-go  thickbox"><img
+							<a th:href="@{|/shoesstore/brand/ogival|}" class="b-link-stripe b-animate-go  thickbox"><img
 									class="img-responsive" src="static/assets/image/home2.jpg" alt=""
 									style="height: 200px; width: 550px;">
 								<div class="b-wrapper">
@@ -296,7 +296,7 @@
 						</div>
 						<div class="col-md2" style="margin-top: 4px;">
 							<div class="col-md-6 men1">
-								<a th:href="@{|/itbalo/brand/orient|}" class="b-link-stripe b-animate-go  thickbox"><img
+								<a th:href="@{|/shoesstore/brand/orient|}" class="b-link-stripe b-animate-go  thickbox"><img
 										class="img-responsive" src="static/assets/image/home3.jpg" alt=""
 										style="height: 193px;">
 									<div class="b-wrapper">
@@ -308,7 +308,7 @@
 
 							</div>
 							<div class="col-md-6 men2">
-								<a th:href="@{|/itbalo/brand/thachanh|}"
+								<a th:href="@{|/shoesstore/brand/thachanh|}"
 									class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive"
 										src="static/assets/image/home4.webp" alt="" style="height: 193px;">
 									<div class="b-wrapper">
@@ -331,11 +331,11 @@
 					<div class="grid-in">
 						<ul>
 							<div th:each="p:${news}" class="col-md-4 grid_3">
-								<a th:href="@{|/itbalo/blog/${p.newsId}|}"><img style="height: 350px;width: 350px;"
+								<a th:href="@{|/shoesstore/blog/${p.newsId}|}"><img style="height: 350px;width: 350px;"
 										th:src="@{|/assets/images/${p.image}/|}" class="img-responsive-new"
-										th:href="@{|/itbalo/blog/${p.newsId}|}" /></a>
+										th:href="@{|/shoesstore/blog/${p.newsId}|}" /></a>
 								<h3 style="margin-top:10px;">
-									<a th:href="@{|/itbalo/blog/${p.newsId}|}">[[${p.title}]]</a>
+									<a th:href="@{|/shoesstore/blog/${p.newsId}|}">[[${p.title}]]</a>
 								</h3>
 								<p th:utext="${p.shortcontent}"></p>
 							</div>
@@ -367,10 +367,10 @@
 						<h2>THƯƠNG HIỆU NỔI TIẾNG</h2>
 					</div>
 					<div class="col-sm-2" th:each="brand : ${brands}" style="margin-top:20px; margin-bottom:10px;">
-						<a th:href="@{|/itbalo/brand/${brand.name}|}" style="text-decoration: none; font-size: 16px;">
+						<a th:href="@{|/shoesstore/brand/${brand.name}|}" style="text-decoration: none; font-size: 16px;">
 							<img style="margin-left: 100px; margin-right: 100px; height: 150px; width: 150px; margin-top:30px; margin: 4px; border: white solid 10px;"
 								th:src="@{|/assets/images/${brand.image}/|}"
-								th:href="@{|/itbalo/brand/${brand.brandId}|}" />
+								th:href="@{|/shoesstore/brand/${brand.brandId}|}" />
 						</a>
 					</div>
 				</div>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BrandController {
 
 	//brand
-		@GetMapping("/itbalo/brand")
+		@GetMapping("/shoesstore/brand")
 		public String thuongHieu() {
 			return"/user/product/sanPham";
 		}

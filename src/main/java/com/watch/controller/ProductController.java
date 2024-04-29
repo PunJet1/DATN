@@ -69,7 +69,7 @@ public class ProductController {
 	}
 	
 	//search strap
-	@GetMapping("itbalo/product/strap/{value}")
+	@GetMapping("shoesstore/product/strap/{value}")
 	public String searchStrap(Model model,@PathVariable("value") Long strap, @RequestParam("p") Optional<Integer> p ) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -96,7 +96,7 @@ public class ProductController {
 	
 	
 	//seacher price
-	@GetMapping("itbalo/product/price/{value}")
+	@GetMapping("shoesstore/product/price/{value}")
 	public String searchPrice(Model model,@PathVariable("value") String pric, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -123,7 +123,7 @@ public class ProductController {
 	}
 	
 	//search size
-	@GetMapping("itbalo/product/size/{value}")
+	@GetMapping("shoesstore/product/size/{value}")
 	public String searchSize(Model model,@PathVariable("value") Long pric, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -149,7 +149,7 @@ public class ProductController {
 	}
 	
 	//search header
-	@GetMapping("/itbalo/search")
+	@GetMapping("/shoesstore/search")
 	public String Search(Model model, @RequestParam("nameSearch") String name, Optional<Integer> p) {
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);	
 		dulieu();
@@ -172,7 +172,7 @@ public class ProductController {
 	UserAcounts useAcc;
 	
 	// Product
-	@GetMapping("/itbalo/product")
+	@GetMapping("/shoesstore/product")
 	public String sanpham(Model model, @RequestParam("p") Optional<Integer> p) {
 	
 			Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -194,7 +194,7 @@ public class ProductController {
 		
 	}
 
-	@GetMapping({"/itbalo/product/{id}"})
+	@GetMapping({"/shoesstore/product/{id}"})
 	public String loaiSp(Model model, @PathVariable("id") Integer id, @RequestParam("p") Optional<Integer> p) {
 		//System.out.println("id: " + id);
 		dulieu();
@@ -214,7 +214,7 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 	
-	@GetMapping({"/itbalo/brand/{name}"})
+	@GetMapping({"/shoesstore/brand/{name}"})
 	public String thuonghieu(Model model, @PathVariable("name") String name, @RequestParam("p") Optional<Integer> p) {
 //		System.out.println("id: " + id);
 		dulieu();
@@ -246,7 +246,7 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 	
-	@GetMapping({"/itbalo/category/{id}"})
+	@GetMapping({"/shoesstore/category/{id}"})
 	public String loaisp2(Model model, @PathVariable("id") String id, @RequestParam("p") Optional<Integer> p) {
 		System.out.println("id: " + id);
 		dulieu();
@@ -272,7 +272,7 @@ public class ProductController {
 //	private Page<Product> products;
 //	String the;
 	
-	@PostMapping("/itbalo/product/search")
+	@PostMapping("/shoesstore/product/search")
 	public String search(Model model, @RequestParam("bran") String bran, @RequestParam("cate") String cate,
 			@RequestParam("pric") String pric, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
@@ -332,7 +332,7 @@ public class ProductController {
 		System.out.println("toanf 09876: "+products.getSize());
 		return "/user/product/childSanPham";
 	}
-	@GetMapping("itbalo/product/gender/{gender}")
+	@GetMapping("shoesstore/product/gender/{gender}")
 	public String productGender(@RequestParam("p") Optional<Integer> p,Model model,@PathVariable("gender") String param) {
 		dulieu();
 		Long gender;
@@ -362,7 +362,7 @@ public class ProductController {
 		System.out.println("gender: "+products.getSize());
 		return "/user/product/childSanPham";
 	}
-	@GetMapping("itbalo/product/khuyenmai")
+	@GetMapping("shoesstore/product/khuyenmai")
 	public String phobien(Model model, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -387,7 +387,7 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 
-	@GetMapping("itbalo/product/banchay")
+	@GetMapping("shoesstore/product/banchay")
 	public String banchay(Model model, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -412,7 +412,7 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 
-	@GetMapping("itbalo/product/moinhat")
+	@GetMapping("shoesstore/product/moinhat")
 	public String moinhat(Model model, @RequestParam("p") Optional<Integer> p) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -438,7 +438,7 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 	
-	@GetMapping("/itbalo/product/tags/{id}")
+	@GetMapping("/shoesstore/product/tags/{id}")
 	public String tags(Model model, @RequestParam("p") Optional<Integer> p,@PathVariable("id") String id) {
 		dulieu();
 		Pageable pageable = PageRequest.of(p.orElse(0), 8);
@@ -478,10 +478,10 @@ public class ProductController {
 		return "/user/product/childSanPham";
 	}
 	//ChitietSp
-			@GetMapping({"/itbalo/product/detail/{id}","/itbalo/product/tags/detail/{id}"
-				,"/itbalo/product/tags/detail/detail/{id}","/itbalo/detail/{id}",
-				"/itbalo/brand/detail/{id}","/itbalo/category/detail/{id}","/itbalo/product/price/detail/{id}",
-				"/itbalo/product/strap/detail/{id}","/itbalo/account/detail/{id}","/chitietDH/itbalo/product/detail/{id}"})
+			@GetMapping({"/shoesstore/product/detail/{id}","/shoesstore/product/tags/detail/{id}"
+				,"/shoesstore/product/tags/detail/detail/{id}","/shoesstore/detail/{id}",
+				"/shoesstore/brand/detail/{id}","/shoesstore/category/detail/{id}","/shoesstore/product/price/detail/{id}",
+				"/shoesstore/product/strap/detail/{id}","/shoesstore/account/detail/{id}","/chitietDH/shoesstore/product/detail/{id}"})
 			public String chitietSp(Model model ,@PathVariable("id") Integer id) {
 				dulieu();
 				Product item = productService.getById(id);

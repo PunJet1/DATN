@@ -31,7 +31,7 @@ public class CartItemController {
 	UserAcounts useAcc;
 
 	// giỏ hàng
-	@GetMapping("/itbalo/cartItem")
+	@GetMapping("/shoesstore/cartItem")
 	public String gioHang(Model model) {
 		Accounts account = useAcc.User();
 		if (useAcc.User() == null) {

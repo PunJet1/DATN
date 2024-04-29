@@ -11,27 +11,27 @@
 			<div class=" h_menu4" style="margin-top: 20px;">
 				<ul class="memenu skyblue">
 					<!-- <li class="grid"><a class="color1" th:href="@{/itbalo}">VỀ ITBalo</a></li> -->
-					<li><a class="color1" th:href="@{/itbalo/product}">SẢN PHẨM</a>
+					<li><a class="color1" th:href="@{/shoesstore/product}">SẢN PHẨM</a>
 						<div class="mepanel">
 							<div class="row">
 								<div class="col1">
 									<div class="h_nav">
 										<h4>Khoảng giá</h4>
-										<form th:action="@{|/itbalo/product/search|}" method="post">
+										<form th:action="@{|/shoesstore/product/search|}" method="post">
 											<ul>
-												<li value="1"><a th:href="@{/itbalo/product/price/1}">Dưới 2
+												<li value="1"><a th:href="@{/shoesstore/product/price/1}">Dưới 2
 														triệu</a></li>
-												<li value="2"><a th:href="@{/itbalo/product/price/2}">Từ 2 triệu đến
+												<li value="2"><a th:href="@{/shoesstore/product/price/2}">Từ 2 triệu đến
 														5 triệu</a></li>
-												<li value="3"><a th:href="@{/itbalo/product/price/3}">Từ 5 triệu đến
+												<li value="3"><a th:href="@{/shoesstore/product/price/3}">Từ 5 triệu đến
 														10 triệu</a></li>
-												<li value="4"><a th:href="@{/itbalo/product/price/4}">Từ 10 triệu
+												<li value="4"><a th:href="@{/shoesstore/product/price/4}">Từ 10 triệu
 														đến 15 triệu</a></li>
-												<li value="5"><a th:href="@{/itbalo/product/price/5}">Từ 15 triệu
+												<li value="5"><a th:href="@{/shoesstore/product/price/5}">Từ 15 triệu
 														đến 20 triệu</a></li>
-												<li value="6"><a th:href="@{/itbalo/product/price/6}">Từ 20 triệu
+												<li value="6"><a th:href="@{/shoesstore/product/price/6}">Từ 20 triệu
 														đến 25 triệu</a></li>
-												<li value="7"><a th:href="@{/itbalo/product/price/7}">Trên 25
+												<li value="7"><a th:href="@{/shoesstore/product/price/7}">Trên 25
 														triệu</a></option>
 											</ul>
 										</form>
@@ -43,7 +43,7 @@
 										<h4>Loại dây</h4>
 										<ul>
 											<li class="" th:each="strap : ${straps}"><a
-													th:href="@{|/itbalo/product/strap/${strap.id}|}">[[${strap.name}]]</a>
+													th:href="@{|/shoesstore/product/strap/${strap.id}|}">[[${strap.name}]]</a>
 											</li>
 										</ul>
 									</div>
@@ -55,7 +55,7 @@
 
 										<ul>
 											<li class="" th:each="size : ${sizes}"><a
-													th:href="@{|/itbalo/product/size/${size.id}|}">[[${size.name}]]</a>
+													th:href="@{|/shoesstore/product/size/${size.id}|}">[[${size.name}]]</a>
 											</li>
 										</ul>
 									</div>
@@ -70,7 +70,7 @@
 									<div class="h_nav">
 										<ul>
 											<li class="col-md-6" th:each="brand : ${brands}"><a
-													th:href="@{|/itbalo/brand/${brand.name}|}">[[${brand.name}]]</a>
+													th:href="@{|/shoesstore/brand/${brand.name}|}">[[${brand.name}]]</a>
 											</li>
 										</ul>
 									</div>
@@ -89,7 +89,7 @@
 								<div class="col-sm-6">
 									<div class="h_nav">
 										<ul>
-											<li><a th:href="@{/itbalo/account/view}">Thông Tin Tài
+											<li><a th:href="@{/shoesstore/account/view}">Thông Tin Tài
 													Khoản</a></li>
 										</ul>
 									</div>
@@ -97,7 +97,7 @@
 								<div class="col-sm-6">
 									<div class="h_nav">
 										<ul>
-											<li><a th:href="@{/itbalo/account/history}">Lịch
+											<li><a th:href="@{/shoesstore/account/history}">Lịch
 													Sử Mua Hàng</a></li>
 										</ul>
 									</div>
@@ -105,7 +105,7 @@
 								<div class="col-sm-6">
 									<div class="h_nav">
 										<ul>
-											<li><a th:href="@{/itbalo/account/favorite}">Sản
+											<li><a th:href="@{/shoesstore/account/favorite}">Sản
 													Phẩm Yêu Thích</a></li>
 										</ul>
 									</div>
@@ -113,7 +113,7 @@
 								<div class="col-sm-6">
 									<div class="h_nav">
 										<ul>
-											<li><a th:href="@{/itbalo/account/changePassword}">Đổi
+											<li><a th:href="@{/shoesstore/account/changePassword}">Đổi
 													Mật Khẩu</a></li>
 										</ul>
 									</div>
