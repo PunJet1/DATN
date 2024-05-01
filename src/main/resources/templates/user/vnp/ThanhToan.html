@@ -233,15 +233,15 @@
 						<div class="form-group" style="display: none;">
 							<label style="color: white">Nội dung thanh toán</label>
 							<textarea class="form-control" cols="20" id="vnp_OrderInfo"
-								name="vnp_OrderInfo" rows="2">Thanh toan</textarea>
+								name="vnp_OrderInfo" rows="2">Thanh toán</textarea>
 						</div>
-						<!-- <div class="row" style="margin-left: 5px">
+						<!--<div class="row" style="margin-left: 5px">
 							<label for="language" style="margin-right: 30px;">Ngôn
 								ngữ</label> <select name="language" id="language" class="form-control">
 								<option value="vn">Tiếng Việt</option>
 								<option value="en">English</option>
 							</select>
-						</div>  -->
+						</div>-->
 
 
 
@@ -331,7 +331,62 @@
 				});
 			}
 
+			// xử lý api giao hàng nhanh
 
+			const linkt = "https://online-gateway.ghn.vn/shiip/public-api/master-data/province";
+			const linkh = "https://online-gateway.ghn.vn/shiip/public-api/master-data/district";
+			const linkx = "https://online-gateway.ghn.vn/shiip/public-api/master-data/ward";
+			$(document).ready(function () {
+				window.onload = function () {
+					tinh();
+				};
+				function tinh() {
+					$.ajax({
+						type: "GET",
+						url: linkt,
+						headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+						success: function (data) {
+							renderData(data.data, "province")
+							console.log(data);
+						},
+						error: function (error) {
+							alert("Đã xảy ra lỗi: " + error.responseText);
+						}
+					})
+				}
+			});
+
+			function huyen(provinceid) {
+				$.ajax({
+					type: "GET",
+					url: linkh,
+					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+					data: { province_id: provinceid },
+					success: function (data) {
+						renderDataH(data.data, "district")
+						console.log(data);
+					},
+					error: function (error) {
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
+
+			function phuong(districtid) {
+				$.ajax({
+					type: "GET",
+					url: linkx,
+					headers: { token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e" },
+					data: { district_id: districtid },
+					success: function (data) {
+						renderDataP(data.data, "ward")
+						console.log(data);
+					},
+					error: function (error) {
+						alert("Đã xảy ra lỗi: " + error.responseText);
+					}
+				})
+			}
 
 			function service(districtid) {
 				$.ajax({
@@ -364,7 +419,7 @@
 					url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
 					headers: {
 						token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e",
-						shop_id: "4463615"
+						shop_id: "4463615",
 					},
 					data: {
 						service_id: serviceid,
