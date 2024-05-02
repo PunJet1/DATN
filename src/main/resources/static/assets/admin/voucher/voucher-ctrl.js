@@ -16,7 +16,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 	$scope.initialize();
 
 
-
+//
 	var sweetalert = function(text) {
 		Swal.fire({
 			icon: "success",
@@ -97,18 +97,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 				swarning("Lưu voucher thất bại")
 				console.log("error", error);
 			})
-		} else {
-			//alert("Thêm mới voucher ")
-			$http.post(`/rest/vouchers/`, item).then(resp => {
-				$scope.items.push(resp.data);
-				this.initialize();
-				sweetalert("Thêm Thành Công");
-				$(".nav-tabs a:eq(0)").tab('show')
-			}).catch(error => {
-				swarning("Lỗi Thêm Mới ")
-				console.log("error", error);
-			});
-		}
+		} 
 	}
 	//thêm category mới
 	$scope.create = function() {
