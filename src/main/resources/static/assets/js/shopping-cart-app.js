@@ -359,9 +359,10 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
         account: {accountId: $("#account").val()},
         voucher: {voucherName: $scope.result},
         // Phương thức orderDetails không thay đổi
+
         get orderDetails() {
             const selectedItems = $scope.cart.items.filter(item => item.selected);
-        
+            
             const orderDetails = selectedItems.map(item => {
                 return {
                     product: { productId: item.productId , name: item.name},
@@ -375,7 +376,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
         },
         purchase() { 
             var order = angular.copy(this);
-            console.log(order);
+            console.log("Reorder", order);
             $http.post(`/rest/orders`, order).then(resp => {
                /* $scope.cart.clear();*/
                 location.href = "/shoesstore/order/checkout";

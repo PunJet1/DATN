@@ -162,6 +162,7 @@ public class OrderController {
 			String orderType = req.getParameter("ordertype");
 			long amount = Long.parseLong(String.valueOf(Math.round(Double.parseDouble(req.getParameter("amount")))))
 					* 100;
+					System.out.println("đây là tổng tiền" + amount);
 			String bankCode = req.getParameter("bankCode");
 
 			String vnp_TxnRef = VnpayConfig.getRandomNumber(8);
@@ -224,8 +225,11 @@ public class OrderController {
 				}
 			}
 			com.google.gson.JsonObject job = new JsonObject();
+			long amountFinal = Long.parseLong(String.valueOf(Math.round(Double.parseDouble(req.getParameter("amount")))));
 			if (pttt.equals("1")) {
 				Orders order = (Orders) session.getAttribute("OrderganNhat");
+				order.setTotal(amountFinal);
+				System.out.println("Gia tiền: " + order.getTotal());
 				Accounts ttkh = (Accounts) session.getAttribute("accountKh");
 				String address = ttkh.getAddress();
 				String maVoucher2 = (String) session.getAttribute("maVoucher");

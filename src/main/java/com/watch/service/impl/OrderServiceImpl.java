@@ -59,6 +59,7 @@ public class OrderServiceImpl implements OrdersService{
 		if(order1.equals(null)) {
 			return order;
 		}
+		System.out.println("abc" + order1.getTotal());
 		//int maOder = order1.getOrderId();
 		session.setAttribute("OrderganNhat", order1);
 		return order;
