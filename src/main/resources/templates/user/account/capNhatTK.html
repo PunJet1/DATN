@@ -152,24 +152,24 @@
 									<div class="form-group">
 										<label for="password">Số điện thoại</label> <input
 											type="number" class="form-control"
-											placeholder="Số điện thoại" id="phone" th:field="*{phone}">
+											placeholder="Số điện thoại" id="phone" th:field="*{phone}" >
 									</div>
 									<div class="form-group">
 										<label for="text">Ngày Sinh</label> <input type="text"
 											class="form-control" placeholder="Ngày sinh" id="bithdate"
 											name="bithdate" th:value="${dateNgaySinh}"
-											ng-blur="checkKyThangInput('bithdate');" />
+											ng-blur="checkKyThangInput('bithdate');"  />
 									</div>
 									<div class="form-group">
 										<label for="password">Địa chỉ</label> <input type="text"
 											class="form-control" id="diachi" placeholder="Địa Chỉ"
-											th:field="*{address}">
+											th:field="*{address}" >
 									</div>
-									<div class="form-group" style="display: none">
+									<!--<div class="form-group" style="display: none">
 										<label for="username">Mật khẩu</label> <input type="text"
 											class="form-control" placeholder="Username" id="password"
 											th:field="*{password}">
-									</div>
+									</div>-->
 								</div>
 							</div>
 							<hr>
