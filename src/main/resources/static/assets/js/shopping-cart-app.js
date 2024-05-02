@@ -217,7 +217,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
                 if ($scope.cart.amount >= dieuKien) {
                    
                     // Lấy phần tử HTML có id là "totalAmount"
-                    var totalAmountElement = document.getElementById("totalAmount");
+                    var totalAmountElement = document.getElementById("amount");
                     var totalShipfeeElement = document.getElementById("shipfee");
                     // Lấy và xử lý nội dung văn bản của phần tử
                     var totalAmountText = totalAmountElement.textContent || totalAmountElement.innerText;
@@ -249,7 +249,7 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
             })
         },
 
-
+        
 
         get amount2() {
             return this.cates
@@ -339,6 +339,8 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
     //     }
     // }
 
+
+
     $scope.orders = {
         createDate: new Date(),
         address: "",
@@ -388,12 +390,14 @@ app.controller("shopping-cart-ctrl", function($scope, $http,$window) {
     $scope.totalAmount = 0;
 
     // Hàm tính tổng số tiền khi có sự thay đổi trong các mục được chọn
+
     $scope.calculateTotalAmount = function() {
         const selectedItems = $scope.cart.items.filter(item => item.selected);
         $scope.totalAmount = selectedItems.reduce((total, item) => {
             return total + (item.price * item.qty);
         }, 0);
     };
+    
 
     $scope.orderShoppingCart = JSON.parse(localStorage.getItem('orderDetails')) || [];
     

@@ -106,7 +106,7 @@
 									<h6 class="my-0">{{i.product.name}}-{{i.product.productId}}</h6>
 									<small class="text-muted">{{i.price |number:0}} x
 										{{i.qty}}</small>
-								</div> <span class="text-muted">{{i.price * i.qty|number:0}}</span>
+								</div>
 							</li>
 						</ul>
 						<!-- Phần hiển thị voucher -->
@@ -142,7 +142,7 @@
 								<span>Tiền phải trả</span>
 								<div>
 									<strong id="sumPrice"> 0 VND</strong> <input type="hidden"
-										class="" id="amount" name="amount" ng-value="totalFinal" />
+										class="" id="amount" name="amount" ng-value="sumPrice" />
 									<hr>
 								</div>
 							</li>
@@ -418,8 +418,8 @@
 					type: "GET",
 					url: "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
 					headers: {
-						token: "4c987fa9-3cdb-11ee-b394-8ac29577e80e",
-						shop_id: "4463615",
+						token: "bb1a3e4c-0845-11ef-ab6e-ca4647523841",
+						shop_id: "992941",
 					},
 					data: {
 						service_id: serviceid,
@@ -434,17 +434,19 @@
 						width: 15
 					},
 					success: function (data) {
-						var amount = data.data.total; 
-
+						var amount = data.data.total;
+			
 						var saleText = document.getElementById('sale').innerText;
 						var saleNumber = parseFloat(saleText.replace(/[^\d]/g, ''));
-
+			
 						var formattedAmount = formatCurrency(amount);
 						document.getElementById('shipfee').innerText = formattedAmount.replace(/₫/, 'VNĐ');
-						var sumPrice = totalAmount + amount - saleNumber; 
+						var sumPrice = totalAmount + amount - saleNumber;
 						var formattedPrice = formatCurrency(sumPrice);
-						document.getElementById('sumPrice').innerText = formattedPrice.replace(/₫/, 'VNĐ'); 
-
+						document.getElementById('sumPrice').innerText = formattedPrice.replace(/₫/, 'VNĐ');
+			
+						// Lưu giá trị sumPrice vào một trường ẩn để gửi lên server khi thanh toán
+						document.getElementById('amount').value = sumPrice;
 					},
 					error: function (error) {
 						alert("Đã xảy ra lỗi: " + error.responseText);
