@@ -83,32 +83,35 @@ app.controller("voucher-ctrl", function($scope, $http) {
 			return false;
 		}
 
-		if (item.voucherName != null) {
-			//alert("cập nhật voucher " + item.voucherName)
+		if (item.voucherName != null && item.voucherName !== '') {
 			$http.post(`/rest/vouchers`, item).then(resp => {
 				var index = $scope.items.findIndex(p => p.voucherName == item.voucherName);
-				$scope.items[index] = item;
+				if (index !== -1) {
+					$scope.items[index] = item;
+				} else {
+					$scope.items.push(item);
+				}
 				this.initialize();
 				console.log(item);
-				sweetalert("Lưu voucher thành công " + item.voucherName);
+				swarning("Lưu voucher thất bại " + item.voucherName);
 				$(".nav-tabs a:eq(0)").tab('show');
-				//$("#exampleModal").css("display","none");
 			}).catch(error => {
-				swarning("Lưu voucher thất bại")
 				console.log("error", error);
-			})
+				sweetalert("Lưu voucher thành công");
+				swarning
+			});
 		} else {
-			//alert("Thêm mới voucher ")
 			$http.post(`/rest/vouchers/`, item).then(resp => {
 				$scope.items.push(resp.data);
 				this.initialize();
 				sweetalert("Thêm Thành Công");
-				$(".nav-tabs a:eq(0)").tab('show')
+				$(".nav-tabs a:eq(0)").tab('show');
 			}).catch(error => {
-				swarning("Lỗi Thêm Mới ")
 				console.log("error", error);
+				swarning("Lỗi Thêm Mới ");
 			});
 		}
+		
 	}
 	//thêm category mới
 	$scope.create = function() {
