@@ -142,30 +142,6 @@
 	text-align: left;
 }
 </style>
-<script>
-
-	function submitForm() {
-	var username = document.getElementsByName("username")[0].value;
-    var email = document.getElementsByName("email")[0].value;
-    var password = document.getElementsByName("password")[0].value;
-    var rpassword = document.getElementsByName("rpassword")[0].value;
-    var fullname = document.getElementsByName("fullname")[0].value;
-
-    if (username || email || password || rpassword || fullname) {
-        sweetalert('Đăng ký thành công');
-    }
-
-	function showSuccessSweetalert() {
-		sweetalert({
-		  title: "Thành công!",
-		  message: "Đăng ký thành công",
-		  type: "success",
-		  duration: 10000
-		});
-	  }
-	}
-
-</script>
 </head>
 
 <body layout:fragment="content">
@@ -206,7 +182,7 @@
 				</div><br>
 				<div class="form-row py-1">
 					<button type="submit"
-							class="btn btn-success btn-lg btn-block signup-btn" onclick="submitForm()">Đăng ký</button>
+							class="btn btn-success btn-lg btn-block signup-btn" >Đăng ký</button>
 				</div>
 			</form>
 			<div class="text-center">

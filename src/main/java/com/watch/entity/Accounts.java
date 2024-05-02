@@ -50,13 +50,14 @@ public class Accounts implements Serializable {
 	private String password;
 	@Column(columnDefinition = "NVARCHAR(255) NULL")
 	private String fullname;	
+	@NotBlank
 	@Size(max = 50)
 	private String email;
 	private String phone;
-
 	@Column(columnDefinition = "NVARCHAR(255) NULL")
 	private String address;
 	private String image;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthdate;
 	private Date create_date;
@@ -262,10 +263,4 @@ public class Accounts implements Serializable {
 		this.feedbacks = feedbacks;
 		this.roles = roles;
 	}
-
-	
-	
-	
-	
-
 }
