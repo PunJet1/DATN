@@ -181,7 +181,7 @@ public class OrderRestController {
 	        SimpleMailMessage message = new SimpleMailMessage();
 
 	        message.setTo(email);
-	        message.setSubject("Website Balo ITBalo.COM");
+	        message.setSubject("Website Balo ShoeStore.COM");
 	        message.setText("Mã hóa đơn của bạn là:" + order.getOrderId()+" ,đã được thay đổi trạng thái xin vui lòng kiểm tra");
 	        emailSender.send(message);
 	    }
