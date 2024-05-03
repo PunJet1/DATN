@@ -341,7 +341,6 @@ public class OrderController {
 		model.addAttribute("vnp_BankCode", vnp_BankCode);
 		model.addAttribute("vnp_BankTranNo", vnp_BankTranNo);
 		model.addAttribute("vnp_CardType", vnp_CardType);
-
 		model.addAttribute("vnp_OrderInfo", vnp_OrderInfo);
 		model.addAttribute("strDate", strDate);
 		model.addAttribute("vnp_CardType", vnp_CardType);
